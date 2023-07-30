@@ -2159,7 +2159,9 @@ and the contents can be rendered at a place defined by a L<Placement instruction
 
 The block name of a rendered semantic block will be placed in the L<I<Table of Contents>|#Table of Contents and Index>
 table in the position that it is rendered,
-unless the C<:toc>, C<:headlevel>, and or C<:caption> options are set.
+unless the C<:toc>, C<:headlevel>, and or C<:caption> options are set. A C<:hidden> metadata option will also remove
+the block's entry from the ToC. But if it is placed by a C<P<semantic:> instruction, the block entry will be placed at
+the appropriate point in the ToC.
 
 =head2 User-defined blocks
 
@@ -3105,7 +3107,7 @@ P<semantic: AUTHORS>
 
 =head2 Directives
 
-=begin table
+=begin table :!toc
     =row :header
         =cell Directive
         =cell Specifies
@@ -3138,7 +3140,7 @@ P<semantic: AUTHORS>
 
 =head2 Blocks
 
-=begin table :caption<Blocks> :headlevel(2)
+=begin table  :!toc
     =row
         =cell Block typename
         =cell Specifies
@@ -3205,7 +3207,7 @@ P<semantic: AUTHORS>
 =end table
 
 =head2 Metadata options
-=begin table
+=begin table :!toc
     =row :header
         =cell Metadata option
         =cell Blocks applied to
@@ -3408,7 +3410,7 @@ P<semantic: AUTHORS>
 
 =head2 Markup instructions
 
-=begin table
+=begin table :!toc
     =row
         =cell Markup instruction
         =cell Specifies

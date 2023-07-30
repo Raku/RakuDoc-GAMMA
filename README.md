@@ -11,7 +11,7 @@ Some history and goals of the revision can be found at [Revising Rakudoc](https:
 
 Comments, patches, enhancement requests are welcomed. The following goals
 should be considered when making such suggestions:
-- RakuDoc is intended to be backwards compatible with POD6, meaning that anything would be legal in POD6
+- RakuDoc is intended to be backwards compatible with POD6, meaning that anything would be legal in RakuDoc would also be legal in POD6.
     - POD6 is defined here as being in the document `Raku/docs/doc/language/pod6.rakudoc`
 - Some parts of the document use work-arounds in examples, these will be revised once a renderer is available to handle examples properly. 
 
@@ -30,5 +30,5 @@ Known deficiencies in `Raku::Pod::Render`:
 - `=config Q` where ***Q*** is some markup instruction is not yet fully implemented
 - `DOC use` is not recognised.
 
-`Raku::POd::Render` has some extensions that are not a part of standared Rakudoc, including
+`Raku::Pod::Render` has some extensions that are not a part of standared Rakudoc, including
 - AUTHOR SUMMARY VERSION DESCRIPTION are automatically given the metadata option `:hidden` and included in the `<head>` block of HTML as meta tabs.

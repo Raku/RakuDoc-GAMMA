@@ -2160,7 +2160,7 @@ and the contents can be rendered at a place defined by a L<Placement instruction
 The block name of a rendered semantic block will be placed in the L<I<Table of Contents>|#Table of Contents and Index>
 table in the position that it is rendered,
 unless the C<:toc>, C<:headlevel>, and or C<:caption> options are set. A C<:hidden> metadata option will also remove
-the block's entry from the ToC. But if it is placed by a C<P<semantic:> instruction, the block entry will be placed at
+the block's entry from the ToC. But if it is placed by a C<P<semantic:>> instruction, the block entry will be placed at
 the appropriate point in the ToC.
 
 =head2 User-defined blocks
@@ -3498,4 +3498,5 @@ P<semantic: AUTHORS>
     =row
 =end table
 
+=LICENSE Artistic-2.0
 =end rakudoc

@@ -3315,7 +3315,7 @@ P<semantic: AUTHORS>
             C<:caption>
 
         =column
-            =cell SEMANTIC block
+            =cell Semantic block
             =cell Custom block
             =cell C<=nested>
             =cell C<=code>
@@ -3326,6 +3326,10 @@ P<semantic: AUTHORS>
         =column
             =for cell :row-span(7)
             Caption to be associated with a block in the Table of Contents
+    =row
+        =cell C<:hidden>
+        =cell Semantic block
+        =cell Remove block from rendered text and ToC (use C<P<semantic: ...>> to inject elsewhere)
 
     =row
         =column
@@ -3399,8 +3403,8 @@ P<semantic: AUTHORS>
             =cell C<=input>
             =cell C<=output>
             =cell C<=headN>
-            =cell SEMANTIC_BLOCK
-            =cell Custom_block
+            =cell Semantic block
+            =cell Custom block
 
         =column
             =for cell :row-span(8) :align<top>

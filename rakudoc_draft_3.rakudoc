@@ -1011,7 +1011,8 @@ also appear in the Raku documentation sources.
 
 A renderer should offer the option to use syntax highlighting to render code in a code block,
 perhaps by specifying a C<:syntax-highlighting> metadata option for code blocks. By default,
-a renderer will not change the contents of a code block.
+a renderer will not change the contents of a code block, but see the caveat
+when L<C<:allow> is used|#Markup within verbatim blocks>.
 
 The C<:lang< ... >> metadata option may be used to specify that the contents of a given C<=code>
 block are in a given language.
@@ -1087,6 +1088,11 @@ sub demo {
     I<note> 'The I format is not recognised';
 }
 =end code
+
+It should be noted that both C<:allow> and C<:lang> (if C<:syntax-highlighting> is true)
+will affect the rendering of the content of the block. This is likely to cause conflicts
+in some cases. The renderer is free to choose how to resolve such conflicts, e.g. by
+disregarding the C<:allow> metadata.
 
 =head2 Lists
 

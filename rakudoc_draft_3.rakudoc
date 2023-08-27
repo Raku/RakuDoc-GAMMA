@@ -282,9 +282,6 @@ Note that abbreviated blocks cannot be specified with metadata.
 Any apparent metadata elements placed after an abbreviated block name
 are instead considered to be part of the block contents.
 
-=nested There is, however, one exception to this rule: the octothorpe character C<#>. The character (when not escaped) is removed from the block contents
-and a C<:numbered> metadata option is associated with the block.
-
 =end item
 
 =head2 Markup instruction syntax
@@ -462,24 +459,16 @@ forms.
 If the same option needs to be added to multiple blocks, this can be done using a C<config>
 directive, and then the B<abbreviated> block form can be used in the L<same block scope|#Block scope>.
 
-For example, suppose we want all C<=item> blocks to be numbered within some section of a document.
-Rather than add a C<:numbered> modifier to every individual C<=item>, we could configure every
-V<=item> block to be automatically numbered within the given scope, like so:
+For example, suppose we want all C<=code> blocks to be labeled with a `:delta` within some section of a document
+(L<More information on developer notes|#Developer or delta notes>).
+Rather than add a C<:delta> modifier to every individual C<=code>, we could configure every
+V<=code> block to be automatically given the same developer note, like so:
 
 =begin code :allow< B V > :lang<rakudoc>
-    =head Unnumbered lists
-    =item This is not numbered
-    =item Neither is this
-
-    B<V<=>config item :numbered>
-    =head Numbered lists
-    =item This is numbered
-    =item This is also numbered
-    =head2 A heading in the same context
-    =item and this is numbered too, but restarting from 1
-
-    =head Starting another scope
-    =item This is not a numbered item
+    B<<V<=>config item :delta(v2.3.2+, 'oFun enhancements') >>
+    =code method droll { say 'what a cool operator' }
+    =code method drool { say 'what a slob' }
+    =code method drill { say 'keep up' }
 =end code
 
 =head2 Document termination
@@ -703,28 +692,21 @@ C<=head> is an alias for C<=head1>.
 
 =head3 Numbered headings
 
-You can specify that a heading is numbered using the C<:numbered> option. For example:
+You can specify that a heading is numbered using the C<=numhead> block. For example:
 =begin code :lang<rakudoc>
-    =for head1 :numbered
-    The Problem
+    =numhead1 The Problem
 
-    =for head1 :numbered
-    The Solution
+    =numhead1 The Solution
 
-        =for head2 :numbered
-        Analysis
+        =numhead2 Analysis
 
-            =for head3
-            Overview
+            =head3 Overview
 
-            =for head3
-            Details
+            =head3 Details
 
-        =for head2 :numbered
-        Design
+        =numhead2 Design
 
-    =for head1 :numbered
-    The Implementation
+    =numhead1 The Implementation
 =end code
 
 which would produce:
@@ -745,39 +727,14 @@ which would produce:
 3. The Implementation
 =end code
 
-It is usually better to preset a numbering scheme for each heading level, in a series of configuration blocks:
-=begin code :lang<rakudoc>
-    =config head1 :numbered
-    =config head2 :numbered
-    =config head3 :!numbered
-
-    =head1 The Problem
-    =head1 The Solution
-    =head2   Analysis
-    =head3     Overview
-    =head3     Details
-    =head2   Design
-    =head1 The Implementation
-=end code
-
-Alternatively, as a short-hand, if the first whitespace-delimited word in a heading
-consists of a single literal B<#> character, the B<#> is removed and the heading is
-treated as if it had a C<:numbered> option:
-=begin code :lang<rakudoc>
-    =head1 # The Problem
-    =head1 # The Solution
-    =head2   # Analysis
-    =head3       Overview
-    =head3       Details
-    =head2   # Design
-    =head1 # The Implementation
-=end code
+A document has an I<inherent numbering> for every heading, but only the C<=numheadN> block
+makes the numeration visible in the heading and in the Table of Contents.
 
 Note that, even though renderers are not required to distinctly render more than the
 first four levels of heading, they are required to correctly honour arbitrarily
 nested numberings. That is:
 =begin code :lang<rakudoc>
-    =head6 # The Rescue of the Kobayashi Maru
+    =numhead6 # The Rescue of the Kobayashi Maru
 =end code
 
 should produce something like:
@@ -1125,154 +1082,6 @@ The three suspects are:
 
 The bulleting strategy used for different levels within a nested list is entirely up to the renderer.
 
-=head3 Ordered lists
-
-An item is part of an ordered list if the item has a :numbered configuration option:
-=begin code :lang<rakudoc>
-     =for item1 :numbered
-     Visito
-
-     =for item2 :numbered
-     Veni
-
-     =for item2 :numbered
-     Vidi
-
-     =for item2 :numbered
-     Vici
-=end code
-This would produce something like:
-=begin nested
-1. Visito
-
-1.1. Veni
-
-1.2. Vidi
-
-1.3. Vici
-=end nested
-
-Once again, however, the numbering scheme is entirely at the discretion of the renderer.
-
-Alternatively, if the first word of the item consists of a single B<#> character,
-the item is treated as having a C<:numbered> option:
-=begin code :lang<rakudoc>
-     =item1  # Visito
-     =item2     # Veni
-     =item2     # Vidi
-     =item2     # Vici
-=end code
-
-=nested B<Note> that this is the only type of metadata that can be explicitly associated
-with an abbreviated form block.
-
-To specify an unnumbered list item that starts with a literal B<#>, make
-the octothorpe verbatim:
-=begin code :lang<rakudoc>
-    =item V<#> introduces a comment
-=end code
-
-Or explicitly mark the item itself as being unnumbered:
-=begin code :lang<rakudoc>
-    =for item :!numbered
-    # introduces a comment
-=end code
-
-The numbering of successive C<=item1> list items increments automatically,
-but is reset to 1 whenever any other kind of non-ambient Pod block appears
-between two C<=item1> blocks. For example:
-=begin code :lang<rakudoc>
-    The options are:
-
-    =item1 # Liberty
-    =item1 # Death
-    =item1 # Beer
-
-    The tools are:
-
-    =item1 # Revolution
-    =item1 # Deep-fried peanut butter sandwich
-    =item1 # Keg
-=end code
-This would produce:
-=begin nested
-The options are:
-
-1. Liberty
-
-2. Death
-
-3. Beer
-
-The tools are:
-
-1. Revolution
-
-2. Deep-fried peanut butter sandwich
-
-3. Keg
-=end nested
-The numbering of nested items (C<=item2>, C<=item3>, etc.) only resets to 1 when
-a higher-level item's numbering either resets or increments.
-
-To prevent a numbered C<=item1> from resetting after a non-item block,
-you can specify the C<:continued> option:
-=begin code :lang<rakudoc>
-     =for item1
-     # Retreat to remote Himalayan monastery
-
-     =for item1
-     # Learn the hidden mysteries of space and time
-
-     I<????>
-
-     =for item1 :continued
-     # Prophet!
-=end code
-This produces:
-=begin nested
-1. Retreat to remote Himalayan monastery
-
-2. Learn the hidden mysteries of space and time
-
-????
-
-3. Prophet!
-
-=end nested
-
-=head3 Definition lists
-
-Lists that define terms or commands can be specified using the C<=defn> block, which is equivalent to HTML C<DL> lists
-in HTML.
-
-A definition contains two parts: a term and a defining text. The term is the contents of
-the first line of the C<defn> block (i.e. the text immediately after an abbreviated C<=defn>, or
-the first line after a C<=for defn> or C<=begin defn>).
-The defining text is the remaining lines within the scope of the C<defn> block.
-A renderer is expected to distinguish between the term and the defining text.
-
-For example:
-
-=begin code :lang<rakudoc>
-=defn Happy
-When you're not blue.
-
-=defn Blue
-When you're not happy.
-=end code
-
-...will be rendered as:
-
-=defn Happy
-When you're not blue.
-
-=defn Blue
-When you're not happy.
-
-A renderer is expected to retain the information generated by a definition list, and the defining text
-may be targeted by a L<link markup instruction|#Links>.
-
 =head3 Multi-level lists
 
 Lists may be multi-level, with items at each level specified using the
@@ -1378,6 +1187,148 @@ whether you would actually enjoy annelids for breakfast.
 
 As you can see, folk wisdom is often of dubious value.
 =end nested
+
+=head3 Ordered lists
+
+A C<=numitemN> expresses the I<inherent numeration> of a list:
+=begin code :lang<rakudoc>
+     =numitem1 Visito
+     =numitem2 Veni
+     =numitem2 Vidi
+     =numitem2 Vici
+=end code
+This would produce something like:
+=begin nested
+1. Visito
+
+1.1. Veni
+
+1.2. Vidi
+
+1.3. Vici
+=end nested
+
+The numbering scheme is at the discretion of the renderer. A renderer might, for example,
+provide a scheme similar to the examples here, and also provide an enhancement, such as
+`:html-ordered` that leverages the `<ul type="A">` markup.
+
+The numbering of successive C<=numitem1> list items increments automatically,
+but is reset to 1 whenever any other kind of non-ambient Pod block appears
+between two C<=numitem1> blocks. For example:
+=begin code :lang<rakudoc>
+    The options are:
+
+    =numitem1 Liberty
+    =numitem1 Death
+    =numitem1 Beer
+
+    The tools are:
+
+    =numitem1 Revolution
+    =numitem1 Deep-fried peanut butter sandwich
+    =numitem1 Keg
+=end code
+This would produce:
+=begin nested
+The options are:
+
+1. Liberty
+
+2. Death
+
+3. Beer
+
+The tools are:
+
+1. Revolution
+
+2. Deep-fried peanut butter sandwich
+
+3. Keg
+=end nested
+The numbering of nested items (C<=numitem2>, C<=numitem3>, etc.) only resets to 1 when
+a higher-level item's numbering either resets or increments.
+
+To prevent a C<=numitemN> from resetting after a non-item block,
+you can specify the C<:continued> option:
+=begin code :lang<rakudoc>
+     =numitem1 Retreat to remote Himalayan monastery
+
+     =numitem1 Learn the hidden mysteries of space and time
+
+     I<????>
+
+     =for numitem1 :continued
+     Prophet!
+=end code
+This produces:
+=begin nested
+1. Retreat to remote Himalayan monastery
+
+2. Learn the hidden mysteries of space and time
+
+????
+
+3. Prophet!
+
+=end nested
+
+Normally, if two C<=numitemN> blocks are separated by some other kind of block
+(for example, a C<=para>, C<=code>, or C<=table> block), then the numbering of
+the second C<=numitemN> block resets to 1.
+
+However, if the second C<=numitemN> block is specified with a C<:continued> option
+the numbering of that second block does not reset, but increments instead
+(i.e. as if there had been no intervening non-numbered block).
+
+The C<:continued> option has no effect on any higher- or lower-numbered C<=numitem> blocks
+that are currently active in the same scope. That is: if C<<A < N < Z>>,
+then the numbering of every active C<=numitemZ> block still resets to 1,
+and the numbering of every active C<=numitemA> block stays the same.
+
+A C<=numitem> is the same as a C<=numitem1>, by analogy with C<=item> and C<=head>.
+
+The underlying paradigm is that every sequence of list instructions,
+that is, C<=itemN> or C<=numitemN> instructions,
+has an I<inherent numeration>. The C<=numitemN> instructions
+express the numeration, while the C<=itemN> instructions do not.
+
+When a sequence of list instructions is terminated by another sort of block
+then by default a new list is created with its own inherent numeration.
+By specifying C<:continued> on the B<next> list instruction, the previous
+I<inherent numeration> is conserved.
+
+=head3 Definition lists
+
+Lists that define terms or commands can be specified using the C<=defn> block, which is equivalent to HTML C<DL> lists
+in HTML.
+
+A definition contains two parts: a term and a defining text. The term is the contents of
+the first line of the C<defn> block (i.e. the text immediately after an abbreviated C<=defn>, or
+the first line after a C<=for defn> or C<=begin defn>).
+The defining text is the remaining lines within the scope of the C<defn> block.
+A renderer is expected to distinguish between the term and the defining text.
+
+For example:
+
+=begin code :lang<rakudoc>
+=defn Happy
+When you're not blue.
+
+=defn Blue
+When you're not happy.
+=end code
+
+...will be rendered as:
+
+=defn Happy
+When you're not blue.
+
+=defn Blue
+When you're not happy.
+
+A renderer is expected to retain the information generated by a definition list, and the defining text
+may be targeted by a L<link markup instruction|#Links>.
 
 =head2 Tables
 
@@ -3236,34 +3187,17 @@ P<semantic: AUTHORS>
         =cell C<:id>
         =cell all blocks
         =cell Specify the anchor for a block
-    =row
-        =column
-            =for cell :row-span(2) :align<middle>
-            C<:numbered> or leading C<#>
-
-        =column
-            =cell C<=headN>
-            =cell C<=itemN>
-        =column
-            =for cell :row-span(2) :align<middle>
-            Number the block
 
     =row
         =column
-            =for cell :row-span(2) :align<middle>
-            C<:!numbered>
-
+            =for cell :row-span(2)
+            C<:continued>
         =column
-            =cell C<=headN>
-            =cell C<=itemN>
+            =cell C<=item>
+            =cell C<=numitem>
         =column
-            =for cell :row-span(2) :align<middle>
-            Do not number the block
-
-    =row
-        =cell C<:continued>
-        =cell C<=item>
-        =cell Continue an existing numbering list
+            =for cell :row-span(2)
+            Continue an existing numbering list
 
     =row
         =column
@@ -3284,16 +3218,17 @@ P<semantic: AUTHORS>
 
     =row
         =column
-            =for cell :row-span(3)
+            =for cell :row-span(4)
             C<:!toc>
 
         =column
             =cell SEMANTIC block
             =cell Custom block
             =cell C<=headN>
+            =cell C<=numheadN>
 
         =column
-            =for cell :row-span(3)
+            =for cell :row-span(4)
             Do not include content or caption in Table of contents
 
     =row
@@ -3399,7 +3334,7 @@ P<semantic: AUTHORS>
 
     =row
         =column
-            =for cell :row-span(8) :align<top>
+            =for cell :row-span(9) :align<top>
             C<:delta>
 
         =column
@@ -3409,11 +3344,12 @@ P<semantic: AUTHORS>
             =cell C<=input>
             =cell C<=output>
             =cell C<=headN>
+            =cell C<=numheadN>
             =cell Semantic block
             =cell Custom block
 
         =column
-            =for cell :row-span(8) :align<top>
+            =for cell :row-span(9) :align<top>
             Developer information associated with a block
 
 =end table

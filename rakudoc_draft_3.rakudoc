@@ -1,5 +1,5 @@
 =begin rakudoc :kind("Language") :subkind("Language") :category("reference")
-=VERSION 2.3.1
+=VERSION 2.3.2
 =TITLE RakuDoc
 =SUBTITLE A Raku slang for documenting Raku software to aid development and use.
 
@@ -1333,7 +1333,7 @@ may be targeted by a L<link markup instruction|#Links>.
 
 =head4 Numbered definitions
 
-Definitions can be numbered in the same way as C<=item> lists, that is a C<=numdefn> instruction
+Definitions can be numbered in the same way as C<=item> lists. That is a C<=numdefn> instruction
 will express the I<inherent numeration> of the definition list when it is rendered.
 
 As with ordinary lists, if a C<=numdefn> instruction is associated with a C<:continued> metadata option,
@@ -1356,7 +1356,7 @@ For example:
     finals
 =end code
 
-will yield something like
+will yield something like:
 =begin code :allow< B > :lang<RakuDoc>
 1. B<AAA>
   first letters
@@ -1369,7 +1369,7 @@ A normal paragraph
   finals
 =end code
 In order to continue a list, an explicit C<:continued> is needed, such as:
-=begin code :lang<RakuDoc>
+=begin code :allow< B > :lang<RakuDoc>
     =numdefn AAA
     first letters
 
@@ -1378,7 +1378,7 @@ In order to continue a list, an explicit C<:continued> is needed, such as:
 
     A normal para
 
-    =for numdefn :continued
+    =for numdefn B<:continued>
     XXX
     ending letters
 
@@ -1399,9 +1399,11 @@ A normal paragraph
   finals
 =end code
 
-Suppose a writer wants to have a single continuous list of definitions within the same
-block scope (for example a section or for the whole document), then every C<=numdefn>
-could be associated with a C<:continued> as follows:
+Suppose a writer needs every numbered definition to form a single monotonic sequence
+within some block scope (e.g. for every definition within a document section,
+or every definition throughout the entire document). This would require every C<=numdefn>
+to be specified with a C<:continued> option. Or the writer could simply pre-configure
+every C<=numdefn> within the scope, as follows:
 =begin code :lang<RakuDoc>
     =config numdefn :continued
 =end code
@@ -2899,7 +2901,7 @@ would be formatted like so:
 =begin code :lang<rakudoc>
 The emergency signal is:
 dot dot dot   dash dash dash    dot dot dot.
-=end codetypo line 743
+=end code
 rather than:
 =begin code :lang<rakudoc>
 The emergency signal is: dot dot dot dash dash dash dot dot dot.
@@ -3051,7 +3053,7 @@ directive, e.g.,
 =config C :allow< B I U >
 =config V :allow< N L X >
 =end code
-typo line 743
+
 =head3 Indexing terms
 
 Anything enclosed in an C<X<>> code is an B<index entry>. The contents
@@ -3119,7 +3121,7 @@ is used by the renderer to identify the functionality being provided.
 For example, suppose a Rakudoc document is used to create part of a website in which a button is to be styled
 that accesses the API of a payment service (e.g. 'PayMe'). A developer can then create some functionality according
 to the rules of a RakuDoc renderer, and present it to the service point. In an HTML document, this might be coded
-as a C< <button class="PayMeApp" data-token="vendor-idtypo line 743" data-price="$0.99"> > with a specific class and structure.
+as a C< <button class="PayMeApp" data-token="vendor-id" data-price="$0.99"> > with a specific class and structure.
 The RakuDoc instruction might then be:
 =begin code :lang<Raku> :allow<B>
     To sample this marvelous libation B<M<order now by PayMeApp|PayMeApp; vendor-id; $0.99>>
@@ -3452,7 +3454,7 @@ P<semantic: AUTHORS>
         =cell Markup instruction
         =cell Specifies
     =row
-        =cell V<A<...>>typo line 743
+        =cell V<A<...>>
         =cell Alias to be replaced by contents of specified V<=alias> directive
     =row
         =cell V<B<...>>

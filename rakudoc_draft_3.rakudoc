@@ -517,32 +517,32 @@ The rendered version of the data placed in the text is considered to form its ow
 An in-line version of C<=place> is C<P<...>>, which is described in more detail in the section on
 markup codes.
 
-The schema merely specifies where to look for the external content:
+The schema of the URL specified in a C<=place> directive specifies where to look for the external content:
 =begin table
-| Schema   | Where to look for the resource |
-| :-----   | :----------------------------- |
-| http(s): | Look on the web |
-| file:    | Look on the local filesystem |
-| rakudoc: | Look in the usual places for Raku documentation |
-| man:     | Look via a local man(1) |
-| defn:    | Look in the current document |
+| Schema      | Where to look for the resource                  |
+|=============|=================================================|
+| C<http(s):> | Look on the web                                 |
+| C<file:>    | Look on the local filesystem                    |
+| C<rakudoc:> | Look in the usual places for Raku documentation |
+| C<man:>     | Look via a local man(1)                         |
+| C<defn:>    | Look in the current document                    |
 =end table
 
 Meanwhile, the kind of content being placed is inferred from the
-final extension of the URL:
+final extension of the URL. For example:
 =begin table
-| Extension | How to treat the contents |
-| :-------- | :------------------------ |
-| .txt      | Render the contents as plaintext |
-| .rakudoc  | Render the contents as RakuDoc |
-| .html     | Render the contents as XHTML |
-| .md       | Render the contents as Markdown |
-| .json     | Render the contents as JSON |
-| .jpg      | Render the contents as an image |
-| .mp4      | Render the contents as a video |
+| Extension   | How to treat the contents        |
+|=============|==================================|
+| C<.txt>     | Render the contents as plaintext |
+| C<.rakudoc> | Render the contents as RakuDoc   |
+| C<.html>    | Render the contents as XHTML     |
+| C<.md>      | Render the contents as Markdown  |
+| C<.json>    | Render the contents as JSON      |
+| C<.jpg>     | Render the contents as an image  |
+| C<.mp4>     | Render the contents as a video   |
 =end table
 
-Renderers are not required to render anything but plaintext and RakuDoc,
+Renderers are not required to render anything other than plaintext and RakuDoc,
 but may also support other formats if they wish.
 
 In the case where a URL does not end in a recognized extension:
@@ -557,16 +557,15 @@ In the case where a URL does not end in a recognized extension:
 ...then the type of content (and hence rendering) may be inferred from the schema:
 
 =begin table
-| Schema | Inferred content type if no final extension |
-| :----- | :----------------------------- |
-| `http(s):` | XHTML |
-| `file:`    | plaintext |
-| `rakudoc:` | RakuDoc |
-| _`etc:`_ | _etc._ |
+| Schema      | Inferred content type if no final extension |
+|=============|=============================================|
+| C<http(s):> | XHTML                                       |
+| C<file:>    | plaintext                                   |
+| C<rakudoc:> | RakuDoc                                     |
 =end table
 
 A B<=place> directive may be accompanied by metadata options to ensure that
-a reference can be made in the Table of Contents, eg.
+a reference can be made in the Table of Contents, or to provide an ALT text. For example:
 =begin code
   =place https://raku.org/camelia-logo.png  :caption<Raku's mascot>  :alt<A multicoloured butterfly>
 =end code
@@ -2503,7 +2502,7 @@ C<=nested>, C<=rakudoc>, C<=section>, C<=pod>, C<=cell>.
 
 B<I<None>> of the following blocks should infer C<para> or C<code> from indentation:
 C<=para>, C<=code>, C<=input>, C<=output>, C<=comment>, C<=table>,
-C<=graphic>, C<=data>, C<=head>, C<=headN>, C<=SEMANTIC>.
+C<=data>, C<=head>, C<=headN>, C<=SEMANTIC>.
 
 That’s because each of them specifies explicitly what type of information their contents
 are supposed to be, so there’s no need to infer anything. In particular, C<=para> and C<=code>
@@ -2911,13 +2910,6 @@ surrounding subroutine's signature (C<A<&?ROUTINE.signature>>) or the type of a 
 
 See L<Aliases|#Alias blocks> for further details of the aliasing macro mechanism.
 
-=head3 Graphic placement
-
-Another variant on the placement instruction is the C<G<>> instruction.
-
-Like C<P<>>, the C<G<Alt text|url schema>> takes appropriately formatted image
-data from the url and places it inline.
-
 =head3 Inline definitions
 
 A C<D<>> formatting code marks a piece of text as being the I<“inline definition”> of a term.
@@ -3312,9 +3304,6 @@ P<semantic: AUTHORS>
         =cell V<=table>
         =cell Visual or procedural table
     =row
-        =cell V<=graphic>
-        =cell Insert an image from a url
-    =row
         =cell V<=data>
         =cell Raku data section
     =row
@@ -3373,7 +3362,7 @@ P<semantic: AUTHORS>
             =cell C<=input>
             =cell C<=output>
             =cell C<=table>
-            =cell C<=graphic>
+            =cell C<=place>
 
         =column
             =for cell :row-span(7)
@@ -3408,7 +3397,7 @@ P<semantic: AUTHORS>
             =cell C<=input>
             =cell C<=output>
             =cell C<=table>
-            =cell C<=graphic>
+            =cell C<=place>
 
         =column
             =for cell :row-span(9)
@@ -3427,7 +3416,7 @@ P<semantic: AUTHORS>
             =cell C<=input>
             =cell C<=output>
             =cell C<=table>
-            =cell C<=graphic>
+            =cell C<=place>
 
         =column
             =for cell :row-span(8)
@@ -3547,8 +3536,8 @@ P<semantic: AUTHORS>
         =cell V<F<...>>
         =cell (This markup code is not yet defined, but is reserved for future use)
     =row
-        =cell V<G<...|...>>
-        =cell Insert an inline graphic (V<G<alt text|url>>)
+        =cell V<G<...>>
+        =cell (This markup code is not yet defined, but is reserved for future use)
     =row
         =cell V<H<...>>
         =cell High text (typically rendered superscript)

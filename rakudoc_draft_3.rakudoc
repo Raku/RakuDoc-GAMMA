@@ -296,6 +296,12 @@ Note that abbreviated blocks cannot be specified with metadata.
 Any apparent metadata elements placed after an abbreviated block name
 are instead considered to be part of the block contents.
 
+Where an extended or abbreviated block uses a blank line as the block terminator,
+the blank line is not included as part of the content of the block.
+All subsequent whitespace, whether horizontal or vertical (spaces, tabs, new lines),
+is ignored. Note that horizontal and vertical whitespace can be included inside a delimited block,
+and may be significant (eg, Verbatim blocks).
+
 =end item
 
 =head2 Markup instruction syntax

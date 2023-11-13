@@ -105,9 +105,9 @@ RakuDoc is intended to be backwards compatible with the POD6 markup language bas
 RakuDoc is extensible and renderers are free to provide extra functionality beyond the minimum
 set of instructions described here.
 
-The markup language is called B<RakuDoc> with the I<Camel case> spelling in order to highlight
-both the I<Raku> and I<Doc> parts for a newcomer. Some authors may prefer I<Rakudoc> with
-standard spelling, which is considered a possible but non-canonical variant.
+The markup language is called B<RakuDoc> with the I<CamelCase> spelling in order to highlight
+both the I<Raku> and I<Doc> parts for a newcomer. Some authors may prefer B<Rakudoc> with
+I<Titlecase> spelling, which is considered a possible but non-canonical variant.
 
 A file with mainly RakuDoc source has a file extension B<.rakudoc>.
 

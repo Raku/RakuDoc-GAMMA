@@ -318,12 +318,12 @@ This is a single uppercase letter, or a unicode entity with the UPPER property
 =begin item
 B«<opening marker>»
 
-This is either one-or-more C«<» characters or a single C<«> character (i.e. The Unicode entity C«E<00AB>»)
+This is either one-or-more C«<» characters or a single C<«> character (i.e. The Unicode entity C«E<0x00AB>»)
 =end item
 =begin item
 B«<content>»
 
-This is a string that does not contain the C<|> character (i.e. Unicode entity C«E<007C>»), unless that
+This is a string that does not contain the C<|> character (i.e. Unicode entity C«E<0x007C>»), unless that
 character is inside a nested markup instruction.
 =end item
 =begin item
@@ -334,7 +334,7 @@ Is a list of strings separated by C<,> or C<;>, depending on the semantics impos
 =begin item
 B«<closing marker>»
 
-Is one-or-more C«>» or a single C<»> (i.e. Unicode entity C«E<00BB>»).
+Is one-or-more C«>» or a single C<»> (i.e. Unicode entity C«E<0x00BB>»).
 The closing marker must be symmetrical with the markup instruction's opening marker.
 That is, it must consist of the same number of C«>» or C<»> as there were C«<» or C<«>
 in the opening marker.

@@ -3086,6 +3086,16 @@ E<REGIONAL INDICATOR SYMBOL LETTER U, REGIONAL INDICATOR SYMBOL LETTER A> Ukrain
 
 will be rendered as: « 🇺🇦 Ukraine ».
 
+Since emojis are graphemes that can be described by Unicode, C<E<...>> will
+also generate emojis. For example:
+
+=begin code :lang<rakudoc>
+    E<smiling face with smiling eyes> Smiling face with smiling eyes
+=end code
+will generate:
+
+E<smiling face with smiling eyes> Smiling face with smiling eyes
+
 Alternatively, HTML5 character references may be used. For example:
 =begin code :lang<rakudoc>
 Raku makes considerable use of the E<laquo> and E<raquo> characters.

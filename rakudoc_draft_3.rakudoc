@@ -3009,7 +3009,7 @@ Raku is multi-paradigmatic N<Supporting Procedural, Object Oriented, and Functio
 
 Which produces:
 
-=nested Raku is multi-paradigmatic N<Supporting Procetypo line 743dural, Object Oriented, and Functional programming>
+=nested Raku is multi-paradigmatic N<Supporting Procedural, Object Oriented, and Functional programming>
 
 =head3 Keyboard input
 
@@ -3224,6 +3224,28 @@ An HTML renderer would the convert this to, for example,
         </button>
     </p>
 =end code
+
+=head1 Implementor considerations
+
+RakuDoc is intended to be a markup language for text oriented documentation, which will be rendered
+into output formats such as I<HTML> or I<epub>. It is expected that there may be several modules
+that will render RakuDoc.
+
+In order for a renderer to be compliant with the specification, it must:
+=item render in some way all the built-in RakuDoc blocks and markup codes
+=item2 where fallbacks have been specified, only the minimum fallback need be rendered
+=item recognise and apply all the directives
+=item provide some mechanism for a user to add custom blocks and markup codes
+=item signal rendering errors in some way, unless such warnings have been explicitly silenced
+=item2 rendering errors include unknown block/code types, as well as
+the use of unimplemented built-ins
+=item2 the following signalling mechanisms are acceptable approaches to fulfil this requirement:
+=item3 writing error messages to STDERR
+=item3 writing error messages to a log file
+=item3 appending error messages to the end of the rendered output in a distinctive style that indicates they are errors
+=item3 rendering unhandled blocks or codes inline (in a distinctive style) and providing the associated error message
+in a pop-up that activates on hover or mouse-click
+
 
 P<semantic: AUTHORS>
 

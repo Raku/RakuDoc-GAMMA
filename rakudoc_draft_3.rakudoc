@@ -201,7 +201,9 @@ The general syntax for an alias directive is:
 =end code
 =end item
 =begin item
-B<=config> specifies default options to be applied to specific types of blocks or markup instructions.
+B<=config> specifies default options to be applied to specific types of blocks or markup instructions
+within the remainder of the current block-scope. These default options apply from immediately after
+the C<=config> directive up to the end of the innermost surrounding block.
 The general syntax for configuration directives is:
 =begin code  :allow< R > :lang<rakudoc>
     =config R<BLOCK_TYPE>  R<CONFIG OPTIONS>
@@ -406,7 +408,8 @@ code, or even entire chunks of ambient source. These synonyms can then
 be inserted into subsequent Pod using the
 L<C<A<> formatting code>|#Alias placements>.
 
-An C<=alias> is scoped to the surrounding RakuDoc block.
+An C<=alias> is scoped from immediately after its declaration
+up to the end of the innermost surrounding RakuDoc block.
 
 The alias directive takes two arguments. The first is an
 identifier (which is usually specified in uppercase, though this is

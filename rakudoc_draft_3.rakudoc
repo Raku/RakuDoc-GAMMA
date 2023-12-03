@@ -2225,6 +2225,131 @@ And now the step-by-step explanation:
                                    └───┴───┴───┴───┴───┘
 =end code
 
+=head2 Formulae
+
+RakuDoc v.2 provides a built-in block C<=formula> and an inline markup code C«F<>» to
+contain text that will be rendered as formulae.
+
+There are several markup languages for expressing mathematical expressions, so the
+RakuDoc v.2 specification I<recommends> the currently most widespread markup syntax
+for C<=formula> and C«F<>», namely the
+L<LaTeX mathematical notation|https://en.wikibooks.org/wiki/LaTeX/Mathematics>,
+including the extensions specified in
+the L<AMSMath package|https://en.wikipedia.org/wiki/AMS-LaTeX>
+
+This does not preclude the development of custom blocks to support other mathematical
+markup languages, eg., a C«=MathML» custom block to support another syntax.
+
+Implementors of renderers are B<I<not>> required to render the contents of these instructions;
+it is acceptable for a renderer to render the contents
+of a C<=formula> or C«F<>» in some other way than as a fully realized mathematical equation.
+
+For example, the following two formulae:
+=begin code
+We will use the identity: F<\sum \frac{1}{n^{2}} = \frac{\pi^{2}}{6}>
+
+...where the value of pi can be inferred from Euler’s Identity:
+
+=formula e^{i\pi}+1=0
+=end code
+
+...may either be rendered “accurately”:
+=begin nested
+=begin code
+We will use the identity: F<\sum \frac{1}{n^{2}} = \frac{\pi^{2}}{6}>
+
+...where the value of pi can be inferred from Euler’s Identity:
+
+=formula e^{i\pi}+1=0
+=end code
+=end nested
+
+... or may be converted to a suitable Unicode approximation:
+
+=begin nested
+We will use the identity: ∑ 1/n² = 𝜋²/6
+
+...where the value of pi can be inferred from Euler’s Identity:
+
+eⁱᐢ + 1 = 0
+=end nested
+
+... or may even left as raw LaTeX (perhaps with some kind of visual marker indicating
+that it is unprocessed):
+
+=begin nested
+We will use the identity: U<V<\sum \frac{1}{n^{2}} = \frac{\pi^{2}}{6}>>
+
+... where the value of pi can be inferred from Euler’s Identity:
+
+U<V<e^{i\pi}+1=0>>
+=end nested
+
+Both C<=formula> and C«F<>» may take explicit
+ALT texts, so that the author can decide how their formula should be rendered
+in cases where the renderer cannot handle the specification.
+
+That is, the C<=formula> block accepts an `:alt` metaoption,
+and the syntax for the C«F<>» instruction is either
+C«<F< FORMULA>» and C«F< ALT | FORMULA >».
+
+The document author can supply a suitable explicit alternative rendering
+to renderers that cannot handle the full formula syntax:
+
+=begin code
+We will use the identity: F<∑ 1/n² = 𝜋²/6 | \sum \frac{1}{n^{2}} = \frac{\pi^{2}}{6}>
+                            ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+
+...where the value of pi can be inferred from Euler’s Identity:
+
+=for formula  :alt< eH<iπ> + 1 = 0 >
+e^{i\pi}+1=0  ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+=end code
+
+An ALT text allows an author to rely on getting an “accurate” representation under
+those renderers that fully support formulas, and to be able to fall back on
+a range of reasonable alternatives under those renderers that don’t:
+
+=begin table :caption<Fallback options> :!toc
+=row :header
+=cell Fall back on
+=cell Example
+=row
+=cell Plaintext
+=cell V« F< Euler's Identity | e^{i\pi}+1=0 >»
+=row
+=cell RakuDoc
+=cell V« F< eH<iπ> + 1 = 0 | e^{i\pi}+1=0 >»
+=row
+=cell Unicode
+=cell V« F< eⁱᐢ + 1 = 0 | e^{i\pi}+1=0 >»
+=row
+=cell Image
+=cell V« F< P<file:EulerID.jpg> | e^{i\pi}+1=0 >»
+=row
+=cell Link
+=cell V« F< L<https://en.wikipedia.org/wiki/Euler%27s_identity> | e^{i\pi}+1=0 >»
+=end table
+
+It is also possible to B<stack> the fallback options. For example, they could try for an “accurate” rendering of a formula,
+but fall back on the placement of a pre-rendered image, or (failing to find that)
+fall back again to a RakuDoc representation with an outgoing link:
+=begin code
+We will use: F<
+                 P<
+                     L< eH<iπ> + 1 = 0
+                      | https://en.wikipedia.org/wiki/Euler%27s_identity
+                      >
+                  | file:EulerID.jpg
+                  >
+              | e^{i\pi}+1=0
+              >
+=end code
+
+Implementors are free to delay – or reject – implementing
+LaTeX-based formulas, and implementations are considered compliant with the specification,
+so long as the ALT texts are rendered.
+
 =head2 RakuDoc comments
 
 RakuDoc comments are components that both RakuDoc renderers and ambient-code compilers ignore.
@@ -2516,7 +2641,7 @@ the I<indented>=C<code> and I<on-margin>=C<para> shortcuts: C<=defn>, C<=item>, 
 C<=nested>, C<=rakudoc>, C<=section>, C<=pod>, C<=cell>.
 
 B<I<None>> of the following blocks should infer C<para> or C<code> from indentation:
-C<=para>, C<=code>, C<=input>, C<=output>, C<=comment>, C<=table>,
+C<=para>, C<=code>, C<=input>, C<=output>, C<=comment>, C<=table>, C<=formula>,
 C<=data>, C<=head>, C<=headN>, C<=SEMANTIC>.
 
 That’s because each of them specifies explicitly what type of information their contents
@@ -3093,11 +3218,11 @@ Since emojis are graphemes that can be described by Unicode, C<E<...>> will
 also generate emojis. For example:
 
 =begin code :lang<rakudoc>
-    E<smiling face with smiling eyes> Smiling face with smiling eyes
+    E<WHITE SMILING FACE> Smiling face
 =end code
 will generate:
 
-E<smiling face with smiling eyes> Smiling face with smiling eyes
+E<WHITE SMILING FACE> Smiling face
 
 Alternatively, HTML5 character references may be used. For example:
 =begin code :lang<rakudoc>
@@ -3351,6 +3476,9 @@ P<semantic: AUTHORS>
         =cell V<=table>
         =cell Visual or procedural table
     =row
+        =cell V<=formula>
+        =cell Render content as Latex formula
+    =row
         =cell V<=data>
         =cell Raku data section
     =row
@@ -3399,7 +3527,7 @@ P<semantic: AUTHORS>
 
     =row
         =column
-            =for cell :row-span(7)
+            =for cell :row-span(8)
             C<:toc>
 
         =column
@@ -3409,10 +3537,11 @@ P<semantic: AUTHORS>
             =cell C<=input>
             =cell C<=output>
             =cell C<=table>
+            =cell C<=formula>
             =cell C<=place>
 
         =column
-            =for cell :row-span(7)
+            =for cell :row-span(8)
             Include content or caption in Table of contents
 
     =row
@@ -3432,7 +3561,7 @@ P<semantic: AUTHORS>
 
     =row
         =column
-            =for cell :row-span(9)
+            =for cell :row-span(10)
             C<:headlevel>
 
         =column
@@ -3444,15 +3573,16 @@ P<semantic: AUTHORS>
             =cell C<=input>
             =cell C<=output>
             =cell C<=table>
+            =cell C<=formula>
             =cell C<=place>
 
         =column
-            =for cell :row-span(9)
+            =for cell :row-span(10)
             Define the head level at which the caption is included in the Table of contents
 
     =row
         =column
-            =for cell :row-span(8)
+            =for cell :row-span(9)
             C<:caption>
 
         =column
@@ -3463,10 +3593,11 @@ P<semantic: AUTHORS>
             =cell C<=input>
             =cell C<=output>
             =cell C<=table>
+            =cell C<=formula>
             =cell C<=place>
 
         =column
-            =for cell :row-span(8)
+            =for cell :row-span(9)
             Caption to be associated with a block in the Table of Contents
     =row
         =cell C<:hidden>
@@ -3535,11 +3666,12 @@ P<semantic: AUTHORS>
 
     =row
         =column
-            =for cell :row-span(9) :align<top>
+            =for cell :row-span(10) :align<top>
             C<:delta>
 
         =column
             =cell C<=table>
+            =cell C<=formula>
             =cell C<=nested>
             =cell C<=code>
             =cell C<=input>
@@ -3550,7 +3682,7 @@ P<semantic: AUTHORS>
             =cell Custom block
 
         =column
-            =for cell :row-span(9) :align<top>
+            =for cell :row-span(10) :align<top>
             Developer information associated with a block
 
 =end table
@@ -3580,8 +3712,8 @@ P<semantic: AUTHORS>
         =cell V<E<...;...>>
         =cell Entity (HTML or Unicode) description (V<E<entity1;entity2; multi,glyph;...>>)
     =row
-        =cell V<F<...>>
-        =cell (This markup code is not yet defined, but is reserved for future use)
+        =cell V<F<...|...>>
+        =cell Inline content for a formula (V<F<ALT|Latex notation>>)
     =row
         =cell V<G<...>>
         =cell (This markup code is not yet defined, but is reserved for future use)

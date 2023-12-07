@@ -2291,9 +2291,10 @@ in cases where the renderer cannot handle the specification.
 
 That is, the C<=formula> block accepts an `:alt` metaoption,
 and the syntax for the C«F<>» instruction is either
-C«<F< FORMULA>» and C«F< ALT | FORMULA >».
+C«<F< FORMULA>» or C«F< ALT | FORMULA >».
 
-The document author can supply a suitable explicit alternative rendering
+
+Using the ALT text options, the document author can supply a suitable explicit alternative rendering
 to renderers that cannot handle the full formula syntax:
 
 =begin code
@@ -3477,7 +3478,7 @@ P<semantic: AUTHORS>
         =cell Visual or procedural table
     =row
         =cell V<=formula>
-        =cell Render content as Latex formula
+        =cell Render content as LaTex formula
     =row
         =cell V<=data>
         =cell Raku data section
@@ -3713,7 +3714,7 @@ P<semantic: AUTHORS>
         =cell Entity (HTML or Unicode) description (V<E<entity1;entity2; multi,glyph;...>>)
     =row
         =cell V<F<...|...>>
-        =cell Inline content for a formula (V<F<ALT|Latex notation>>)
+        =cell Inline content for a formula (V<F<ALT|LaTex notation>>)
     =row
         =cell V<G<...>>
         =cell (This markup code is not yet defined, but is reserved for future use)

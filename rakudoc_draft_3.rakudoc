@@ -3352,6 +3352,62 @@ An HTML renderer would the convert this to, for example,
     </p>
 =end code
 
+=head3 Display and meta data
+
+In the descriptions above, it will be seen that markup codes may only contain display text or
+a mix of display and meta information. This section clarifies these groups.
+
+If a markup code may contain both display text and meta information, the character C<|> is used
+to delimit the parts. In order to use C<|> inside a display text, it must be escaped (C<\|>) or
+given as C«E<VERTICAL LINE>».
+
+=head4 Display only codes
+
+The following codes may I<only> contain display text: 
+=begin nested
+V« B<» I<DISPLAY-TEXT> V« >»
+V« C<» I<DISPLAY-TEXT> V« >»
+V« H<» I<DISPLAY-TEXT> V« >»
+V« I<» I<DISPLAY-TEXT> V« >»
+V« J<» I<DISPLAY-TEXT> V« >»
+V« K<» I<DISPLAY-TEXT> V« >»
+V« R<» I<DISPLAY-TEXT> V« >»
+V« S<» I<DISPLAY-TEXT> V« >»
+V« T<» I<DISPLAY-TEXT> V« >»
+V« U<» I<DISPLAY-TEXT> V« >»
+V« V<» I<DISPLAY-TEXT> V« >»
+V« N<» I<DISPLAY-TEXT> V« >»
+V« O<» I<DISPLAY-TEXT> V« >»
+=end nested
+
+=head3 Metadata and (optional) display text
+
+This category comprises those codes that take both a display text
+and some kind of metadata.
+
+=begin nested
+V« A<» I<DISPLAY-TEXT > V« | » METADATA=B<ALIAS name>V«               >»
+V« D<» I<DISPLAY-TEXT > V« | » METADATA=B<SYNONYMS>V«                 >»
+V« Δ<» I<DISPLAY-TEXT > V« | » METADATA=B<VERSION-ETC>V«              >»
+V« E<» I<DISPLAY-TEXT > V« | » METADATA=B<HTML / Unicode entities>V«  >»
+V« F<» I<DISPLAY-TEXT > V« | » METADATA=B<LATEX-FORM>V«               >»
+V« L<» I<DISPLAY-TEXT > V« | » METADATA=B<URI>V«                      >»
+V« M<» I<DISPLAY-TEXT > V« | » METADATA=B<WHATEVER>V«                 >»
+V« P<» I<DISPLAY-TEXT > V« | » METADATA=B<replacement URI>V«          >»
+V« X<» I<DISPLAY-TEXT > V« | » METADATA=B<ENTRY>V«                    >»
+=end nested
+
+The markup codes C<A>, C<E>, C<F>, and C<P> may be used B<without> a display part,
+in which case, the renderer (as elsewhere provided in this specification) may
+provide an automatic rendering if the meta data part fails. By providing
+an explicit display text, using C<|>, over-rides the default alternate rendering.
+
+=head3 Metadata only
+
+The comment code C<Z<> > is intended not to have a display text so the contents of a comment
+can be considered as metadata.
+
+
 =head1 Implementor considerations
 
 RakuDoc is intended to be a markup language for text oriented documentation, which will be rendered

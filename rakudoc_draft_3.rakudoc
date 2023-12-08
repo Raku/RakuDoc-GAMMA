@@ -469,6 +469,18 @@ text ever has to be changed, it need only be modified in a single place:
     =alias TERMS_URLS  L<http://www.c11.com/generic_conditions>
 =end code
 
+Alias placement codes may also specify a default display text, before the
+alias name and separated from it by a C<|>. When a display is specified,
+it will be used if the requested alias cannot be found (and no I<"unknown alias">
+warning will be issued in that case):
+
+=begin code :lang<rakudoc> :allow<B>
+    The use of A<B<this program |> PROGNAME> is subject to the terms and conditions
+    laid out by A<B<our company |> VENDOR>, as specified at:
+
+        A<B<(Please visit our website) |> TERMS_URLS>
+=end code
+
 =head2 Block specifiers
 
 The C<=begin>, C<=end>, and C<=for> directives all specify types of blocks.
@@ -2967,8 +2979,33 @@ EMPLOYEES, SO DON'T EVEN *THINK* ABOUT SUING US. HAVE A NICE DAY.
 =end nested
 =end nested
 
+The C<P<>> markup code can also be specified with an optional display text,
+which will be rendered if the renderer cannot find or access the external
+data source for the placement link. For example:
+
+=begin code :lang<rakudoc> :allow<B>
+=COPYRIGHT
+P<B<The document is copyright. |> file:/shared/docs/std_copyright.rakudoc>
+
+=DISCLAIMER
+P<B<NO WARRANTY. NONE. NIL. NADA. |> http://www.MegaGigaTeraPetaCorp.com/std/disclaimer.txt>
+=end code
+
+If the filesystem or internet is inaccessible, this might produce:
+
+=begin nested
+B<Copyright>
+
+=nested This document is copyright.
+
+B<Disclaimer>
+
+=nested NO WARRANTY. NONE. NIL. NADA.
+=end nested
+
 If a renderer cannot find or access the external data source for a
-placement link, it must issue a warning and render the URI directly in
+placement link, and the placement link does not have an alternative display text,
+it must issue a warning and render the URI directly in
 some form, possibly as an outwards link. For example:
 
 =begin nested
@@ -3239,6 +3276,27 @@ Raku code often contains the E<0xff62;0xff63> bracketing characters to avoid usi
 
 This would yield: Raku code often contains the ｢｣ bracketing characters to avoid using quotes.
 
+The C<E<>> code can also be specified with an alternate display text
+(before the entity specification and separated from it by a C<|>).
+When an alternate text is specified, it is used if the specified entity
+cannot be represented by the renderer (e.g. if the renderer only supports ASCII).
+
+For example:
+
+=begin code :lang<rakudoc> :allow<B>
+Raku makes considerable use of the E<B<left- |> laquo> and E<B<right-double-angle |> raquo> characters.
+
+Raku code often contains the E<B<left- and right-corner |> 0xff62;0xff63> bracketing characters
+to avoid using quotes.
+=end code
+
+An ASCII-only renderer would then render those like so:
+
+Raku makes considerable use of the left- and right-double-angle characters.
+
+Raku code often contains the left- and right-corner bracketing characters to avoid using quotes.
+
+
 =head3 Verbatim text
 
 The C<V<>> markup instruction treats its entire contents as being B<verbatim>,
@@ -3351,6 +3409,70 @@ An HTML renderer would the convert this to, for example,
         </button>
     </p>
 =end code
+
+=head3 Display and metadata
+
+In the descriptions above, it will be seen that markup codes may only contain display text or
+a mix of display and meta information. This section clarifies these groups.
+
+If a markup code may contain both display text and meta information, the character C<|> is used
+to delimit the two components. In order to use C<|> inside a display text, it must be escaped (C<\|>) or
+specified as an entity (C«E<VERTICAL LINE>»).
+
+=head4 Display only codes
+
+The following codes may I<only> contain display text: 
+=begin nested
+=begin code :allow<B I V>
+V« B<» I<DISPLAY-TEXT> V« >»
+V« C<» I<DISPLAY-TEXT> V« >»
+V« H<» I<DISPLAY-TEXT> V« >»
+V« I<» I<DISPLAY-TEXT> V« >»
+V« J<» I<DISPLAY-TEXT> V« >»
+V« K<» I<DISPLAY-TEXT> V« >»
+V« R<» I<DISPLAY-TEXT> V« >»
+V« S<» I<DISPLAY-TEXT> V« >»
+V« T<» I<DISPLAY-TEXT> V« >»
+V« U<» I<DISPLAY-TEXT> V« >»
+V« V<» I<DISPLAY-TEXT> V« >»
+V« N<» I<DISPLAY-TEXT> V« >»
+V« O<» I<DISPLAY-TEXT> V« >»
+=end code
+=end nested
+
+=head3 Metadata and (optional) display text
+
+The following codes may (and, in some cases, must) contain both a display text
+and some kind of metadata.
+
+=begin nested
+=begin code :allow<B I V>
+V« A<» I<DISPLAY-TEXT > V« | » METADATA=B<ALIAS-NAME>V«            >»
+V« D<» I<DISPLAY-TEXT > V« | » METADATA=B<SYNONYMS>V«              >»
+V« Δ<» I<DISPLAY-TEXT > V« | » METADATA=B<VERSION-ETC>V«           >»
+V« E<» I<DISPLAY-TEXT > V« | » METADATA=B<HTML/UNICODE-ENTITIES>V« >»
+V« F<» I<DISPLAY-TEXT > V« | » METADATA=B<LATEX-FORM>V«            >»
+V« L<» I<DISPLAY-TEXT > V« | » METADATA=B<TARGET-URI>V«            >»
+V« M<» I<DISPLAY-TEXT > V« | » METADATA=B<WHATEVER>V«              >»
+V« P<» I<DISPLAY-TEXT > V« | » METADATA=B<REPLACEMENT-URI>V«       >»
+V« X<» I<DISPLAY-TEXT > V« | » METADATA=B<INDEX-ENTRY>V«           >»
+=end code
+=end nested
+
+The markup codes C<A>, C<E>, C<F>, C<L>, and C<P> may be specified B<without> a display text,
+in which case, the renderer (as elsewhere provided in this specification) may
+provide an automatic rendering if the metadata component fails to produce a renderable result.
+If an explicit display text is provided (i.e. to the left of a C<|>),
+that text overrides the default alternate rendering.
+
+=head3 Metadata only
+
+=begin nested
+V« Z<» METADATA=B<COMMENT>V« >»
+=end nested
+
+The comment code C<Z<> > is intended not to have a display text so the contents of a comment
+can be considered as pure metadata.
 
 =head1 Implementor considerations
 
@@ -3696,7 +3818,7 @@ P<semantic: AUTHORS>
         =cell Markup instruction
         =cell Specifies
     =row
-        =cell V<A<...>>
+        =cell V<A<...|...>>
         =cell Alias to be replaced by contents of specified V<=alias> directive
     =row
         =cell V<B<...>>
@@ -3711,7 +3833,7 @@ P<semantic: AUTHORS>
         =cell V<Δ<...|...;...>>
         =cell Delta note (V<Δ<visible text|version; Notification text>>)
     =row
-        =cell V<E<...;...>>
+        =cell V<E<...|...;...>>
         =cell Entity (HTML or Unicode) description (V<E<entity1;entity2; multi,glyph;...>>)
     =row
         =cell V<F<...|...>>
@@ -3744,7 +3866,7 @@ P<semantic: AUTHORS>
         =cell V<O<...>>
         =cell Overstrike or strikethrough
     =row
-        =cell V<P<...>>
+        =cell V<P<...|...>>
         =cell Placement link
     =row
         =cell V<Q<...>>
@@ -3781,3 +3903,4 @@ P<semantic: AUTHORS>
 
 =LICENSE Artistic-2.0
 =end rakudoc
+

@@ -1179,7 +1179,8 @@ The three suspects are:
 =item  Grumpy
 =end nested
 
-The bulleting strategy used for different levels within a nested list is entirely up to the renderer.
+By default, a compliant renderer will provide a bullet for each item. RakuDoc also allows
+for custom bullets as L<discussed below|#Bullets and bullet strategy>.
 
 =head3 Multi-level lists
 
@@ -1286,6 +1287,107 @@ whether you would actually enjoy annelids for breakfast.
 
 As you can see, folk wisdom is often of dubious value.
 =end nested
+
+=head3 Bullets and bullet strategy
+
+When rendered, each C<=item>R<N> will be preceded by a bullet and each level
+may have a different bullet. A compliant renderer will define a I<default> bullet for at least the first four
+levels within a nested list, with the bulleting strategy for other levels being up to the renderer.
+
+The default bullet can be over-ridden with a custom bullet for any C<=item>R<N>, for example
+=begin code :lang<rakudoc> :allow<B>
+The project originally consisted of five phases, of which
+two are already complete and two have been abandoned:
+
+=for item B<:bullet< E<BALLOT BOX WITH CHECK> >>
+Investigate existing solutions
+
+=for item B<:bullet< E<BALLOT BOX WITH CHECK> >>
+Define a minimal initial feature set
+
+for item B<:bullet< E<BALLOT BOX> >>
+Implement this minimal set of features
+
+=for item B<:bullet< E<BALLOT BOX WITH CROSS> >>
+Secure 100 million in venture capital
+
+for item B<:bullet< E<BALLOT BOX WITH CROSS> >>
+Abscond to the Bahamas with the cash
+=end code
+... would produce something like a list with checkboxes, thus:
+=begin nested
+=begin code
+The project originally consisted of five phases, of which
+two are already complete and two have been abandoned:
+
+☑︎ Investigate existing solutions
+☑︎ Define a minimal initial feature set
+☐ Implement this minimal set of features
+☒ Secure 100 million in venture capital
+☒ Abscond to the Bahamas with the cash
+=end code
+=end nested
+
+However, more interesting bullets are possible, including multiple characters. For example:
+=begin code :lang<rakudoc> :allow<B>
+=for item B<:bullet< E<tick symbol> >>
+Investigate existing solutions
+
+=for item B<:bullet< E<tick symbol> >>
+Define a minimal initial feature set
+
+=for item B<:bullet< E<anticlockwise arrows> >>
+Implement this minimal set of features
+
+=for item B<:bullet< E<prohibited> >>
+Secure 100 million in venture capital
+
+=for item B<:bullet< E<prohibited; palm tree> >>
+Abscond to the Bahamas with the cash
+=end code
+... to produce
+=begin nested
+=begin code
+✅     Investigate existing solutions
+✅     Define a minimal initial feature set
+🔄    Implement this minimal set of features
+🚫    Secure 100 million in venture capital
+🚫 🌴 Abscond to the Bahamas with the cash
+=end code
+=end nested
+
+By using the C<=config> directive, it is also possible to change the default bullets for
+the duration of a section. For example,
+=begin code :lang<rakudoc> :allow<B>
+    =begin section
+
+    B<=config item1 :bullet< E<globe showing Europe and Africa> >>
+    B<=config item2 :bullet< E<Hand with Index and Middle Fingers Crossed> >>
+
+    The major sources of sustainable energy are:
+        =item1 wind
+        =item1 hydroelectric
+        =item1 solar
+        =item1 geothermal
+        =item1 fusion
+        =item2 (eventually)
+    =end section
+=end code
+...which would produce:
+=begin nested
+=begin code
+The major sources of sustainable energy are:
+🌍 wind
+🌍 hydroelectric
+🌍 solar
+🌍 geothermal
+🌍 fusion
+   🤞eventually
+=end code
+=end nested
+
+In the event that a custom bullet cannot be rendered (e.g. a specified Unicode glyph is unrecognised or unrenderable in the target format),
+a compliant renderer will fall back to its default bullet and generate an error message.
 
 =head3 Ordered lists
 
@@ -3808,6 +3910,10 @@ P<semantic: AUTHORS>
         =column
             =for cell :row-span(10) :align<top>
             Developer information associated with a block
+    =row
+            =cell C<:bullet<CHAR>>
+            =cell C<=itemN>
+            =cell Replace the default bullet with one or more characters, or entities specified with C<E< ... >>
 
 =end table
 

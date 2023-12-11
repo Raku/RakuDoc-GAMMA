@@ -1179,7 +1179,7 @@ The three suspects are:
 =item  Grumpy
 =end nested
 
-By default a compliant renderer will provide bullets for each item. RakuDoc allows
+By default, a compliant renderer will provide a bullet for each item. RakuDoc also allows
 for custom bullets as L<discussed below|#Bullets and bullet strategy>.
 
 =head3 Multi-level lists
@@ -1290,28 +1290,28 @@ As you can see, folk wisdom is often of dubious value.
 
 =head3 Bullets and bullet strategy
 
-Each C<=item>R<N> will be preceded by a bullet and each level
-may have a different bullet. A compliant renderer will define a I<default> bullet for at least four
-levels within a nested list, with the bulletting strategy for other levels being up to the renderer.
+When rendered, each C<=item>R<N> will be preceded by a bullet and each level
+may have a different bullet. A compliant renderer will define a I<default> bullet for at least the first four
+levels within a nested list, with the bulleting strategy for other levels being up to the renderer.
 
 The default bullet can be over-ridden with a custom bullet for any C<=item>R<N>, for example
-=begin code :lang<rakudoc>
+=begin code :lang<rakudoc> :allow<B>
 The project originally consisted of five phases, of which
 two are already complete and two have been abandoned:
 
-=for item :bullet< E<BALLOT BOX WITH CHECK> >
+=for item B<:bullet< E<BALLOT BOX WITH CHECK> >>
 Investigate existing solutions
 
-=for item :bullet< E<BALLOT BOX WITH CHECK> >
+=for item B<:bullet< E<BALLOT BOX WITH CHECK> >>
 Define a minimal initial feature set
 
-=for item :bullet< E<BALLOT BOX> >
+for item B<:bullet< E<BALLOT BOX> >>
 Implement this minimal set of features
 
-=for item :bullet< E<BALLOT BOX WITH CROSS> >
+=for item B<:bullet< E<BALLOT BOX WITH CROSS> >>
 Secure 100 million in venture capital
 
-=for item :bullet< E<BALLOT BOX WITH CROSS> >
+for item B<:bullet< E<BALLOT BOX WITH CROSS> >>
 Abscond to the Bahamas with the cash
 =end code
 ... would produce something like a list with checkboxes, thus:
@@ -1328,21 +1328,21 @@ two are already complete and two have been abandoned:
 =end code
 =end nested
 
-However, more interesting bullets are possible, including multiple characters. For example,
-=begin code
-=for item :bullet< E<tick symbol> >
+However, more interesting bullets are possible, including multiple characters. For example:
+=begin code :lang<rakudoc> :allow<B>
+=for item B<:bullet< E<tick symbol> >>
 Investigate existing solutions
 
-=for item :bullet< E<tick symbol> >
+=for item B<:bullet< E<tick symbol> >>
 Define a minimal initial feature set
 
-=for item :bullet< E<anticlockwise arrows> >
+=for item B<:bullet< E<anticlockwise arrows> >>
 Implement this minimal set of features
 
-=for item :bullet< E<prohibited> >
+=for item B<:bullet< E<prohibited> >>
 Secure 100 million in venture capital
 
-=for item :bullet< E<prohibited; palm tree> >
+=for item B<:bullet< E<prohibited; palm tree> >>
 Abscond to the Bahamas with the cash
 =end code
 ... to produce
@@ -1356,13 +1356,13 @@ Abscond to the Bahamas with the cash
 =end code
 =end nested
 
-By using the C<=config> directive, it is possible to change the default bullets for
+By using the C<=config> directive, it is also possible to change the default bullets for
 the duration of a section. For example,
-=begin code
+=begin code :lang<rakudoc> :allow<B>
     =begin section
 
-    =config item1 :bullet< E<globe showing Europe and Africa> >
-    =config item2 :bullet< E<Hand with Index and Middle Fingers Crossed> >
+    B<=config item1 :bullet< E<globe showing Europe and Africa> >>
+    B<=config item2 :bullet< E<Hand with Index and Middle Fingers Crossed> >>
 
     The major sources of sustainable energy are:
         =item1 wind
@@ -1370,7 +1370,7 @@ the duration of a section. For example,
         =item1 solar
         =item1 geothermal
         =item1 fusion
-        =item2 eventually
+        =item2 (eventually)
     =end section
 =end code
 ...which would produce:
@@ -1386,8 +1386,8 @@ The major sources of sustainable energy are:
 =end code
 =end nested
 
-In the event of a custom bullet cannot be rendered (eg., a specified Unicode glyph is unrecognised),
-a compliant renderer will fallback to its default bullet and generate an error message.
+In the event that a custom bullet cannot be rendered (e.g. a specified Unicode glyph is unrecognised or unrenderable in the target format),
+a compliant renderer will fall back to its default bullet and generate an error message.
 
 =head3 Ordered lists
 
@@ -3913,7 +3913,7 @@ P<semantic: AUTHORS>
     =row
             =cell C<:bullet<CHAR>>
             =cell C<=itemN>
-            =cell Replace the default bullet with a character or an entity specified with C<E< ... >>
+            =cell Replace the default bullet with one or more characters, or entities specified with C<E< ... >>
 
 =end table
 

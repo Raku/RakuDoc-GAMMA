@@ -1,5 +1,5 @@
 =begin rakudoc :kind("Language") :subkind("Language") :category("reference")
-=VERSION 2.4.0
+=VERSION 2.4.1
 =TITLE RakuDoc
 =SUBTITLE A Raku slang for documenting Raku software to aid development and use.
 
@@ -3542,7 +3542,7 @@ V« O<» I<DISPLAY-TEXT> V« >»
 =end code
 =end nested
 
-=head3 Metadata and (optional) display text
+=head4 Metadata and (optional) display text
 
 The following codes may (and, in some cases, must) contain both a display text
 and some kind of metadata.
@@ -3567,7 +3567,7 @@ provide an automatic rendering if the metadata component fails to produce a rend
 If an explicit display text is provided (i.e. to the left of a C<|>),
 that text overrides the default alternate rendering.
 
-=head3 Metadata only
+=head4 Metadata only
 
 =begin nested
 V« Z<» METADATA=B<COMMENT>V« >»

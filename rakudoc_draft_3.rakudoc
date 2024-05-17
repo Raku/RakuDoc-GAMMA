@@ -1,5 +1,5 @@
 =begin rakudoc :kind("Language") :subkind("Language") :category("reference")
-=VERSION 2.4.2
+=VERSION 2.5.0
 =TITLE RakuDoc
 =SUBTITLE A Raku slang for documenting Raku software to aid development and use.
 
@@ -577,7 +577,7 @@ In the case where a URL does not end in a recognized extension:
 =begin code
     =place https://example.org/landingpage
 
-    =place rakudoc: App::Rak
+    =place rakudoc:App::Rak
 
     =place file:/usr/share/legal/std_disclaimer
 =end code
@@ -2991,9 +2991,9 @@ To refer to a specific section within a webpage, manpage, or RakuDoc document, a
 the main link, separated by a C<#>. To refer to a section of the current document, omit the external address.
 
 A renderer is expected to render a link with a schema as follows:
-=item At a minimum, a link like L<rakudoc: ModuleName> is simply rendered
+=item At a minimum, a link like L<rakudoc:ModuleName> is simply rendered
 as text, to something like: “the ModuleName documentation”,
-and L<man: appname> to something like: “The appname manpage”.
+and L<man:appname> to something like: “The appname manpage”.
 And neither of them attempt to add any kind of actual operational link.
 
 =item At the next level of sophistication, a renderer encountering
@@ -3048,6 +3048,9 @@ into your own.
 In other words, the C<P<>> markup instruction takes a URI and (where possible)
 inserts the contents of the corresponding document inline in place of the
 code itself.
+
+A URI meets the regex pattern C<\w+:\S+>, where the word characters before C<:> are
+called the I<schema>. There may not be any spaces in a URI.
 
 C<P<>> markup is handy for breaking out standard elements of
 your documentation set into reusable components that can then be
@@ -3134,23 +3137,26 @@ in place of the C<P<>> code. After the colon, list the block types that you
 wish to include in the table of contents. For example, to place a table of
 contents listing only top- and second-level headings:
 
-    P<toc: 1, 2 >
+    P<toc:1,2 >
 
 To place a table of contents that lists the top four levels of headings:
 
-    P<toc: 1..4 >
+    P<toc:1..4 >
+
+In order to include the whole table of contents, use C<toc:*>. The C<*> is needed to make
+this term a valid URI.
 
 A document may have as many C<P<toc:...>> placements as necessary.
 
-The C<index:> form is a special pseudo-scheme that inserts an index table
+The C<index:*> form is a special pseudo-scheme that inserts an index table
 in place of the C<P<>> code.
 
-The C<semantic: XXX> form places the XXX semantic block at the position of the C<P<>> instruction.
+The C<semantic:XXX> form places the XXX semantic block at the position of the C<P<>> instruction.
 =begin comment
     When =section/=config working, above line should be
     =begin section
     =config C :allow<R>
-    The C<semantic: R<NAME>> form places the R<NAME> semantic block at the position of the C<P<>> instruction.
+    The C<semantic:R<NAME>> form places the R<NAME> semantic block at the position of the C<P<>> instruction.
     =end section
 =end comment
 
@@ -3598,7 +3604,7 @@ the use of unimplemented built-ins
 in a pop-up that activates on hover or mouse-click
 
 
-P<semantic: AUTHORS>
+P<semantic:AUTHORS>
 
 =head1 Summary
 

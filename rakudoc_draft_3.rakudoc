@@ -507,6 +507,38 @@ V<=code> block to be automatically given the same developer note, like so:
     =code method drill { say 'keep up' }
 =end code
 
+Within the same block scope, eg., between C<=begin section> and C<=end section> instructions,
+C<=config> directives are cumulative and define the default behaviour of some block type. When metadata
+are specified for an instance of that block type, those options over-ride the default set by C<=config> blocks.
+For example,
+=begin code :lang<RakuDoc>
+    =config code :allow< B C I >
+    =begin code
+       # In this paragraph B<this phrase will be shown as basis (possibly in bold font)>
+       # and I<this will be shown as important (possibly italics)>.
+       # But R<markup> will be shown verbatim.
+       # The language for the block is the generic default of B<Raku>.
+    =end code
+    =config code :lang<RakuDoc>
+    =begin code :allow< R K >
+       # Here B<markup> and I<markup> are shown verbatim, while R<this will be shown as a replacement text>.
+       # The language for the block is B<RakuDoc>.
+    =end code
+    =code sub B<a-basic-subroutine> ( I<$param> ) { 'the markup codes here will be rendered by default again' }
+
+    =begin section
+    =config code :allow< R K >
+    =begin code :lang<JavaScript>
+        // Now format codes R K are activated by default,
+        // but by default B<> C<> I<> markup will be shown verbatim
+        // meanwhile the language has been explicitly set to Javascript
+        // (important if syntax highlighting is turned on)
+    =end code
+    =end section
+=end code
+
+There is more discussion of C<=config> in the context of L<Formatting codes|#Formatting codes>.
+
 =head2 Document termination
 
 The C<=finish> directive indicates the end of all ambient contexts within
@@ -2944,8 +2976,13 @@ The following should be made available in all renderers.
         Subscript       J<text>       "J for Junior text"   <sub>text</sub>     ~text~
         Code            C<text>       "C for Code"          <code>text</code>   `text`
 
-The table contains suggested HTML and Markdown equivalents, a renderer may
+The table contains suggested HTML and Markdown equivalents; a renderer may
 choose other representations.
+
+This syntax clearly makes it impossible to associate metadata options with formatting codes explicitly.
+It is possible to do this via a C<=config> directive. For example, C< C<> > markup by default does not allow for
+embedded format codes to be rendered, but an author might want C< B<> > to be allowed, as shown in the
+L<syntax section|#Directive syntax>.
 
 =head2 Instructions with side effects
 

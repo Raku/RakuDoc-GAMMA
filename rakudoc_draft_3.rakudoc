@@ -1509,7 +1509,8 @@ A definition contains two parts: a term and a defining text. The term is the con
 the first line of the C<defn> block (i.e. the text immediately after an abbreviated C<=defn>, or
 the first line after a C<=for defn> or C<=begin defn>).
 The defining text is the remaining lines within the scope of the C<defn> block.
-A renderer is expected to distinguish between the term and the defining text.
+A renderer is expected to distinguish between the term and the defining text. For this reason,
+the term part is rendered verbatim, including any attempted markup codes.
 
 For example:
 
@@ -3220,6 +3221,7 @@ pop-up definition of the term (if a renderer supports such).
 The definition term in a C<D<>> is rendered distinctly (typically in B<I<bold italics>>),
 and the C<D<>> sets up a link target to that term, and possibly a pop-up for
 the corresponding C<L<>> link to display the entire paragraph in which the C<D<>> appeared.
+For this reason, the term is rendered verbatim, including any attempted markup codes.
 
 In other words, when rendered to HTML, a C<D<term being defined>> would be translated
 to something like:

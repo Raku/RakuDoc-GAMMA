@@ -1,5 +1,5 @@
 =begin rakudoc :kind("Language") :subkind("Language") :category("reference")
-=VERSION 2.5.0
+=VERSION 2.5.1
 =TITLE RakuDoc
 =SUBTITLE A Raku slang for documenting Raku software to aid development and use.
 

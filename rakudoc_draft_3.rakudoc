@@ -1,5 +1,5 @@
 =begin rakudoc :kind("Language") :subkind("Language") :category("reference")
-=VERSION 2.5.1
+=VERSION 2.5.2
 =TITLE RakuDoc
 =SUBTITLE A Raku slang for documenting Raku software to aid development and use.
 
@@ -1741,6 +1741,10 @@ or with multi-line headers I<and> multi-line data:
 
     =end table
 =end code
+
+Although headers can be specified using multiple lines, for legacy reasons a renderer
+may treat the header text in a single column as a single string. For more control
+over header rows and labelled columns, use a I<procedural> table.
 
 =head4 Valid tables
 

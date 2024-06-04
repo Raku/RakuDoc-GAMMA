@@ -1,5 +1,5 @@
 =begin rakudoc :kind("Language") :subkind("Language") :category("reference")
-=VERSION 2.5.1
+=VERSION 2.5.2
 =TITLE RakuDoc
 =SUBTITLE A Raku slang for documenting Raku software to aid development and use.
 
@@ -1741,6 +1741,19 @@ or with multi-line headers I<and> multi-line data:
 
     =end table
 =end code
+
+Visual-style tables can only have a single header row (namely: everything
+before the first C<=====> line). That single header may, however, span one or
+more initial lines of the visual table specification, as some of the
+preceding examples illustrate. However, regardless of how many lines a
+visual-style header spans, it is always treated as a single header row.
+Individual renderers are free to choose how they represent visual header
+contents that have line breaks in them: they may treat them as a single
+string to be reflowed and wrapped, or they may elect to preserve the
+original line breaks within each header cell. The only requirement is
+that the entire header of a visual-style table must be rendered as a single
+row of cells. If two or more header rows are required, use a
+I<procedural table> instead.
 
 =head4 Valid tables
 

@@ -206,10 +206,8 @@ The following semantic block was included at the beginning in source,
 but it is now included here.
 =place semantic:AUTHORS :caption<Unrelenting hype> :headlevel(2)
 
-=begin comment
 =for formula :caption<Fabulous identity>
 e^{i\pi}+1=0
-=end comment
 
 =begin MyBlock :caption<A customised block> :headlevel(2)
 Actually it fails because no customisation has been made.

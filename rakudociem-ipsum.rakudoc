@@ -272,6 +272,16 @@ Some silly text which will have its own ToC entry
         =cell 0.42222
 =end table
 
+=head Adding index entries to your text
+
+An X<index entry|index, entry> is an inline X<formatting code|formatting code;inline formatting> that
+is rendered normally (i.e. with no special identifying styling) within the text, but which is also added
+to the X<index>. X<Index entries|index, entry> may be specified with X<subentries|index, subentry>, including
+X<multilevel subentries|index, subentry, multilevel>, though a renderer is not required to represent anything
+more than the X<first level|index, subentry, rendering>. A single index entry can specify
+X<two or more separate entries in the index|index; index, multiple entries; index, entry, nested>,
+all of which will refer back to the same point in the text.
+
 =head Configuration examples
 
 Without configuration C<embedded B<markup> is rendered> verbatim.

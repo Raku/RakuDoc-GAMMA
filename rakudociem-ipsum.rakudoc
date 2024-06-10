@@ -53,7 +53,8 @@ A paragraph to illustrate U<Unusual type> formatting.
 
 A paragraph to illustrate O<Strikethrough type> formatting.
 
-A paragraph to illustrate H<Superscript type> formatting.
+A paragraph to illustrate H<Superscript type> formatting. (For text output, many terminals do
+not support superscript/subscript font positions, so consider using a colouration as well.)
 
 A paragraph to illustrate J<Subscript type> formatting.
 

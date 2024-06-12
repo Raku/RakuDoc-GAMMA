@@ -236,6 +236,13 @@ Some silly text which will have its own ToC entry
     Human  +   2  +   Pizza
     Shark  +   0  +    Fish
 
+=for table :caption<A visual table with a stupendously long caption> :headlevel(2)
+    Animal | Legs |    Eats
+    =======================
+    Zebra  +   4  + Cookies
+    Human  +   2  +   Pizza
+    Shark  +   0  +    Fish
+
 =begin table :caption<A procedural table> :headlevel(2)
     =row :header
         =for cell :row-span(2)

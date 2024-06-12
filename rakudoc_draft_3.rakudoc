@@ -3015,7 +3015,7 @@ It is, however, possible to do this via a C<=config> directive. For example, C< 
 embedded format codes to be rendered, but an author might want C< B<> > to be allowed. This can be
 achieved with:
 
-=code =config C :allow<B>
+     =config C :allow<B>
 
 This mechanism is explained further in the L<syntax section|#Directive syntax>.
 

@@ -180,7 +180,7 @@ Lemma 4
 Claim you are the victim here
 
 =alias XXX This is the alias we referenced at the top of the document, but it won't be
-rendered.
+=          rendered.
 
 =head Blocks that are processed differently
 

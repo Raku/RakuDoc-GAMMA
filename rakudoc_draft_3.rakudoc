@@ -1409,7 +1409,7 @@ By using the C<=config> directive, it is also possible to change the default bul
 the duration of a section. For example,
 =begin code :lang<RakuDoc> :allow<B>
     =begin section
-    B«=config item1 :bullet< E<globe showing Europe and Africa> > »
+    B«=config item1 :bullet< E<Earth Globe Europe-Africa> > »
     B«=config item2 :bullet< E<Hand with Index and Middle Fingers Crossed> > »
 
     The major sources of sustainable energy are:

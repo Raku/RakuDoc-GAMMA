@@ -1354,13 +1354,13 @@ Investigate existing solutions
 =for item B<:bullet< E<BALLOT BOX WITH CHECK> >>
 Define a minimal initial feature set
 
-for item B<:bullet< E<BALLOT BOX> >>
+=for item B<:bullet< E<BALLOT BOX> >>
 Implement this minimal set of features
 
 =for item B<:bullet< E<BALLOT BOX WITH CROSS> >>
 Secure 100 million in venture capital
 
-for item B<:bullet< E<BALLOT BOX WITH CROSS> >>
+=for item B<:bullet< E<BALLOT BOX WITH CROSS> >>
 Abscond to the Bahamas with the cash
 =end code
 ... would produce something like a list with checkboxes, thus:
@@ -1409,9 +1409,8 @@ By using the C<=config> directive, it is also possible to change the default bul
 the duration of a section. For example,
 =begin code :lang<RakuDoc> :allow<B>
     =begin section
-
-    B<=config item1 :bullet< E<globe showing Europe and Africa> >>
-    B<=config item2 :bullet< E<Hand with Index and Middle Fingers Crossed> >>
+    B«=config item1 :bullet< E<globe showing Europe and Africa> > »
+    B«=config item2 :bullet< E<Hand with Index and Middle Fingers Crossed> > »
 
     The major sources of sustainable energy are:
         =item1 wind
@@ -3602,7 +3601,7 @@ specified as an entity (C«E<VERTICAL LINE>»).
 
 =head4 Display only codes
 
-The following codes may I<only> contain display text: 
+The following codes may I<only> contain display text:
 =begin nested
 =begin code :allow<B I V>
 V« B<» I<DISPLAY-TEXT> V« >»

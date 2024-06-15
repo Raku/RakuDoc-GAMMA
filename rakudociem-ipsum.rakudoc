@@ -145,6 +145,26 @@ such as MarkDown)
 
 text
 
+=head2 Lists
+
+Unnumbered up to four levels of bulleting are required, a renderer can
+offer more.
+
+=item The start of a unnumbered item list
+=item Next item
+=item2 now next level
+=item2 another at two
+=item3 a third level
+=item4 fourth level
+=item4 fourth level
+=item5 level five
+=item6 level six
+=item7 level seven
+=item1 reset to level one
+=item3 jump levels
+
+=para to put space between lists, probably a C<=para> without text is needed.
+
 =numitem The start of a numbered item list
 =numitem Next item
 =numitem2 now next level

@@ -471,7 +471,7 @@ text ever has to be changed, it need only be modified in a single place:
 
 Alias placement codes may also specify a default display text, before the
 alias name and separated from it by a C<|>. When a display is specified,
-it will be used if the requested alias cannot be found (and no I<"unknown alias">
+it will be used if the requested alias cannot be found (and an I<"unknown alias">
 warning will be issued in that case):
 
 =begin code :lang<RakuDoc> :allow<B>

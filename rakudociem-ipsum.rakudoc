@@ -188,6 +188,40 @@ Claim you are the victim here
 =alias XXX This is the alias we referenced at the top of the document, but it won't be
 =          rendered.
 
+=head2 Taking a bullet
+
+The project originally consisted of five phases, of which
+two are already complete and two have been abandoned:
+
+=for item :bullet< E<BALLOT BOX WITH CHECK> >
+Investigate existing solutions
+
+=for item :bullet< E<BALLOT BOX WITH CHECK> >
+Define a minimal initial feature set
+
+=for item :bullet< E<BALLOT BOX> >
+Implement this minimal set of features
+
+=for item :bullet< E<BALLOT BOX WITH X> >
+Secure 100 million in venture capital
+
+=for item :bullet< E<BALLOT BOX WITH X> >
+Abscond to the Bahamas with the cash
+
+=begin section
+=config item1 :bullet< E<Earth Globe Europe-Africa> >
+=config item2 :bullet< E<Hand with Index and Middle Fingers Crossed> >
+
+The major sources of sustainable energy are:
+=item1 wind
+=item1 hydroelectric
+=item1 solar
+=item1 geothermal
+=item1 fusion
+=item2 (eventually)
+=end section
+
+
 =head Blocks that are processed differently
 
 =begin code

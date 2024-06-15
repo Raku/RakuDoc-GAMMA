@@ -1357,10 +1357,10 @@ Define a minimal initial feature set
 =for item B<:bullet< E<BALLOT BOX> >>
 Implement this minimal set of features
 
-=for item B<:bullet< E<BALLOT BOX WITH CROSS> >>
+=for item B<:bullet< E<BALLOT BOX WITH X> >>
 Secure 100 million in venture capital
 
-=for item B<:bullet< E<BALLOT BOX WITH CROSS> >>
+=for item B<:bullet< E<BALLOT BOX WITH X> >>
 Abscond to the Bahamas with the cash
 =end code
 ... would produce something like a list with checkboxes, thus:
@@ -1379,19 +1379,19 @@ two are already complete and two have been abandoned:
 
 However, more interesting bullets are possible, including multiple characters. For example:
 =begin code :lang<RakuDoc> :allow<B>
-=for item B<:bullet< E<tick symbol> >>
+=for item B<:bullet< E<Heavy Check Mark> >>
 Investigate existing solutions
 
-=for item B<:bullet< E<tick symbol> >>
+=for item B<:bullet< E<Heavy Check Mark> >>
 Define a minimal initial feature set
 
-=for item B<:bullet< E<anticlockwise arrows> >>
+=for item B<:bullet< E<Anticlockwise Downwards And Upwards Open Circle Arrows> >>
 Implement this minimal set of features
 
-=for item B<:bullet< E<prohibited> >>
+=for item B<:bullet< E<prohibited sign> >>
 Secure 100 million in venture capital
 
-=for item B<:bullet< E<prohibited; palm tree> >>
+=for item B<:bullet< E<prohibited sign; palm tree> >>
 Abscond to the Bahamas with the cash
 =end code
 ... to produce
@@ -3464,9 +3464,9 @@ cannot be represented by the renderer (e.g. if the renderer only supports ASCII)
 For example:
 
 =begin code :lang<RakuDoc> :allow<B>
-Raku makes considerable use of the E<B<left- |> laquo> and E<B<right-double-angle |> raquo> characters.
+Raku makes considerable use of the E<B<left- |>laquo> and E<B<right-double-angle |>raquo> characters.
 
-Raku code often contains the E<B<left- and right-corner |> 0xff62;0xff63> bracketing characters
+Raku code often contains the E<B<left- and right-corner |>0xff62;0xff63> bracketing characters
 to avoid using quotes.
 =end code
 

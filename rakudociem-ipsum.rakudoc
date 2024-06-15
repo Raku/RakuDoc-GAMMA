@@ -61,9 +61,10 @@ not support superscript/subscript font positions, so consider using a colouratio
 
 A paragraph to illustrate J<Subscript type> formatting.
 
-A paragraph to illustrate C<Code type> formatting.
+A paragraph to illustrate C<Code type> formatting. It can contain other markup, eg. C<A<> markup>.
 
-A paragraph to illustrate V<Verbatim type> formatting.
+A paragraph to illustrate V<Verbatim type> formatting. It can contain other RakuDoc, eg.
+V<P<defn:Happy>> without executing it.
 
 A paragraph to illustrate some >Z<Zero width>< formatting (in the source has V«Z<Zero width>» between >< ).
 

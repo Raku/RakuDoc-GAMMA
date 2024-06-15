@@ -162,7 +162,7 @@ offer more.
 =item7 level seven
 =item1 reset to level one
 =item3 jump levels
-
+=para
 =para to put space between lists, probably a C<=para> without text is needed.
 
 =numitem The start of a numbered item list
@@ -175,7 +175,7 @@ offer more.
 =item an unnumbered item
 =for numitem2 :continued
 but we can resume after a break
-
+=para
 =defn Definitions
 can be placed in lists
 
@@ -187,6 +187,7 @@ when not happy
 
 =defn Being assertive
 Just B<shout> why don't you?
+=para
 
 This is an ordinary paragraph
 

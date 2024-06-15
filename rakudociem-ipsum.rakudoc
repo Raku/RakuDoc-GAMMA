@@ -145,7 +145,7 @@ such as MarkDown)
 
 text
 
-=head2 Lists
+=head Lists
 
 Unnumbered up to four levels of bulleting are required, a renderer can
 offer more.

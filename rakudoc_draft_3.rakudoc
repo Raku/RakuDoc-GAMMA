@@ -359,7 +359,7 @@ And this is a L<link to the Raku Programming Language|https://raku.org>.
 
 =head2 Metadata syntax
 
-Metadata is specified using Raku option pair, where the value portion
+Metadata is specified using a Raku option pair, where the value portion
 is always parsed using Raku semantics.
 The following table contains some typical examples.
 

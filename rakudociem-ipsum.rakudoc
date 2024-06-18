@@ -109,6 +109,7 @@ A note N<such as this one> will not itself be rendered inline, but the text will
 A marker or number will be rendered to point to the text.
 
 Suppose we want to place the definition P<defn:Im-a-doppelganger> here.
+And to confound pedants, here is a definition P<defn:Happy> defined using a C<=defn> block.
 
 Normally      extra spaces are removed with paragraphs,
 but sometimes S<we truly dot dot dot   dash dash dash       want them>.

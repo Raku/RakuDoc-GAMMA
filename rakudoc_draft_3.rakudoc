@@ -1,5 +1,5 @@
 =begin rakudoc :kind("Language") :subkind("Language") :category("reference")
-=VERSION 2.5.2
+=VERSION 2.6.0
 =TITLE RakuDoc
 =SUBTITLE A Raku slang for documenting Raku software to aid development and use.
 
@@ -359,7 +359,9 @@ And this is a L<link to the Raku Programming Language|https://raku.org>.
 
 =head2 Metadata syntax
 
-Metadata is specified using Raku option pairs. The following are examples:
+Metadata is specified using a Raku option pair, where the value portion
+is always parsed using Raku semantics.
+The following table contains some typical examples.
 
 =begin table
  Value is...       Specify with...
@@ -379,6 +381,21 @@ is in fact a list of strings: C<< <foo bar baz> >> is the same as C< ('foo','bar
 
 Within the context of the parser of the Raku Programming Language,
 it is also possible to refer to any compile-time value inside the meta-data.
+
+Requiring Raku semantics for the value component of a metadata option means
+that for compliance to this specification, RakuDoc markup is prohibited
+within a metadata option.
+For example, C< :bullet( E<BALLOT BOX WITH X> ) > is prohibited. However,
+Raku has a syntax for Unicode characters, so C< :bullet«\c[BALLOT BOX WITH CHECK]» >
+is possible. Note the C< «...» > syntax which stringifies the contents with
+interpolation.
+
+A renderer may provide a mechanism for allowing RakuDoc within a metadata option
+but the value part must still conform to Raku semantics, for example,
+    :caption('This is a heading with I<important markup> in it')
+
+The outer single quotes ensures that the parser passes a plain string to the
+renderer, which may then post-process the string.
 
 The metadata of an extended block or abbreviated block may extend beyond the first line declaring the
 block. Each subsequent line must start
@@ -1348,19 +1365,19 @@ The default bullet can be overridden with a custom bullet for any C<=item>R<N>, 
 The project originally consisted of five phases, of which
 two are already complete and two have been abandoned:
 
-=for item B<:bullet< E<BALLOT BOX WITH CHECK> >>
+=for item B<:bullet« \c[BALLOT BOX WITH CHECK] »>
 Investigate existing solutions
 
-=for item B<:bullet< E<BALLOT BOX WITH CHECK> >>
+=for item B<:bullet« \c[BALLOT BOX WITH CHECK] »>
 Define a minimal initial feature set
 
-=for item B<:bullet< E<BALLOT BOX> >>
+=for item B<:bullet« \c[BALLOT BOX] »>
 Implement this minimal set of features
 
-=for item B<:bullet< E<BALLOT BOX WITH X> >>
+=for item B<:bullet« \c[BALLOT BOX WITH X] »>
 Secure 100 million in venture capital
 
-=for item B<:bullet< E<BALLOT BOX WITH X> >>
+=for item B<:bullet« \c[BALLOT BOX WITH X] »>
 Abscond to the Bahamas with the cash
 =end code
 ... would produce something like a list with checkboxes, thus:
@@ -1379,19 +1396,19 @@ two are already complete and two have been abandoned:
 
 However, more interesting bullets are possible, including multiple characters. For example:
 =begin code :lang<RakuDoc> :allow<B>
-=for item B<:bullet< E<Heavy Check Mark> >>
+=for item B<:bullet« \c[Heavy Check Mark] »>
 Investigate existing solutions
 
-=for item B<:bullet< E<Heavy Check Mark> >>
+=for item B<:bullet« \c[Heavy Check Mark] »>
 Define a minimal initial feature set
 
-=for item B<:bullet< E<Anticlockwise Downwards And Upwards Open Circle Arrows> >>
+=for item B<:bullet« \c[Anticlockwise Downwards And Upwards Open Circle Arrows] »>
 Implement this minimal set of features
 
-=for item B<:bullet< E<prohibited sign> >>
+=for item B<:bullet« \c[prohibited sign] »>
 Secure 100 million in venture capital
 
-=for item B<:bullet< E<prohibited sign; palm tree> >>
+=for item B<:bullet« \c[prohibited sign; palm tree] »>
 Abscond to the Bahamas with the cash
 =end code
 ... to produce
@@ -1409,8 +1426,8 @@ By using the C<=config> directive, it is also possible to change the default bul
 the duration of a section. For example,
 =begin code :lang<RakuDoc> :allow<B>
     =begin section
-    B«=config item1 :bullet< E<Earth Globe Europe-Africa> > »
-    B«=config item2 :bullet< E<Hand with Index and Middle Fingers Crossed> > »
+    B<=config item1 :bullet« \c[Earth Globe Europe-Africa] » >
+    B<=config item2 :bullet« \c[Hand with Index and Middle Fingers Crossed] » >
 
     The major sources of sustainable energy are:
         =item1 wind
@@ -2494,19 +2511,19 @@ a range of reasonable alternatives under those renderers that don’t:
 =cell Example
 =row
 =cell Plaintext
-=cell V« F< Euler's Identity | e^{i\pi}+1=0 >»
+=cell FV«<  Euler's Identity | e^{i\pi}+1=0 >»
 =row
 =cell RakuDoc
-=cell V« F< eH<iπ> + 1 = 0 | e^{i\pi}+1=0 >»
+=cell FV«<  eH<iπ> + 1 = 0 | e^{i\pi}+1=0 >»
 =row
 =cell Unicode
-=cell V« F< eⁱᐢ + 1 = 0 | e^{i\pi}+1=0 >»
+=cell FV«<  eⁱᐢ + 1 = 0 | e^{i\pi}+1=0 >»
 =row
 =cell Image
-=cell V« F< P<file:EulerID.jpg> | e^{i\pi}+1=0 >»
+=cell FV«<  P<file:EulerID.jpg> | e^{i\pi}+1=0 >»
 =row
 =cell Link
-=cell V« F< L<https://en.wikipedia.org/wiki/Euler%27s_identity> | e^{i\pi}+1=0 >»
+=cell FV«<  L<https://en.wikipedia.org/wiki/Euler%27s_identity> | e^{i\pi}+1=0 >»
 =end table
 
 It is also possible to B<stack> the fallback options. For example, they could try for an “accurate” rendering of a formula,
@@ -3433,7 +3450,7 @@ E<REGIONAL INDICATOR SYMBOL LETTER U, REGIONAL INDICATOR SYMBOL LETTER A> Ukrain
 
 will be rendered as: « 🇺🇦 Ukraine ».
 
-Since emojis are graphemes that can be described by Unicode, C<E<...>> will
+Since emojis are graphemes that can be described by Unicode, C<E< >> will
 also generate emojis. For example:
 
 =begin code :lang<RakuDoc>
@@ -3604,19 +3621,19 @@ specified as an entity (C«E<VERTICAL LINE>»).
 The following codes may I<only> contain display text:
 =begin nested
 =begin code :allow<B I V>
-V« B<» I<DISPLAY-TEXT> V« >»
-V« C<» I<DISPLAY-TEXT> V« >»
-V« H<» I<DISPLAY-TEXT> V« >»
-V« I<» I<DISPLAY-TEXT> V« >»
-V« J<» I<DISPLAY-TEXT> V« >»
-V« K<» I<DISPLAY-TEXT> V« >»
-V« R<» I<DISPLAY-TEXT> V« >»
-V« S<» I<DISPLAY-TEXT> V« >»
-V« T<» I<DISPLAY-TEXT> V« >»
-V« U<» I<DISPLAY-TEXT> V« >»
-V« V<» I<DISPLAY-TEXT> V« >»
-V« N<» I<DISPLAY-TEXT> V« >»
-V« O<» I<DISPLAY-TEXT> V« >»
+BV«< » I<DISPLAY-TEXT> V« >»
+CV«< » I<DISPLAY-TEXT> V« >»
+HV«< » I<DISPLAY-TEXT> V« >»
+IV«< » I<DISPLAY-TEXT> V« >»
+JV«< » I<DISPLAY-TEXT> V« >»
+KV«< » I<DISPLAY-TEXT> V« >»
+RV«< » I<DISPLAY-TEXT> V« >»
+SV«< » I<DISPLAY-TEXT> V« >»
+TV«< » I<DISPLAY-TEXT> V« >»
+UV«< » I<DISPLAY-TEXT> V« >»
+VV«< » I<DISPLAY-TEXT> V« >»
+NV«< » I<DISPLAY-TEXT> V« >»
+OV«< » I<DISPLAY-TEXT> V« >»
 =end code
 =end nested
 
@@ -3627,15 +3644,15 @@ and some kind of metadata.
 
 =begin nested
 =begin code :allow<B I V>
-V« A<» I<DISPLAY-TEXT > V« | » METADATA=B<ALIAS-NAME>V«            >»
-V« D<» I<DISPLAY-TEXT > V« | » METADATA=B<SYNONYMS>V«              >»
-V« Δ<» I<DISPLAY-TEXT > V« | » METADATA=B<VERSION-ETC>V«           >»
-V« E<» I<DISPLAY-TEXT > V« | » METADATA=B<HTML/UNICODE-ENTITIES>V« >»
-V« F<» I<DISPLAY-TEXT > V« | » METADATA=B<LATEX-FORM>V«            >»
-V« L<» I<DISPLAY-TEXT > V« | » METADATA=B<TARGET-URI>V«            >»
-V« M<» I<DISPLAY-TEXT > V« | » METADATA=B<WHATEVER>V«              >»
-V« P<» I<DISPLAY-TEXT > V« | » METADATA=B<REPLACEMENT-URI>V«       >»
-V« X<» I<DISPLAY-TEXT > V« | » METADATA=B<INDEX-ENTRY>V«           >»
+AV«< » I<DISPLAY-TEXT > V« | » METADATA=B<ALIAS-NAME>V«            >»
+DV«< » I<DISPLAY-TEXT > V« | » METADATA=B<SYNONYMS>V«              >»
+ΔV«< » I<DISPLAY-TEXT > V« | » METADATA=B<VERSION-ETC>V«           >»
+EV«< » I<DISPLAY-TEXT > V« | » METADATA=B<HTML/UNICODE-ENTITIES>V« >»
+FV«< » I<DISPLAY-TEXT > V« | » METADATA=B<LATEX-FORM>V«            >»
+LV«< » I<DISPLAY-TEXT > V« | » METADATA=B<TARGET-URI>V«            >»
+MV«< » I<DISPLAY-TEXT > V« | » METADATA=B<WHATEVER>V«              >»
+PV«< » I<DISPLAY-TEXT > V« | » METADATA=B<REPLACEMENT-URI>V«       >»
+XV«< » I<DISPLAY-TEXT > V« | » METADATA=B<INDEX-ENTRY>V«           >»
 =end code
 =end nested
 
@@ -3648,7 +3665,7 @@ that text overrides the default alternate rendering.
 =head4 Metadata only
 
 =begin nested
-V« Z<» METADATA=B<COMMENT>V« >»
+ZV«< » METADATA=B<COMMENT>V« >»
 =end nested
 
 The comment code C<Z<> > is intended not to have a display text so the contents of a comment
@@ -3991,7 +4008,7 @@ P<semantic:AUTHORS>
     =row
             =cell C<:bullet<CHAR>>
             =cell C<=itemN>
-            =cell Replace the default bullet with one or more characters, or entities specified with C<E< ... >>
+            =cell Replace the default bullet with one or more characters, or entities specified with C<E< >>
 
 =end table
 
@@ -4017,8 +4034,8 @@ P<semantic:AUTHORS>
         =cell V<Δ<...|...;...>>
         =cell Delta note (V<Δ<visible text|version; Notification text>>)
     =row
-        =cell V<E<...|...;...>>
-        =cell Entity (HTML or Unicode) description (V<E<entity1;entity2; multi,glyph;...>>)
+        =cell V« E»<...|...;...>
+        =cell Entity (HTML or Unicode) description (V« E»<entity1;entity2; multi,glyph;...>)
     =row
         =cell V<F<...|...>>
         =cell Inline content for a formula (V<F<ALT|LaTex notation>>)

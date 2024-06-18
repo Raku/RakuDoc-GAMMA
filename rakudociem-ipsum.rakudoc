@@ -3,7 +3,8 @@
 =SUBTITLE A file with many RakuDoc components and some idea about what is expected.
 =for AUTHORS :hidden
 Richard Hainsworth, aka finanalyst
-=VERSION v0.1.0
+=for VERSION :hidden
+v0.1.2
 
 =SYNOPSIS Assuming a new renderer has been developed and installed (eg using
 I<zef>) at B<Rakudoc::To::MyRender>, the render this file using a
@@ -386,5 +387,6 @@ But configuration directives C<only B<apply> inside> a block scope.
 
 Did I mention before that: A<DECLARATION>
 
-Text finishes.
+Text finishes after version number
+=place semantic:VERSION :!toc
 =end rakudoc

@@ -47,7 +47,7 @@ text
 
 text
 
-=for head3 :delta<v2|developers can note deprecated things>
+=for head3 :delta<v2;developers can note deprecated things>
 This is third level heading
 
 A paragraph to illustrate B<Basis type> formatting.
@@ -93,7 +93,7 @@ an undeclared alias causes a warning.
 
 We can also make an inline D<definition|Im-a-doppelganger>. This whole paragraph will be referenced later.
 
-A developer note Δ<v1.2.3 ^.. v2.0.0|can be attached> to text. A renderer may show
+A developer note Δ<can be attached|v1.2.3 ^.. v2.0.0; highly deprecated> to text. A renderer may show
 the text or only show it for contexts compliant with the version.
 
 But a note without meta Δ<no versioning here> is ignored and a warning generated.

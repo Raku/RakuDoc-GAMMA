@@ -4,7 +4,7 @@
 =for AUTHORS :hidden
 Richard Hainsworth, aka finanalyst
 =for VERSION :hidden
-v0.1.2
+v0.2.0
 
 =SYNOPSIS Assuming a new renderer has been developed and installed (eg using
 I<zef>) at B<Rakudoc::To::MyRender>, the render this file using a

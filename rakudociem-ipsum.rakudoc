@@ -47,7 +47,7 @@ text
 
 text
 
-=for head3 :delta<v2;developers can note deprecated things>
+=for head3 :delta<v2;developers can attach notes to blocks associated with versions>
 This is third level heading
 
 A paragraph to illustrate B<Basis type> formatting.

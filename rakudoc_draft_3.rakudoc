@@ -112,6 +112,20 @@ I<Titlecase> spelling, which is considered a possible but non-canonical variant.
 
 A file with mainly RakuDoc source has a file extension B<.rakudoc>.
 
+=begin nested
+As it will become apparent, whitespace and indentation plays an important role in RakuDoc.
+There are L<quite a few horizontal whitespace characters|https://unicode-explorer.com/articles/space-characters>;
+no equivalence is made between them by Rakudo. For example, tabs and spaces are treated as two
+separate horizontal whitespace characters, with no assumption that a tab is equivalents, say to
+four (or 2, 8, etc as per style manual) spaces.
+
+Consequently, mixing spaces and tabs may B<appear> to create the same visual margin in some
+editor, but they may be B<treated> as different margins when parsing RakuDoc.
+
+It is recommended that RakuDoc authors choose a single whitespace character (eg, tab or space)
+for margin alignment.
+=end nested
+
 =head1 Two use cases for RakuDoc
 
 RakuDoc can be thought of as having components that are closely connected to a program or module

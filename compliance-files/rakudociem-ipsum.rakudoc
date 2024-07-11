@@ -400,7 +400,7 @@ text messages for other formats.
 =place https://github.com/Raku/RakuDoc-GAMMA/blob/main/compliance-files/camelia.png :caption<Png image placement> :headlevel(2)
 
 Text finishes after version number
-=place semantic:AUTHOR :caption<Credits>
+=place semantic:AUTHORS :caption<Credits>
 =place semantic:LICENSE
 =place semantic:VERSION :!toc
 =end rakudoc

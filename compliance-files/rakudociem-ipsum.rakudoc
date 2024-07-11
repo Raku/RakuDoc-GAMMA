@@ -393,11 +393,11 @@ Did I mention before that: A<DECLARATION>
 Renderers are required to place text and RakuDoc sources, but may fallback to
 text messages for other formats.
 
-=place https://https://github.com/Raku/RakuDoc-GAMMA/blob/main/compliance-files/bootiful-disclaimer.txt :caption<Text placement> :headlevel(2)
-=place https://https://github.com/Raku/RakuDoc-GAMMA/blob/main/compliance-files/bootiful-disclaimer.rakudoc :caption<RakuDoc placement> :headlevel(2)
-=place https://https://github.com/Raku/RakuDoc-GAMMA/blob/main/compliance-files/bootiful-disclaimer.html :caption<HTML placement> :headlevel(2)
-=place https://https://github.com/Raku/RakuDoc-GAMMA/blob/main/compliance-files/camelia.jpeg :caption<JPEG image placement> :headlevel(2)
-=place https://https://github.com/Raku/RakuDoc-GAMMA/blob/main/compliance-files/camelia.png :caption<Png image placement> :headlevel(2)
+=place https://github.com/Raku/RakuDoc-GAMMA/blob/main/compliance-files/bootiful-disclaimer.txt :caption<Text placement> :headlevel(2)
+=place https://github.com/Raku/RakuDoc-GAMMA/blob/main/compliance-files/bootiful-disclaimer.rakudoc :caption<RakuDoc placement> :headlevel(2)
+=place https://github.com/Raku/RakuDoc-GAMMA/blob/main/compliance-files/bootiful-disclaimer.html :caption<HTML placement> :headlevel(2)
+=place https://github.com/Raku/RakuDoc-GAMMA/blob/main/compliance-files/camelia.jpeg :caption<JPEG image placement> :headlevel(2)
+=place https://github.com/Raku/RakuDoc-GAMMA/blob/main/compliance-files/camelia.png :caption<Png image placement> :headlevel(2)
 
 Text finishes after version number
 =place semantic:AUTHOR :caption<Credits>

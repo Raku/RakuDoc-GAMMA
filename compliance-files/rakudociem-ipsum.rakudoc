@@ -4,8 +4,9 @@
 =for AUTHORS :hidden
 Richard Hainsworth, aka finanalyst
 =for VERSION :hidden
-v0.2.0
-
+v0.2.1
+=for LICENSE :hidden
+Artistic-2.0
 =SYNOPSIS Assuming a new renderer has been developed and installed (eg using
 I<zef>) at B<Rakudoc::To::MyRender>, the render this file using a
 C<raku --rakudoc=MyRenderer> terminal command. The renderer will be consistent
@@ -392,12 +393,14 @@ Did I mention before that: A<DECLARATION>
 Renderers are required to place text and RakuDoc sources, but may fallback to
 text messages for other formats.
 
-=place https://https://github.com/Raku/RakuDoc-GAMMA/blob/main/bootiful-disclaimer.txt :caption<Text placement> :headlevel(2)
-=place https://https://github.com/Raku/RakuDoc-GAMMA/blob/main/bootiful-disclaimer.rakudoc :caption<RakuDoc placement> :headlevel(2)
-=place https://https://github.com/Raku/RakuDoc-GAMMA/blob/main/bootiful-disclaimer.html :caption<HTML placement> :headlevel(2)
-=place https://https://github.com/Raku/RakuDoc-GAMMA/blob/main/camelia.jpeg :caption<JPEG image placement> :headlevel(2)
-=place https://https://github.com/Raku/RakuDoc-GAMMA/blob/main/camelia.png :caption<Png image placement> :headlevel(2)
+=place https://https://github.com/Raku/RakuDoc-GAMMA/compliance-files/blob/main/bootiful-disclaimer.txt :caption<Text placement> :headlevel(2)
+=place https://https://github.com/Raku/RakuDoc-GAMMA/compliance-files/blob/main/bootiful-disclaimer.rakudoc :caption<RakuDoc placement> :headlevel(2)
+=place https://https://github.com/Raku/RakuDoc-GAMMA/compliance-files/blob/main/bootiful-disclaimer.html :caption<HTML placement> :headlevel(2)
+=place https://https://github.com/Raku/RakuDoc-GAMMA/compliance-files/blob/main/camelia.jpeg :caption<JPEG image placement> :headlevel(2)
+=place https://https://github.com/Raku/RakuDoc-GAMMA/compliance-files/blob/main/camelia.png :caption<Png image placement> :headlevel(2)
 
 Text finishes after version number
+=place semantic:AUTHOR :caption<Credits>
+=place semantic:LICENSE
 =place semantic:VERSION :!toc
 =end rakudoc

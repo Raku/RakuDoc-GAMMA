@@ -1,34 +1,45 @@
-# Rakudoc-GAMMA
-Repo to revise Rakudoc standard
 
-The Gamma review process is scheduled to last until 1 November 2023.
+# RakuDoc Version 2
 
-On its first meeting after 1 November, the Raku Steering Council will decide
-whether to prolong the Gamma review, or to adopt the standard as laid out
-in this document.
+	This is the first revision of the RakuDoc markup language since the language was formulated to replace POD. POD was the documentation language for Perl 5.
 
-Some history and goals of the revision can be found at [Revising Rakudoc](https://dev.to/finanalyst/revising-rakudoc-29d4).
+----
 
-Comments, patches, enhancement requests are welcomed. The following goals
-should be considered when making such suggestions:
-- RakuDoc is intended to be backwards compatible with POD6, meaning that anything would be legal in RakuDoc would also be legal in POD6.
-    - POD6 is defined here as being in the document `Raku/docs/doc/language/pod6.rakudoc`
-- Some parts of the document use work-arounds in examples, these will be revised once a renderer is available to handle examples properly. 
+## Table of Contents
+<a href="#Overview">Overview</a>   
+<a href="#Renderers">Renderers</a>   
 
-An online HTML rendering of the current document is visible at [new-raku](https://new-raku.finanalyst.org/language/rakudoc)
 
-The renderer for the online version is currently being actively developed to provide the functionality defined in the
-RakuDoc document itself. Consequently, the document here has examples shown using workarounds.
 
-Known deficiencies in `Raku::Pod::Render`:
-- `:numbered` is not recognised
-- `P<>` is incomplete for several schemes, and `semantic:` can only handle backward references
-- `=alias` and `A<>` are not implemented
-- `D<>` is not correctly implemented
-- `L<|#defn: ...>` is not implemented for either `D<>` or `=defn`
-- `=config` metadata is passed to templates, but the default templates do not handle the data yet
-- `=config Q` where ***Q*** is some markup instruction is not yet fully implemented
-- `DOC use` is not recognised.
+----
 
-`Raku::Pod::Render` has some extensions that are not a part of standared Rakudoc, including
-- AUTHOR SUMMARY VERSION DESCRIPTION are automatically given the metadata option `:hidden` and included in the `<head>` block of HTML as meta tabs.
+## Overview<div id="Overview"> </div>
+<span class="para" id="ff9e307"></span>This repository contains the most recent version of the RakuDoc v2 specification document, and some files that are intended to aid in determining compliance with the specification. 
+
+<span class="para" id="0d212d6"></span>The specification is complete, but there are ideas about how to extend some parts of it. 
+
+<span class="para" id="003a863"></span>Any change must be backwards compatible. 
+
+
+----
+
+## Renderers<div id="Renderers"> </div>
+<span class="para" id="aa831e5"></span>It is intended that there should be multiple renderers from RakuDoc into other output formats, and based on other languages. 
+
+<span class="para" id="64b5929"></span>A renderer is considered compliant if it can render into a chosen output format the file [Rakudociem-ipsum.rakudoc](compliance-files/rakudociem-ipsum.md). `rakudociem-ipsum.rakudoc` contains RakuDoc errors and the specification gives some recommendations about errors. So a compliant renderer should generate the expected warnings, though the way the warnings are handled is not defined. Some of the links in `rakudociem-ipsum.rakudoc` are to files in the `compliance-files/` directory. 
+
+<span class="para" id="0bca3e4"></span>Currently, [RakuAST::RakuDoc::Render](https://github.com/finanalyst/rakuast-rakudoc-render) is the most complete renderer, and the distribution contains renderers to Text, HTML and Markdown. 
+
+
+
+
+
+----
+
+----
+
+Rendered from ./README.rakudoc at 11:28 UTC on 2024-07-11
+
+Source last modified at 11:27 UTC on 2024-07-11
+
+

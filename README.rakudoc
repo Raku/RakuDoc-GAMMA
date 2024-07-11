@@ -1,0 +1,34 @@
+=begin rakudoc
+=TITLE RakuDoc Version 2
+=SUBTITLE This is the first revision of the RakuDoc markup language
+since the language was formulated to replace POD. POD was the documentation
+language for Perl 5.
+=head Overview
+
+This repository contains the most recent version of the RakuDoc v2 specification
+document, and some files that are intended to aid in determining
+compliance with the specification.
+
+The specification is complete, but there are ideas about how to extend
+some parts of it.
+
+Any change must be backwards compatible.
+
+=head Renderers
+
+It is intended that there should be multiple renderers from RakuDoc
+into other output formats, and based on other languages.
+
+A renderer is considered compliant if it can render into a chosen output
+format the file L<Rakudociem-ipsum.rakudoc|compliance-files/rakudociem-ipsum>.
+C<rakudociem-ipsum.rakudoc> contains RakuDoc errors and the specification
+gives some recommendations about errors. So a compliant renderer should
+generate the expected warnings, though the way the warnings are handled is
+not defined. Some of the links in C<rakudociem-ipsum.rakudoc> are to files
+in the C<compliance-files/> directory.
+
+Currently, L<RakuAST::RakuDoc::Render|https://github.com/finanalyst/rakuast-rakudoc-render>
+is the most complete renderer, and the distribution contains renderers to
+Text, HTML and Markdown.
+
+=end rakudoc

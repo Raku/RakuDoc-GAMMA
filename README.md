@@ -26,7 +26,7 @@
 ## Renderers<div id="Renderers"> </div>
 <span class="para" id="aa831e5"></span>It is intended that there should be multiple renderers from RakuDoc into other output formats, and based on other languages. 
 
-<span class="para" id="64b5929"></span>A renderer is considered compliant if it can render into a chosen output format the file [Rakudociem-ipsum.rakudoc](compliance-files/rakudociem-ipsum.md). `rakudociem-ipsum.rakudoc` contains RakuDoc errors and the specification gives some recommendations about errors. So a compliant renderer should generate the expected warnings, though the way the warnings are handled is not defined. Some of the links in `rakudociem-ipsum.rakudoc` are to files in the `compliance-files/` directory. 
+<span class="para" id="6702058"></span>A renderer is considered compliant if it can render into a chosen output format the file [Rakudociem-ipsum.rakudoc](compliance-files/rakudociem-ipsum.rakudoc). `rakudociem-ipsum.rakudoc` contains RakuDoc errors and the specification gives some recommendations about errors. So a compliant renderer should generate the expected warnings, though the way the warnings are handled is not defined. Some of the links in `rakudociem-ipsum.rakudoc` are to files in the `compliance-files/` directory. 
 
 <span class="para" id="0bca3e4"></span>Currently, [RakuAST::RakuDoc::Render](https://github.com/finanalyst/rakuast-rakudoc-render) is the most complete renderer, and the distribution contains renderers to Text, HTML and Markdown. 
 
@@ -38,8 +38,8 @@
 
 ----
 
-Rendered from ./README.rakudoc at 11:28 UTC on 2024-07-11
+Rendered from ./README.rakudoc at 08:56 UTC on 2024-07-13
 
-Source last modified at 11:27 UTC on 2024-07-11
+Source last modified at 08:55 UTC on 2024-07-13
 
 

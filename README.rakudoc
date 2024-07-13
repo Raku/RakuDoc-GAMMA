@@ -20,7 +20,7 @@ It is intended that there should be multiple renderers from RakuDoc
 into other output formats, and based on other languages.
 
 A renderer is considered compliant if it can render into a chosen output
-format the file L<Rakudociem-ipsum.rakudoc|compliance-files/rakudociem-ipsum>.
+format the file L<Rakudociem-ipsum.rakudoc|compliance-files/rakudociem-ipsum.rakudoc>.
 C<rakudociem-ipsum.rakudoc> contains RakuDoc errors and the specification
 gives some recommendations about errors. So a compliant renderer should
 generate the expected warnings, though the way the warnings are handled is

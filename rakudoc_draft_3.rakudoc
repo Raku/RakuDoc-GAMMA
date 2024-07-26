@@ -3089,6 +3089,18 @@ pseudo extension, for example:
 or for a heading within another resource:
     L< a directory listing | type/IO.Path.*#routine_dir >
 
+For example, if the output format is Markdown, these links would be rendered
+with C<.md> extensions replacing the C<.*> pseudo-extensions:
+
+    [dealing with the filesystem](type/IO.Path.md)
+    [a directory listing](type/IO.Path.md#routine_dir)
+
+Or, if the output format is HTML, these links would be rendered
+with C<.html> extensions instead:
+
+    <a href="type/IO.Path.html">             dealing with the filesystem </a>
+    <a href="type/IO.Path.html#routine_dir"> a directory listing         </a>
+
 Several schemas are possible:
 =item C<https://> or C<http://> The renderer may style the label and cause a jump in
 a networked environment, as is normal for HTML documents.

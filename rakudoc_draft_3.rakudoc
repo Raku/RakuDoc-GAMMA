@@ -1,7 +1,7 @@
 =begin rakudoc :kind("Language") :subkind("Language") :category("reference")
-=VERSION 2.6.0
 =TITLE RakuDoc
 =SUBTITLE A Raku slang for documenting Raku software to aid development and use.
+=VERSION 2.7.0
 
 RakuDoc is a markup language with simple instructions for simple tasks and more
 complex structures to suit larger projects. There is a clear distinction between
@@ -3073,6 +3073,35 @@ of the bar is not significant.
 
 When the schema is missing, then the C<https://> schema is implied, which means that
 if the website url is missing as well, the link is to the same host as the document.
+
+The exact name of the resource to which a link is pointing must be used by the renderer. So
+    C<L< For reference | README.md >> or C<L< text reference | README >>
+
+must link to C<README.md> and to C<README>, with the renderer making no assumption about the
+file format.
+
+However, a collection of RakuDoc sources may be intended as the base for multiple formats, such
+as C< .html >, C< .md >, or C< .pdf >, and so links within the collection may need to delegate
+the selection of an appropriate file format (if one is needed) to the renderer. This is accomplished explicitly using the C< .* >
+pseudo extension, for example:
+
+    L< dealing with the filesystem | type/IO.Path.* >
+
+or for a heading within another resource:
+
+    L< getting a directory listing | type/IO.Path.*#routine_dir >
+
+For example, if the output format is Markdown, these links would be rendered
+with C<.md> extensions replacing the C<.*> pseudo-extensions:
+
+    [dealing with the filesystem](type/IO.Path.md)
+    [getting a directory listing](type/IO.Path.md#routine_dir)
+
+Or, if the output format is HTML, these links would be rendered
+with C<.html> extensions instead:
+
+    <a href="type/IO.Path.html">             dealing with the filesystem </a>
+    <a href="type/IO.Path.html#routine_dir"> getting a directory listing </a>
 
 Several schemas are possible:
 =item C<https://> or C<http://> The renderer may style the label and cause a jump in

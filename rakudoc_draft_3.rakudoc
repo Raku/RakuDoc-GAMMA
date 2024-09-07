@@ -1,7 +1,7 @@
 =begin rakudoc :kind("Language") :subkind("Language") :category("reference")
 =TITLE RakuDoc
 =SUBTITLE A Raku slang for documenting Raku software to aid development and use.
-=VERSION 2.7.0
+=VERSION 2.8.0
 
 RakuDoc is a markup language with simple instructions for simple tasks and more
 complex structures to suit larger projects. There is a clear distinction between
@@ -227,7 +227,7 @@ The general syntax for configuration directives is:
 If the block-type is single uppercase character R<X>,
 the C<=config> directive applies the specified configuration options to the R<X> markup instruction.
 For example:
-=for code :allow<B V>
+=for code :allow<B V> :lang<RakuDoc>
 V<=>config B<C> :allow<B I>
 
 This configures the C<C<>> markup instruction to recognize nested C<B<>> and C<I<>> markup instructions
@@ -238,7 +238,7 @@ To avoid ambiguities L<Naming rules|#Naming rules> are applied to blocks and mar
 =begin item
 B<=place> specifies a source of information that is to be placed in the current block. The general
 syntax of B<=place> is
-=begin code
+=begin code :lang<RakuDoc>
     =place R<URL> R<OPTIONS>
     =             R<More Options if necessary>
 =end code
@@ -359,7 +359,7 @@ in the opening marker.
 
 For example:
 
-=begin code :allow<B>
+=begin code :allow<B> :lang<RakuDoc>
 This is B<U<unusual>> text, and this is B<I<important>>.
 And this is a B<L<link to the Raku Programming Language|https://raku.org>>.
 =end code
@@ -606,7 +606,7 @@ This can be used to provide data to a program, such as a test.
     { "key1": "a string value", "key2": "another value" }>
 =end code
 This will generate the following output:
-=begin code :lang<raku>
+=begin code :lang<text>
     {:key1("a string value"), :key2("another value")}
 =end code
 
@@ -654,7 +654,7 @@ Renderers are not required to render anything other than plaintext and RakuDoc,
 but may also support other formats if they wish.
 
 In the case where a URL does not end in a recognized extension:
-=begin code
+=begin code :lang<RakuDoc>
     =place https://example.org/landingpage
 
     =place rakudoc:App::Rak
@@ -674,7 +674,7 @@ In the case where a URL does not end in a recognized extension:
 
 A B<=place> directive may be accompanied by metadata options to ensure that
 a reference can be made in the Table of Contents, or to provide an ALT text. For example:
-=begin code
+=begin code :lang<RakuDoc>
   =place https://raku.org/camelia-logo.png  :caption<Raku's mascot>  :alt<A multicoloured butterfly>
 =end code
 
@@ -1111,7 +1111,7 @@ other textual specifications. They are usually rendered using a fixed-width font
 A code block may be implicitly specified as one or more lines of text, each of which starts with a
 whitespace character at the block's virtual left margin. The implicit code block is then terminated by a blank line or an explicit directive.
 For example:
-=begin code :lang<raku>
+=begin code :lang<text>
     This ordinary paragraph introduces a code block:
 
         $this = 1 * code('block');
@@ -1122,7 +1122,7 @@ Implicit code blocks may be used L<elsewhere with some caveats|#Implied code and
 
 There is also an explicit C<=code> block (which can be specified within any block type,
 not just C<=rakudoc>, C<=item>, etc.):
-=begin code :lang<raku>
+=begin code :lang<text>
      The C<loud_update()> subroutine adds feedback:
 
         =begin code
@@ -1142,19 +1142,20 @@ Furthermore, lines that start with whitespace characters after that margin have 
 =head5 Preprocessing and postprocessing of code
 
 The code in a document is almost always related to a specific programming language, by default Raku.
-But examples of Ruby, C, RakuDoc, or other languages may
-also appear in the Raku documentation sources.
+But examples of Ruby, C, RakuDoc, or other languages may also appear in the Raku documentation sources.
 
-A renderer should offer the option to use syntax highlighting to render code in a code block,
-perhaps by specifying a C<:syntax-highlighting> metadata option for code blocks. By default,
-a renderer will not change the contents of a code block, but see the caveat
+A renderer may apply language specific syntax highlighting to the contents of a code block according to the following
+rules:
+=item C<=code> blocks with no explicit or preconfigured C<:lang> option default to C<:lang<raku>>.
+=item C<=code> blocks can be marked as not being in any specific language by using C<:!lang>.
+=item Renderers must not syntax-highlight any code block whose C<:lang> value is C<False>, that is C<:!lang>.
+=item Renderers must not syntax-highlight any code block whose C<:syntax-highlighting> value is C<False>;
+by default C<:syntax-highlighting>  is True.
+
+=item Renderers may syntax-highlight any other code block (including C<:lang<text>>), but are not required to do so.
+
+By default, a renderer will not change the contents of a code block, but see the caveat
 when L<C<:allow> is used|#Markup within verbatim blocks>.
-
-The C<:lang< ... >> metadata option may be used to specify that the contents of a given C<=code>
-block are in a given language.
-If the specified language is unknown to a renderer, it may choose either to default to Raku syntax highlighting,
-or may apply some other heuristic.
-
 
 =head3 I/O blocks
 
@@ -1225,7 +1226,7 @@ sub demo {
 }
 =end code
 
-It should be noted that both C<:allow> and C<:lang> (if C<:syntax-highlighting> is true)
+It should be noted that both C<:allow> and C<:lang> (if C<:syntax-highlighting> is True)
 will affect the rendering of the content of the block. This is likely to cause conflicts
 in some cases. The renderer is free to choose how to resolve such conflicts, e.g. by
 disregarding the C<:allow> metadata.
@@ -1396,7 +1397,7 @@ Abscond to the Bahamas with the cash
 =end code
 ... would produce something like a list with checkboxes, thus:
 =begin nested
-=begin code
+=begin code :lang<text>
 The project originally consisted of five phases, of which
 two are already complete and two have been abandoned:
 
@@ -1427,7 +1428,7 @@ Abscond to the Bahamas with the cash
 =end code
 ... to produce
 =begin nested
-=begin code
+=begin code  :lang<text>
 ✅     Investigate existing solutions
 ✅     Define a minimal initial feature set
 🔄    Implement this minimal set of features
@@ -1454,7 +1455,7 @@ the duration of a section. For example,
 =end code
 ...which would produce:
 =begin nested
-=begin code
+=begin code lang<text>
 The major sources of sustainable energy are:
 🌍 wind
 🌍 hydroelectric
@@ -1889,7 +1890,7 @@ trigger an unhandled exception during parsing.
 
 =item Mixed column separator types in the same row are not allowed:
 
-=begin code :skip-test<RakuDoc error> :lang<RakuDoc>
+=begin code :lang<text>
 =begin table
 r0c0 +  r0c1 | r0c3
 =end table
@@ -1898,7 +1899,7 @@ r0c0 +  r0c1 | r0c3
 =item  Mixed visual and whitespace column separator types in the same table
 are not allowed:
 
-=begin code :skip-test<RakuDoc error> :lang<RakuDoc>
+=begin code :lang<text>
 =begin table
 r0c0 +  r0c1 | r0c3
 r1c0    r0c1   r0c3
@@ -1907,7 +1908,7 @@ r1c0    r0c1   r0c3
 
 =item Two consecutive interior row separators are not allowed:
 
-=begin code :skip-test<RakuDoc error> :lang<RakuDoc>
+=begin code :lang<text>
 =begin table
 r0c0 |  r0c1
 ============
@@ -2122,7 +2123,7 @@ The following RakuDoc specification:
 
 Let’s examine how that specification creates that layout, step by step.
 Note that, in the following diagram, the various symbols have these meanings:
-=begin code
+=begin code :lang<text>
     ┌───┐
     │   │ : An empty table cell
     └───┘
@@ -2141,7 +2142,7 @@ Note that, in the following diagram, the various symbols have these meanings:
 =end code
 
 And now the step-by-step explanation:
-=begin code
+=begin code :lang<text>
     =begin table                   ┌───┬───┬───┬───┬───┬───┬┈┈
                                    │ → │   │   │   │   │   │
     (Create a new table grid       ├───┼───┼───┼───┼───┼───┼┈┈
@@ -2453,7 +2454,7 @@ it is acceptable for a renderer to render the contents
 of a C<=formula> or C«F<>» in some other way than as a fully realized mathematical equation.
 
 For example, the following two formulae:
-=begin code
+=begin code :lang<text>
 We will use the identity: F<\sum \frac{1}{n^{2}} = \frac{\pi^{2}}{6}>
 
 ...where the value of pi can be inferred from Euler’s Identity:
@@ -2463,7 +2464,7 @@ We will use the identity: F<\sum \frac{1}{n^{2}} = \frac{\pi^{2}}{6}>
 
 ...may either be rendered “accurately”:
 =begin nested
-=begin code
+=begin code :lang<text>
 We will use the identity: F<\sum \frac{1}{n^{2}} = \frac{\pi^{2}}{6}>
 
 ...where the value of pi can be inferred from Euler’s Identity:
@@ -2505,7 +2506,7 @@ C«<F< FORMULA>» or C«F< ALT | FORMULA >».
 Using the ALT text options, the document author can supply a suitable explicit alternative rendering
 to renderers that cannot handle the full formula syntax:
 
-=begin code
+=begin code :lang<text>
 We will use the identity: F<∑ 1/n² = 𝜋²/6 | \sum \frac{1}{n^{2}} = \frac{\pi^{2}}{6}>
                             ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
 
@@ -2543,7 +2544,7 @@ a range of reasonable alternatives under those renderers that don’t:
 It is also possible to B<stack> the fallback options. For example, they could try for an “accurate” rendering of a formula,
 but fall back on the placement of a pre-rendered image, or (failing to find that)
 fall back again to a RakuDoc representation with an outgoing link:
-=begin code
+=begin code :lang<text>
 We will use: F<
                  P<
                      L< eH<iπ> + 1 = 0
@@ -2628,7 +2629,7 @@ The way in which a renderer styles the contents of a custom block depends on the
 may specify a procedure for using user-supplied templates or code.
 
 The DOC phaser in Raku is the way an author can define which renderer to use, e.g.:
-=begin code
+=begin code :lang<text>
     DOC use My::Special::Renderer;
     DOC use My::Other::Special::Renderer;
 
@@ -2693,7 +2694,7 @@ be used in other blocks.
 Each block creates a virtual margin (at the column before its leading C<=>)
 and that virtual margin extends B<I<only>> to the end of the block (I<i.e.> B<not> to the start
 of the next named block). Thus:
-=begin code :lang<RakuDoc>
+=begin code :lang<text>
 ┊=begin rakudoc
 ┊This is an implicit =para block
 ┊
@@ -2929,7 +2930,7 @@ That is, the in-document link target cannot be the mangled contents of a C<=head
 or a C<:caption<...>> metatag; it can only be the original contents.
 
 For example:
-=begin code
+=begin code :lang<RakuDoc>
     =for header :id<h123>
     A sample header
 
@@ -3143,7 +3144,7 @@ more sophisticated styling or operational links should provide ways to configure
 whilst offering reasonable defaults.
 
 =head4 Examples
-=begin code :allow<B>
+=begin code :allow<B> :lang<RakuDoc>
     I<ACM Transactions on Programming Languages and Systems>
     is a registered serial publication (L<B<issn:0164-0925>>)
 
@@ -3338,7 +3339,7 @@ those newly defined terms, and to be able to link back to the paragraph where
 they’re defined.
 
 For example:
-=begin code :allow<B>
+=begin code :allow<B> :lang<RakuDoc>
     There ensued a terrible moment of B<D<coyotus interruptus>>: a brief
     suspension of the effects of gravity, accompanied by a sudden
     to-the-camera realization of imminent downwards acceleration.
@@ -3366,7 +3367,7 @@ And a C<L<defn:term being defined>> link would be translated to something like:
 A definition may be given synonyms, which are specified after a vertical bar and
 separated by semicolons:
 
-=begin code :allow<B>
+=begin code :allow<B> :lang<RakuDoc>
     A D<formatting code|B<formatting codes;formatters>> provides a way
     to add inline mark-up to a piece of text.
 =end code
@@ -3485,7 +3486,7 @@ will yield the same rendering:
 It is also possible to specify Unicode codepoint B<names>.
 Multiple codepoints separated by C<,> will be considered as a single grapheme. So:
 
-=begin code
+=begin code :lang<RakuDoc>
 E<LEFT-POINTING DOUBLE ANGLE QUOTATION MARK>
 E<REGIONAL INDICATOR SYMBOL LETTER U, REGIONAL INDICATOR SYMBOL LETTER A> Ukraine
  E<RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK>
@@ -3510,7 +3511,7 @@ Raku makes considerable use of the E<laquo> and E<raquo> characters.
 also yields: Raku makes considerable use of the « and » characters.
 
 The C<E<>> markup may be used for a list of characters separated by C<;>
-=begin code
+=begin code :lang<RakuDoc>
 Raku code often contains the E<0xff62;0xff63> bracketing characters to avoid using quotes.
 =end code
 
@@ -3663,7 +3664,7 @@ specified as an entity (C«E<VERTICAL LINE>»).
 
 The following codes may I<only> contain display text:
 =begin nested
-=begin code :allow<B I V>
+=begin code :allow<B I V> :lang<RakuDoc>
 BV«< » I<DISPLAY-TEXT> V« >»
 CV«< » I<DISPLAY-TEXT> V« >»
 HV«< » I<DISPLAY-TEXT> V« >»
@@ -3686,7 +3687,7 @@ The following codes may (and, in some cases, must) contain both a display text
 and some kind of metadata.
 
 =begin nested
-=begin code :allow<B I V>
+=begin code :allow<B I V> :lang<RakuDoc>
 AV«< » I<DISPLAY-TEXT > V« | » METADATA=B<ALIAS-NAME>V«            >»
 DV«< » I<DISPLAY-TEXT > V« | » METADATA=B<SYNONYMS>V«              >»
 ΔV«< » I<DISPLAY-TEXT > V« | » METADATA=B<VERSION-ETC>V«           >»

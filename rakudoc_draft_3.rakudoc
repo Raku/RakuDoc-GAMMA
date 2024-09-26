@@ -110,7 +110,7 @@ The markup language is called B<RakuDoc> with the I<CamelCase> spelling in order
 both the I<Raku> and I<Doc> parts for a newcomer. Some authors may prefer B<Rakudoc> with
 I<Titlecase> spelling, which is considered a possible but non-canonical variant.
 
-A file with mainly RakuDoc source has a file extension B<.rakudoc>.
+The file extension for a file containing RakuDoc source is B<.rakudoc>.
 
 =begin nested
 As it will become apparent, whitespace and indentation plays an important role in RakuDoc.
@@ -848,6 +848,11 @@ A C<rakudoc> block reverses this assumption.
 
 Files that are intended to contain text-oriented documentation alone should be entirely
 enclosed in a C<rakudoc> block.
+
+However, files whose filename ends in a C<.rakudoc> extension are always presumed
+to contain only text-oriented documentation, and any renderer must always treat
+the file's contents as being enclosed in an implicit C<=begin rakudoc>...C<=end rakudoc>,
+unless those contents are already explicitly enclosed in a C<rakudoc> block.
 
 Historically the name C<pod> was used for this functionality.
 For compatibility it will still be possible to use the name C<pod>

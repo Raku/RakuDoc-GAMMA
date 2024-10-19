@@ -1455,7 +1455,7 @@ the duration of a section. For example,
 =end code
 ...which would produce:
 =begin nested
-=begin code lang<text>
+=begin code :lang<text>
 The major sources of sustainable energy are:
 🌍 wind
 🌍 hydroelectric

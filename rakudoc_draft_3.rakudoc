@@ -1496,7 +1496,7 @@ This would produce something like:
 
 The numbering scheme is at the discretion of the renderer. A renderer might, for example,
 provide a scheme similar to the examples here, and also provide an enhancement, such as
-`:html-ordered` that leverages the `<ul type="A">` markup.
+C<:html-ordered> that leverages the C«<»C«ul type="A">» markup.
 
 The numbering of successive C<=numitem1> list items increments automatically,
 but is reset to 1 whenever any other kind of non-ambient RakuDoc block appears
@@ -3641,7 +3641,7 @@ is used by the renderer to identify the functionality being provided.
 For example, suppose a RakuDoc document is used to create part of a website in which a button is to be styled
 that accesses the API of a payment service (e.g. 'PayMe'). A developer can then create some functionality according
 to the rules of a RakuDoc renderer, and present it to the service point. In an HTML document, this might be coded
-as a C< <button class="PayMeApp" data-token="vendor-id" data-price="$0.99"> > with a specific class and structure.
+as a C«<»C«button class="PayMeApp" data-token="vendor-id" data-price="$0.99"> » with a specific class and structure.
 The RakuDoc instruction might then be:
 =begin code :lang<Raku> :allow<B>
     To sample this marvelous libation B<M<order now by PayMeApp|PayMeApp; vendor-id; $0.99>>
@@ -3746,9 +3746,7 @@ P<semantic:AUTHORS>
 
 =head1 Summary
 
-=head2 Directives
-
-=begin table :!toc
+=begin table :caption<Directives> :headlevel(2)
     =row :header
         =cell Directive
         =cell Specifies
@@ -3779,9 +3777,7 @@ P<semantic:AUTHORS>
     =row
 =end table
 
-=head2 Blocks
-
-=begin table  :!toc
+=begin table  :caption<Blocks> :headlevel(2)
     =row
         =cell Block typename
         =cell Specifies
@@ -3859,8 +3855,7 @@ P<semantic:AUTHORS>
         =cell User-defined block
 =end table
 
-=head2 Metadata options
-=begin table :!toc
+=begin table :caption<Metadata options> :headlevel(2)
     =row :header
         =cell Metadata option
         =cell Blocks applied to
@@ -4061,9 +4056,8 @@ P<semantic:AUTHORS>
 
 =end table
 
-=head2 Markup instructions
+=begin table :caption<Markup instructions> :headlevel(2)
 
-=begin table :!toc
     =row
         =cell Markup instruction
         =cell Specifies

@@ -1,7 +1,7 @@
 =begin rakudoc :kind("Language") :subkind("Language") :category("reference")
 =TITLE RakuDoc
 =SUBTITLE A Raku slang for documenting Raku software to aid development and use.
-=VERSION 2.8.2
+=VERSION 2.8.3
 
 RakuDoc is a markup language with simple instructions for simple tasks and more
 complex structures to suit larger projects. There is a clear distinction between
@@ -1402,16 +1402,23 @@ Abscond to the Bahamas with the cash
 =end code
 ... would produce something like a list with checkboxes, thus:
 =begin nested
-=begin code :lang<text>
 The project originally consisted of five phases, of which
 two are already complete and two have been abandoned:
 
-☑︎ Investigate existing solutions
-☑︎ Define a minimal initial feature set
-☐ Implement this minimal set of features
-☒ Secure 100 million in venture capital
-☒ Abscond to the Bahamas with the cash
-=end code
+=for item :bullet« \c[BALLOT BOX WITH CHECK] »
+Investigate existing solutions
+
+=for item :bullet« \c[BALLOT BOX WITH CHECK] »
+Define a minimal initial feature set
+
+=for item :bullet« \c[BALLOT BOX] »
+Implement this minimal set of features
+
+=for item :bullet« \c[BALLOT BOX WITH X] »
+Secure 100 million in venture capital
+
+=for item :bullet« \c[BALLOT BOX WITH X] »
+Abscond to the Bahamas with the cash
 =end nested
 
 However, more interesting bullets are possible, including multiple characters. For example:
@@ -1428,18 +1435,25 @@ Implement this minimal set of features
 =for item B<:bullet« \c[prohibited sign] »>
 Secure 100 million in venture capital
 
-=for item B<:bullet« \c[prohibited sign; palm tree] »>
+=for item B<:bullet« \c[prohibited sign, palm tree] »>
 Abscond to the Bahamas with the cash
 =end code
 ... to produce
 =begin nested
-=begin code  :lang<text>
-✅     Investigate existing solutions
-✅     Define a minimal initial feature set
-🔄    Implement this minimal set of features
-🚫    Secure 100 million in venture capital
-🚫 🌴 Abscond to the Bahamas with the cash
-=end code
+=for item :bullet« \c[Heavy Check Mark] »
+Investigate existing solutions
+
+=for item :bullet« \c[Heavy Check Mark] »
+Define a minimal initial feature set
+
+=for item :bullet« \c[Anticlockwise Downwards And Upwards Open Circle Arrows] »
+Implement this minimal set of features
+
+=for item :bullet« \c[prohibited sign] »
+Secure 100 million in venture capital
+
+=for item :bullet« \c[prohibited sign, palm tree] »
+Abscond to the Bahamas with the cash
 =end nested
 
 By using the C<=config> directive, it is also possible to change the default bullets for
@@ -1460,15 +1474,19 @@ the duration of a section. For example,
 =end code
 ...which would produce:
 =begin nested
-=begin code :lang<text>
+=begin section
+=config item1 :bullet« \c[Earth Globe Europe-Africa] »
+=config item2 :bullet« \c[Hand with Index and Middle Fingers Crossed] »
+
 The major sources of sustainable energy are:
-🌍 wind
-🌍 hydroelectric
-🌍 solar
-🌍 geothermal
-🌍 fusion
-   🤞(eventually)
-=end code
+=item1 wind
+=item1 hydroelectric
+=item1 solar
+=item1 geothermal
+=item1 fusion
+=item2 (eventually)
+=end section
+
 =end nested
 
 In the event that a custom bullet cannot be rendered (e.g. a specified Unicode glyph is unrecognised or unrenderable in the target format),

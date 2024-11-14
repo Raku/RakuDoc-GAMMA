@@ -238,7 +238,7 @@ To avoid ambiguities L<Naming rules|#Naming rules> are applied to blocks and mar
 =begin item
 B<=place> specifies a source of information that is to be placed in the current block. The general
 syntax of B<=place> is
-=begin code :lang<RakuDoc>
+=begin code :lang<RakuDoc> :allow<R>
     =place R<URL> R<OPTIONS>
     =             R<More Options if necessary>
 =end code

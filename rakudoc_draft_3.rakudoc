@@ -1662,17 +1662,20 @@ For example:
 =end code
 
 will yield something like:
-=begin code :allow< B > :lang<RakuDoc>
-1. B<AAA>
-  first letters
-2. B<BBB>
-  second letters
-A normal paragraph
-1. B<XXX>
-  ending letters
-2. B<YYY>
-  finals
-=end code
+=numdefn AAA
+first letters
+
+=numdefn BBB
+second letters
+
+A normal para
+
+=numdefn XXX
+ending letters
+
+=numdefn YYY
+finals
+
 In order to continue a list, an explicit C<:continued> is needed, such as:
 =begin code :allow< B > :lang<RakuDoc>
     =numdefn AAA
@@ -1692,17 +1695,20 @@ In order to continue a list, an explicit C<:continued> is needed, such as:
 =end code
 
 will yield something like
-=begin code :allow< B > :lang<RakuDoc>
-1. B<AAA>
-  first letters
-2. B<BBB>
-  second letters
-A normal paragraph
-3. B<XXX>
-  ending letters
-4. B<YYY>
-  finals
-=end code
+=numdefn AAA
+first letters
+
+=numdefn BBB
+second letters
+
+A normal para
+
+=for numdefn B<:continued>
+XXX
+ending letters
+
+=numdefn YYY
+finals
 
 Suppose a writer needs every numbered definition to form a single monotonic sequence
 within some block scope (e.g. for every definition within a document section,

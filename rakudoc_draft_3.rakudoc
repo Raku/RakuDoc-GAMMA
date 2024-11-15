@@ -1695,6 +1695,7 @@ In order to continue a list, an explicit C<:continued> is needed, such as:
 =end code
 
 will yield something like
+
 =numdefn AAA
 first letters
 
@@ -1703,7 +1704,7 @@ second letters
 
 A normal para
 
-=for numdefn B<:continued>
+=for numdefn :continued
 XXX
 ending letters
 

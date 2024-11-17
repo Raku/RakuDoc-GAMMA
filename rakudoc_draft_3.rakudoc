@@ -1,7 +1,7 @@
 =begin rakudoc :kind("Language") :subkind("Language") :category("reference")
 =TITLE RakuDoc
 =SUBTITLE A Raku slang for documenting Raku software to aid development and use.
-=VERSION 2.8.3
+=VERSION 2.8.4
 
 RakuDoc is a markup language with simple instructions for simple tasks and more
 complex structures to suit larger projects. There is a clear distinction between
@@ -510,16 +510,16 @@ it will be used if the requested alias cannot be found (and an I<"unknown alias"
 warning will be issued in that case):
 
 =begin code :lang<RakuDoc> :allow<B>
-    The use of A<B<this program |> PROGNAME> is subject to the terms and conditions
-    laid out by A<B<our company |> VENDOR>, as specified at:
+    The use of A<B<this program |> SOFTWARE> is subject to the terms and conditions
+    laid out by A<B<our company |> COMPANY>, as specified at:
 
-        A<B<(Please visit our website) |> TERMS_URLS>
+        A<B<(Please visit our website) |> OURTERMS>
 =end code
 produces ...
 =begin nested
-The use of A<B<this program |> PROGNAME> is subject to the terms and conditions
-laid out by A<B<our company |> VENDOR>, as specified at:
-A<B<(Please visit our website) |> TERMS_URLS>
+The use of A<this program | SOFTWARE> is subject to the terms and conditions
+laid out by A<our company | COMPANY>, as specified at:
+A<(Please visit our website) | OURTERMS>
 =end nested
 
 =head2 Block specifiers
@@ -985,6 +985,16 @@ For example, suppose the following RakuDoc text was included in a source file
 
     =end section
 =end code
+which might render as:
+=begin nested
+    =begin section :delta(v2.3.2-, 'removed due to conflict with chancellors')
+    =head2 role fool
+
+    This role is especially important in authoritarian kingdoms to remind kings of their humanity.
+
+    =end section
+=end nested
+
 If a user indicates to a renderer that they wish to view documentation valid today, which
 corresponds (for example) to C<v3.1.1> then, because C<v3.1.1> is after C<v2.3.2>, the section above – including the nested C<=head2> block and the following plain paragraph – would not be rendered.
 

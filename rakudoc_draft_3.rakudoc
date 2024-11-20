@@ -1,7 +1,7 @@
 =begin rakudoc :kind("Language") :subkind("Language") :category("reference")
 =TITLE RakuDoc
 =SUBTITLE A Raku slang for documenting Raku software to aid development and use.
-=VERSION 2.8.4
+=VERSION 2.8.5
 
 RakuDoc is a markup language with simple instructions for simple tasks and more
 complex structures to suit larger projects. There is a clear distinction between
@@ -988,7 +988,8 @@ For example, suppose the following RakuDoc text was included in a source file
 which might render as:
 =begin nested
     =begin section :delta(v2.3.2-, 'removed due to conflict with chancellors')
-    =head2 role fool
+    =for head2 :!toc
+    role fool
 
     This role is especially important in authoritarian kingdoms to remind kings of their humanity.
 
@@ -2911,6 +2912,8 @@ That’s because each of them specifies explicitly what type of information thei
 are supposed to be, so there’s no need to infer anything. In particular, C<=para> and C<=code>
 are specifically provided to I<circumvent> inference from indentation.
 
+A C<=config code> directive will also apply to any implicit code block in the block scope.
+
 Finally, user-defined custom blocks should always pass their contents verbatim
 to whatever appropriate user-defined handler is in scope, and it’s up to
 that handler to infer the meaning of any indentation.
@@ -3545,7 +3548,12 @@ E<REGIONAL INDICATOR SYMBOL LETTER U, REGIONAL INDICATOR SYMBOL LETTER A> Ukrain
  E<RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK>
 =end code
 
-will be rendered as: « 🇺🇦 Ukraine ».
+will be rendered as:
+=begin nested
+E<LEFT-POINTING DOUBLE ANGLE QUOTATION MARK>
+E<REGIONAL INDICATOR SYMBOL LETTER U, REGIONAL INDICATOR SYMBOL LETTER A> Ukraine
+E<RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK>
+=end nested
 
 Since emojis are graphemes that can be described by Unicode, C<E< >> will
 also generate emojis. For example:
@@ -3585,11 +3593,11 @@ to avoid using quotes.
 =end code
 
 An ASCII-only renderer would then render those like so:
-
+=begin nested
 Raku makes considerable use of the left- and right-double-angle characters.
 
 Raku code often contains the left- and right-corner bracketing characters to avoid using quotes.
-
+=end nested
 
 =head3 Verbatim text
 

@@ -1,7 +1,7 @@
 =begin rakudoc :kind("Language") :subkind("Language") :category("reference")
 =TITLE RakuDoc
 =SUBTITLE A Raku slang for documenting Raku software to aid development and use.
-=VERSION 2.8.5
+=VERSION 2.9.0
 
 RakuDoc is a markup language with simple instructions for simple tasks and more
 complex structures to suit larger projects. There is a clear distinction between
@@ -2682,36 +2682,18 @@ and custom blocks are never mixed up.
 The way in which a renderer styles the contents of a custom block depends on the renderer, and each renderer
 may specify a procedure for using user-supplied templates or code.
 
-The DOC phaser in Raku is the way an author can define which renderer to use, e.g.:
-=begin code :lang<text>
-    DOC use My::Special::Renderer;
-    DOC use My::Other::Special::Renderer;
-
-    =begin rakudoc
-    ...
-    =end rakudoc
-=end code
-
-Non-Raku environments might specify their own mechanisms for loading custom renderers.
-For example, they might require a RakuDoc comment at the start of the document:
-=begin code :lang<RakuDoc>
-    =begin rakudoc
-    =comment load MySpecialRenderer, MyOtherSpecialRenderer
-    ...
-    =end rakudoc
-=end code
-Or they might require that any special handlers be specified as metadata on the C<rakudoc> block itself:
-=begin code :lang<RakuDoc>
-    =begin rakudoc :Load< MySpecialRenderer MyOtherSpecialRenderer >
-    ...
-    =end rakudoc
-=end code
-
-If a renderer does not recognise a custom block, then the renderer should treat the block name as the contents of a
+If a renderer does not recognise a custom block, then by default the renderer should treat the block name as the contents of a
 C<=head1> block, which can be overridden as described in L<Table of Contents|#Table of Contents and Index>. The
 contents of the unrecognised custom block should be rendered verbatim, like a C<=code> block.
 
-Consequently, multi-paragraph contents should be enclosed using the I<delimited> form of the block.
+It is possible that a custom block contains data, eg., the text form of an image, which should only
+be displayed with the custom block. If the renderer does not recognise the custom block, the
+document author should include an C< :alt<...> > option. The contents of the option will be rendered
+in place of the contents of the custom block.
+
+By default an unrecognised custom block will generate an error message.
+
+Multi-paragraph contents should be enclosed using the I<delimited> form of the block.
 
 =head2 Naming rules
 

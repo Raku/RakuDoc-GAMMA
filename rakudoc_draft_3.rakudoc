@@ -3095,16 +3095,10 @@ Markup instructions, including all customisable instructions, will typically hav
 =head3 Links
 
 To create a link, enclose it in C<L< >>. RakuDoc links are more general than the conventional HTML links.
-
-The general syntax is C< L< LABEL | TARGET > >
-=begin comment
-    When section and config for formatting are working,
-    the last line should be rewritten as
-    =begin section
-    =config C :allow<R>
-    The general syntax is C< L< R<LABEL> | R<TARGET> > >
-    =end section
-=end comment
+=begin section
+=config C :allow<R>
+The general syntax is C< L< R<LABEL> | R<TARGET> > >
+=end section
 
 where the optional label is text that is rendered and the target may include a schema.
 If the label is omitted, then the target is used as the label. Whitespace on either side
@@ -3123,22 +3117,24 @@ However, a collection of RakuDoc sources may be intended as the base for multipl
 as C< .html >, C< .md >, or C< .pdf >, and so links within the collection may need to delegate
 the selection of an appropriate file format (if one is needed) to the renderer. This is accomplished explicitly using the C< .* >
 pseudo extension, for example:
+=begin section
+=config code :lang<RakuDoc>
 
     L< dealing with the filesystem | type/IO.Path.* >
 
 or for a heading within another resource:
 
     L< getting a directory listing | type/IO.Path.*#routine_dir >
-
+=end section
 For example, if the output format is Markdown, these links would be rendered
 with C<.md> extensions replacing the C<.*> pseudo-extensions:
-
+=for code :lang<MarkDown>
     [dealing with the filesystem](type/IO.Path.md)
     [getting a directory listing](type/IO.Path.md#routine_dir)
 
 Or, if the output format is HTML, these links would be rendered
 with C<.html> extensions instead:
-
+=for code :lang<HTML>
     <a href="type/IO.Path.html">             dealing with the filesystem </a>
     <a href="type/IO.Path.html#routine_dir"> getting a directory listing </a>
 

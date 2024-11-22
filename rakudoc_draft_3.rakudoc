@@ -2518,13 +2518,12 @@ We will use the identity: F<\sum \frac{1}{n^{2}} = \frac{\pi^{2}}{6}>
 
 ...may either be rendered “accurately”:
 =begin nested
-=begin code :lang<text>
 We will use the identity: F<\sum \frac{1}{n^{2}} = \frac{\pi^{2}}{6}>
 
 ...where the value of pi can be inferred from Euler’s Identity:
 
-=formula e^{i\pi}+1=0
-=end code
+=for formula :!toc :caption('')
+e^{i\pi}+1=0
 =end nested
 
 ... or may be converted to a suitable Unicode approximation:
@@ -2534,7 +2533,9 @@ We will use the identity: ∑ 1/n² = 𝜋²/6
 
 ...where the value of pi can be inferred from Euler’s Identity:
 
-eⁱᐢ + 1 = 0
+=for formula :!toc :caption('')
+e^{i\pi}+1=0
+
 =end nested
 
 ... or may even left as raw LaTeX (perhaps with some kind of visual marker indicating

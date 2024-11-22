@@ -555,44 +555,26 @@ Because C<=config> directives specify I<default> behaviours, whenever a particul
 is explicitly specified for an instance of that block type, that option overrides the defaults set by any active C<=config> blocks.
 For example:
 =begin code :lang<RakuDoc>
-    =config code :allow< B C I >
-    # The default metadata for any code block is now:  :allow< B C I >
-
-    =begin code
-       # In this paragraph B<this phrase will be shown as basis (possibly in bold font)>
-       # and I<this will be shown as important (possibly italics)>.
-       # But other markup such as R<placeholder> and K<input> will be shown verbatim.
-       #
-       # Because no :lang<> option was configured, the language for the block
-       # is the universal default:  :lang<Raku>
-    =end code
-
-    =config code :lang<RakuDoc>
-    # The default metadata for any code block is now:  :allow< B C I > :lang<RakuDoc>
-
-    =begin code :allow< R K >
-       # Here the explicit :allow on the block overrides the default :allow from the =config
-       # so B<markup> and I<markup> are shown verbatim, while R<this will be shown as a replacement text>.
-       #
-       # There is no explicit :lang on the code block,
-       # so the language for the block is the configured default:  :lang<RakuDoc.
-    =end code
-
-    =code # Now we're back to B<basic> and I<important>, but not R<placeholder> or K<input>
-
+    B<=config item1 :bullet« \c[Earth Globe Europe-Africa] » >
+    B<=config item2 :bullet« \c[Hand with Index and Middle Fingers Crossed] » >
+    # In the list, =item1 and =item2 will have non-standard bullets
+    The major sources of sustainable energy are:
+        =item1 geothermal
+        =item1 fusion
+        =item2 (eventually)
     =begin section
-    =config code :allow< R K >
-        # The default metadata for any code block is now:  :allow< R K > :lang<RakuDoc>
+        B<=config item1 :toc :headerlevel(2)>
+        Important items are:
+        =comment the following items will be added to the table of contents as if they are
+        head2 blocks
 
-    =begin code :lang<JavaScript>
-            // The format codes R and K are activated by default,
-            // but B<> C<> I<> markup will be shown verbatim
-            //
-            // The language has been explicitly set to Javascript
-            // (important if syntax highlighting is turned on),
-            // so the configured default language (RakuDoc) is overridden
-    =end code
+        =item1 small scale fusion
+        =item1 room temperature superconductors
     =end section
+    =comment the following list item will not be added to the Table of contents
+    because the section has ended
+
+    =item1 so ends the list, but it will still have the Earth bullet
 =end code
 
 There is more discussion of C<=config> in the context of L<Formatting codes|#Formatting codes>.

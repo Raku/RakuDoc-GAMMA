@@ -1,7 +1,7 @@
 =begin rakudoc :kind("Language") :subkind("Language") :category("reference")
 =TITLE RakuDoc
 =SUBTITLE A Raku slang for documenting Raku software to aid development and use.
-=VERSION 2.9.0
+=VERSION 2.9.1
 
 RakuDoc is a markup language with simple instructions for simple tasks and more
 complex structures to suit larger projects. There is a clear distinction between
@@ -3306,6 +3306,8 @@ The C<toc:> form is a special pseudo-scheme that inserts a table of contents
 in place of the C<P<>> code. After the colon, list the block types that you
 wish to include in the table of contents. For example, to place a table of
 contents listing only top- and second-level headings:
+=begin section
+=config code :lang<RakuDoc>
 
     P<toc:1,2 >
 
@@ -3313,6 +3315,7 @@ To place a table of contents that lists the top four levels of headings:
 
     P<toc:1..4 >
 
+=end section
 In order to include the whole table of contents, use C<toc:*>. The C<*> is needed to make
 this term a valid URI.
 
@@ -3321,14 +3324,10 @@ A document may have as many C<P<toc:...>> placements as necessary.
 The C<index:*> form is a special pseudo-scheme that inserts an index table
 in place of the C<P<>> code.
 
-The C<semantic:XXX> form places the XXX semantic block at the position of the C<P<>> instruction.
-=begin comment
-    When =section/=config working, above line should be
-    =begin section
-    =config C :allow<R>
-    The C<semantic:R<NAME>> form places the R<NAME> semantic block at the position of the C<P<>> instruction.
-    =end section
-=end comment
+=begin section
+=config C :allow<R>
+The C<semantic:R<NAME>> form places the R<NAME> semantic block at the position of the C<P<>> instruction.
+=end section
 
 =head3 Alias placement
 

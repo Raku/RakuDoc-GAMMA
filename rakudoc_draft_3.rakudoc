@@ -2686,8 +2686,8 @@ If a renderer does not recognize a custom block, then the renderer should replac
 block's C< :alt<...> > option (if provided). If the document author did not include an C< :alt<...> > option, then the
 renderer should treat the block name as the contents of a C<=head1> block, which can be overridden as described in 
 L<Table of Contents|#Table of Contents and Index> and should render the contents of the unrecognized custom block verbatim,
-like a C<=code> block. An unrecognized custom block without a C< :alt<...> > option should generate a warning message unless
-the custom block is passed the C< :!warn > option.
+like a C<=code> block. Any unrecognized custom block (with or without an C< :alt<...> > option) should generate a warning
+message unless the custom block is passed the C< :!warn > option.
 
 Multi-paragraph contents should be enclosed using the I<delimited> form of the block.
 

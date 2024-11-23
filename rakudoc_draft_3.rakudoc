@@ -2683,16 +2683,12 @@ and custom blocks are never mixed up.
 The way in which a renderer styles the contents of a custom block depends on the renderer, and each renderer
 may specify a procedure for using user-supplied templates or code.
 
-If a renderer does not recognise a custom block, then by default the renderer should treat the block name as the contents of a
-C<=head1> block, which can be overridden as described in L<Table of Contents|#Table of Contents and Index>. The
-contents of the unrecognised custom block should be rendered verbatim, like a C<=code> block.
-
-It is possible that a custom block contains data, eg., the text form of an image, which should only
-be displayed with the custom block. If the renderer does not recognise the custom block, the
-document author should include an C< :alt<...> > option. The contents of the option will be rendered
-in place of the contents of the custom block.
-
-By default an unrecognised custom block will generate an error message.
+If a renderer does not recognize a custom block, then the renderer should replace that block with the contents of the
+block's C< :alt<...> > option (if provided). If the document author did not include an C< :alt<...> > option, then the
+renderer should treat the block name as the contents of a C<=head1> block, which can be overridden as described in 
+L<Table of Contents|#Table of Contents and Index> and should render the contents of the unrecognized custom block verbatim,
+like a C<=code> block. Any unrecognized custom block (with or without an C< :alt<...> > option) should generate a warning
+message unless the custom block is passed the C< :!warn > option.
 
 Multi-paragraph contents should be enclosed using the I<delimited> form of the block.
 

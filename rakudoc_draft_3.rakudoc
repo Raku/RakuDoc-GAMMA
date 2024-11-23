@@ -1,7 +1,7 @@
 =begin rakudoc :kind("Language") :subkind("Language") :category("reference")
 =TITLE RakuDoc
 =SUBTITLE A Raku slang for documenting Raku software to aid development and use.
-=VERSION 2.9.1
+=VERSION 2.10.0
 
 RakuDoc is a markup language with simple instructions for simple tasks and more
 complex structures to suit larger projects. There is a clear distinction between
@@ -592,6 +592,26 @@ For example:
     =end code
     =end section
 =end code
+
+When an option needs to be associated with all blocks, the config statement may take a
+whatever C<*>, eg
+=for code :lang<RakuDoc>
+    =config * :!error
+
+This will signal to the renderer that no warning messages should be issued if errors are
+encountered by any block type in the current block scope.
+
+The general principle that more explicit metadata take precedence. For example, suppose
+in the same block scope, we have
+=for code :lang<RakuDoc>
+=config * :!error
+=config item :error
+=for item :!error
+
+Then the statements would applied in the following order
+=numitem V<=>for item V<:!error>
+=numitem V<=config item :error>
+=numitem V<=config * :!error>
 
 There is more discussion of C<=config> in the context of L<Formatting codes|#Formatting codes>.
 
@@ -3038,6 +3058,15 @@ correspond to the version information. A block that does not have a C<:delta> is
 C<:delta<*>>.
 
 An example is given in the description of the L<C<section> block |#Sections>
+
+=head2 Error messages
+
+If the metadata option C<:error> is false for a block, then no warning is generated.
+
+=head2 Alternative rendering
+
+If the metadata option C<:alt> associated with a block has a string value, and an error is encountered when
+rendering a block, then the value of C<:alt> is rendered in place of the block.
 
 =head1 Markup instructions
 

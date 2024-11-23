@@ -465,33 +465,31 @@ replacement text on the C<=alias> line.
 For example:
 
 =begin code :lang<RakuDoc>
-    =alias PROGNAME    Earl Irradiatem Evermore
-    =alias VENDOR      4D Kingdoms
-    =alias TERMS_URLS  =item L<http://www.4dk.com/eie>
-    =                  =item L<http://www.4dk.co.uk/eie.io/>
-    =                  =item L<http://www.fordecay.ch/canttouchthis>
+=alias PROGNAME    Earl Irradiatem Evermore
+=alias VENDOR      4D Kingdoms
+=alias TERMS_URLS  =item L<http://www.4dk.com/eie>
+=                  =item L<http://www.4dk.co.uk/eie.io/>
+=                  =item L<http://www.fordecay.ch/canttouchthis>
 
-    The use of A<PROGNAME> is subject to the terms and conditions
-    laid out by A<VENDOR>, as specified at:
+The use of A<PROGNAME> is subject to the terms and conditions
+laid out by A<VENDOR>, as specified at:
 
-        A<TERMS_URLS>
+A<TERMS_URLS>
 =end code
 
 This would produce:
 
 =begin nested
+=alias PROGNAME    Earl Irradiatem Evermore
+=alias VENDOR      4D Kingdoms
+=alias TERMS_URLS  =item L<http://www.4dk.com/eie>
+=                  =item L<http://www.4dk.co.uk/eie.io/>
+=                  =item L<http://www.fordecay.ch/canttouchthis>
 
-    =alias PROGNAME    Earl Irradiatem Evermore
-    =alias VENDOR      4D Kingdoms
-    =alias TERMS_URLS  =item L<http://www.4dk.com/eie>
-    =                  =item L<http://www.4dk.co.uk/eie.io/>
-    =                  =item L<http://www.fordecay.ch/canttouchthis>
+The use of A<PROGNAME> is subject to the terms and conditions
+laid out by A<VENDOR>, as specified at:
 
-    The use of A<PROGNAME> is subject to the terms and conditions
-    laid out by A<VENDOR>, as specified at:
-
-        A<TERMS_URLS>
-
+A<TERMS_URLS>
 =end nested
 
 The advantage of using aliases is, obviously, that the same alias can be

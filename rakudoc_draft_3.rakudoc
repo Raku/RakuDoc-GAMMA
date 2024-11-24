@@ -1,7 +1,7 @@
 =begin rakudoc :kind("Language") :subkind("Language") :category("reference")
 =TITLE RakuDoc
 =SUBTITLE A Raku slang for documenting Raku software to aid development and use.
-=VERSION 2.9.1
+=VERSION 2.10.0
 
 RakuDoc is a markup language with simple instructions for simple tasks and more
 complex structures to suit larger projects. There is a clear distinction between
@@ -581,6 +581,40 @@ For example:
         =item1 matter-antimatter annihilation
         =item1 zero-point energy
 =end code
+
+When an option needs to be associated with all blocks, the config statement may take a
+whatever C<*> instead of a specific block name, like so:
+=for code :lang<RakuDoc>
+    =config * :!error
+
+This particular example signals to the renderer that no warning messages should be issued
+if errors are encountered by I<any> block type in the current block scope.
+
+The general principle that more block-specific configurations of metadata take precedence over
+more generic configurations. For example, suppose in the same block scope, we have:
+=begin code :lang<RakuDoc>
+=config *    :!error
+=config item  :error
+
+=for item :!error
+    Item 1
+
+=for item
+    Item 2
+
+=for numitem
+    Item 3
+=end code
+
+Then the configuration would applied in the following order:
+=numitem V<=>for item V<:!error>  (specific metadata applied to a specific block)
+=numitem V<=config item :error>   (default metadata applied to a specific kind of block)
+=numitem V<=config * :!error>     (default metadata applied to any kind of block)
+
+Which means that I<Item 1> would never generate a warning (because its C<item> block
+is specifically configured not to do so), while I<Item 2> could generate warnings
+(because C<item> blocks are generically configured to do so), and I<Item 3> would never
+never generate a warning (because generic blocks are generically configured not to do so).
 
 There is more discussion of C<=config> in the context of L<Formatting codes|#Formatting codes>.
 
@@ -3027,6 +3061,15 @@ correspond to the version information. A block that does not have a C<:delta> is
 C<:delta<*>>.
 
 An example is given in the description of the L<C<section> block |#Sections>
+
+=head2 Error messages
+
+If the metadata option C<:error> is false for a block, then no warning is generated.
+
+=head2 Alternative rendering
+
+If the metadata option C<:alt> associated with a block has a string value, and an error is encountered when
+rendering a block, then the value of C<:alt> is rendered in place of the block.
 
 =head1 Markup instructions
 

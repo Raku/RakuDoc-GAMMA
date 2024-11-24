@@ -594,24 +594,38 @@ For example:
 =end code
 
 When an option needs to be associated with all blocks, the config statement may take a
-whatever C<*>, eg
+whatever C<*> instead of a specific block name, like so:
 =for code :lang<RakuDoc>
     =config * :!error
 
-This will signal to the renderer that no warning messages should be issued if errors are
-encountered by any block type in the current block scope.
+This particular example signals to the renderer that no warning messages should be issued
+if errors are encountered by I<any> block type in the current block scope.
 
-The general principle that more explicit metadata take precedence. For example, suppose
-in the same block scope, we have
-=for code :lang<RakuDoc>
-=config * :!error
-=config item :error
+The general principle that more block-specific configurations of metadata take precedence over
+more generic configurations. For example, suppose in the same block scope, we have:
+=begin code :lang<RakuDoc>
+=config *    :!error
+=config item  :error
+
 =for item :!error
+    Item 1
 
-Then the statements would applied in the following order
-=numitem V<=>for item V<:!error>
-=numitem V<=config item :error>
-=numitem V<=config * :!error>
+=for item
+    Item 2
+
+=for numitem
+    Item 3
+=end code
+
+Then the configuration would applied in the following order:
+=numitem V<=>for item V<:!error>  (specific metadata applied to a specific block)
+=numitem V<=config item :error>   (default metadata applied to a specific kind of block)
+=numitem V<=config * :!error>     (default metadata applied to any kind of block)
+
+Which means that I<Item 1> would never generate a warning (because its C<item> block
+is specifically configured not to do so), while I<Item 2> could generate warnings
+(because C<item> blocks are generically configured to do so), and I<Item 3> would never
+never generate a warning (because generic blocks are generically configured not to do so).
 
 There is more discussion of C<=config> in the context of L<Formatting codes|#Formatting codes>.
 

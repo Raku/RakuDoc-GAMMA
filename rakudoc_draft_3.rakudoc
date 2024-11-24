@@ -554,27 +554,34 @@ Successive C<=config> directives within the same scope are cumulative in effect.
 Because C<=config> directives specify I<default> behaviours, whenever a particular kind of metadata
 is explicitly specified for an instance of that block type, that option overrides the defaults set by any active C<=config> blocks.
 For example:
-=begin code :lang<RakuDoc>
+=begin code :allow<B>
     B<=config item1 :bullet« \c[Earth Globe Europe-Africa] » >
     B<=config item2 :bullet« \c[Hand with Index and Middle Fingers Crossed] » >
-    # In the list, =item1 and =item2 will have non-standard bullets
+    =comment  In the following list, =item1 and =item2 will now have non-standard bullets
+
     The major sources of sustainable energy are:
         =item1 geothermal
         =item1 fusion
         =item2 (eventually)
+
     =begin section
         B<=config item1 :toc :headerlevel(2)>
+        =comment  The following items still have non-standard bullets but now they will
+                  also be added to the table of contents as if they were =head2 blocks
+
         Important items are:
-        =comment the following items will be added to the table of contents as if they are
-        head2 blocks
+            =item1 small scale fusion
+            =item1 room temperature superconductors
 
-        =item1 small scale fusion
-        =item1 room temperature superconductors
     =end section
-    =comment the following list item will not be added to the Table of contents
-    because the section has ended
 
-    =item1 so ends the list, but it will still have the Earth bullet
+    =comment  The following list items will NOT be added to the Table of Contents
+              because the section containing that particular =config has now ended.
+              They will still have the non-standard Earth bullets though,
+              because those two =config directives are still in scope.
+
+        =item1 matter-antimatter annihilation
+        =item1 zero-point energy
 =end code
 
 There is more discussion of C<=config> in the context of L<Formatting codes|#Formatting codes>.

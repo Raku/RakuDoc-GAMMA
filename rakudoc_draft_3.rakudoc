@@ -3758,8 +3758,7 @@ the use of unimplemented built-ins
 =item3 rendering unhandled blocks or codes inline (in a distinctive style) and providing the associated error message
 in a pop-up that activates on hover or mouse-click
 
-
-P<semantic:AUTHORS>
+=place semantic:AUTHORS
 
 =head1 Summary
 

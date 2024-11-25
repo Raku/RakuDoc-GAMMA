@@ -519,6 +519,8 @@ The use of A<this program | SOFTWARE> is subject to the terms and conditions
 laid out by A<our company | COMPANY>, as specified at:
 A<(Please visit our website) | OURTERMS>
 =end nested
+Furthermore, since none of the aliases were specified in this document, error messages will be produced
+by the renderer (perhaps at the end of the rendered page).
 
 =head2 Block specifiers
 

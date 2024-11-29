@@ -1,7 +1,7 @@
 =begin rakudoc :kind("Language") :subkind("Language") :category("reference")
 =TITLE RakuDoc
 =SUBTITLE A Raku slang for documenting Raku software to aid development and use.
-=VERSION 2.10.1
+=VERSION 2.10.2
 
 RakuDoc is a markup language with simple instructions for simple tasks and more
 complex structures to suit larger projects. There is a clear distinction between
@@ -1256,7 +1256,8 @@ emphasize a particular keyword in an example (using a C<B<>> code). Or you may w
 part of the example is metasyntactic (using the C<R<>> code). Or you might need to insert a non-ASCII
 character (using the C<E<>> code).
 
-You can specify a list of markup instructions that should still be recognized within a code block using
+You can specify a list of L<display only|#Display only codes> markup instructions (B C H I J K R S T U V N O)
+that should still be recognized within a code block using
 the C<:allow> option. The value of the C<:allow> option must be a list of the (single-letter)
 names of one or more markup instructions. Those codes will then remain active inside the code block.
 For example:

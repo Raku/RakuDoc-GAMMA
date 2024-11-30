@@ -1256,7 +1256,7 @@ emphasize a particular keyword in an example (using a C<B<>> code). Or you may w
 part of the example is metasyntactic (using the C<R<>> code). Or you might need to insert a non-ASCII
 character (using the C<E<>> code).
 
-You can specify a list of L<display only|#Display only codes> markup instructions (B C H I J K R S T U V N O)
+You can specify a list of L<display only|#Display only codes> markup instructions (B C H I J K N O R S T U V)
 that should still be recognized within a code block using
 the C<:allow> option. The value of the C<:allow> option must be a list of the (single-letter)
 names of one or more markup instructions. Those codes will then remain active inside the code block.
@@ -3732,20 +3732,20 @@ specified as an entity (C«E<VERTICAL LINE>»).
 
 The following codes may I<only> contain display text:
 =begin nested
-=begin code :allow<B I V> :lang<RakuDoc>
+=begin code :allow<B I V> :lang<RakuDoc>B C H I J K N O R S T U V
 BV«< » I<DISPLAY-TEXT> V« >»
 CV«< » I<DISPLAY-TEXT> V« >»
 HV«< » I<DISPLAY-TEXT> V« >»
 IV«< » I<DISPLAY-TEXT> V« >»
 JV«< » I<DISPLAY-TEXT> V« >»
 KV«< » I<DISPLAY-TEXT> V« >»
+NV«< » I<DISPLAY-TEXT> V« >»
+OV«< » I<DISPLAY-TEXT> V« >»
 RV«< » I<DISPLAY-TEXT> V« >»
 SV«< » I<DISPLAY-TEXT> V« >»
 TV«< » I<DISPLAY-TEXT> V« >»
 UV«< » I<DISPLAY-TEXT> V« >»
 VV«< » I<DISPLAY-TEXT> V« >»
-NV«< » I<DISPLAY-TEXT> V« >»
-OV«< » I<DISPLAY-TEXT> V« >»
 =end code
 =end nested
 

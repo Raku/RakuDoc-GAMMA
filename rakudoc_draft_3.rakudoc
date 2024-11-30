@@ -508,10 +508,10 @@ it will be used if the requested alias cannot be found (and an I<"unknown alias"
 warning will be issued in that case):
 
 =begin code :lang<RakuDoc> :allow<B>
-    The use of A<B<this program |> SOFTWARE> is subject to the terms and conditions
-    laid out by A<B<our company |> COMPANY>, as specified at:
+    The use of A<B<this program >| SOFTWARE> is subject to the terms and conditions
+    laid out by A<B<our company >| COMPANY>, as specified at:
 
-        A<B<(Please visit our website) |> OURTERMS>
+        A<B<(Please visit our website) >| OURTERMS>
 =end code
 produces ...
 =begin nested
@@ -3286,10 +3286,10 @@ data source for the placement link. For example:
 
 =begin code :lang<RakuDoc> :allow<B>
 =COPYRIGHT
-P<B<The document is copyright. |> file:/shared/docs/std_copyright.rakudoc>
+P<B<The document is copyright. >| file:/shared/docs/std_copyright.rakudoc>
 
 =DISCLAIMER
-P<B<NO WARRANTY. NONE. NIL. NADA. |> http://www.MegaGigaTeraPetaCorp.com/std/disclaimer.txt>
+P<B<NO WARRANTY. NONE. NIL. NADA. >| http://www.MegaGigaTeraPetaCorp.com/std/disclaimer.txt>
 =end code
 
 If the filesystem or internet is inaccessible, this might produce:
@@ -3593,9 +3593,9 @@ cannot be represented by the renderer (e.g. if the renderer only supports ASCII)
 For example:
 
 =begin code :lang<RakuDoc> :allow<B>
-Raku makes considerable use of the E<B<left- |>laquo> and E<B<right-double-angle |>raquo> characters.
+Raku makes considerable use of the E<B<left- >|laquo> and E<B<right-double-angle >|raquo> characters.
 
-Raku code often contains the E<B<left- and right-corner |>0xff62;0xff63> bracketing characters
+Raku code often contains the E<B<left- and right-corner >|0xff62;0xff63> bracketing characters
 to avoid using quotes.
 =end code
 
@@ -3732,7 +3732,7 @@ specified as an entity (C«E<VERTICAL LINE>»).
 
 The following codes may I<only> contain display text:
 =begin nested
-=begin code :allow<B I V> :lang<RakuDoc>B C H I J K N O R S T U V
+=begin code :allow<B I V> :lang<RakuDoc>
 BV«< » I<DISPLAY-TEXT> V« >»
 CV«< » I<DISPLAY-TEXT> V« >»
 HV«< » I<DISPLAY-TEXT> V« >»

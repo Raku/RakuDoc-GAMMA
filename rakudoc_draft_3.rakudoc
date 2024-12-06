@@ -811,7 +811,7 @@ Each C<=data> block can be given a C<:key> option, to name it. The contents
 of any C<=data> block with a key are accessible (as a single string) via
 the Associative aspect of C<$=data> object. For example:
 
-=begin code :allow<B> :lang<RakuDoc>
+=begin code
 
     =begin data :key<Virtues>
     Laziness

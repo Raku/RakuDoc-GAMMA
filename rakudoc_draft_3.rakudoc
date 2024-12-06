@@ -3552,7 +3552,7 @@ Multiple codepoints separated by C<,> will be considered as a single grapheme. S
 =begin code :lang<RakuDoc>
 E<LEFT-POINTING DOUBLE ANGLE QUOTATION MARK>
 E<REGIONAL INDICATOR SYMBOL LETTER U, REGIONAL INDICATOR SYMBOL LETTER A> Ukraine
- E<RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK>
+E<RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK>
 =end code
 
 will be rendered as:
@@ -3732,7 +3732,7 @@ specified as an entity (C«E<VERTICAL LINE>»).
 
 The following codes may I<only> contain display text:
 =begin nested
-=begin code :allow<B I V> :lang<RakuDoc>B C H I J K N O R S T U V
+=begin code :allow<B I V> :lang<RakuDoc>
 BV«< » I<DISPLAY-TEXT> V« >»
 CV«< » I<DISPLAY-TEXT> V« >»
 HV«< » I<DISPLAY-TEXT> V« >»

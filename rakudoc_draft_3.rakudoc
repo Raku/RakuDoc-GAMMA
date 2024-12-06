@@ -586,8 +586,9 @@ For example:
 
 When an option needs to be associated with all blocks, the config statement may take a
 whatever C<*> instead of a specific block name, like so:
-=for code :lang<RakuDoc>
+=begin code :lang<RakuDoc>
     =config * :!error
+=end code
 
 This particular example signals to the renderer that no warning messages should be issued
 if errors are encountered by I<any> block type in the current block scope.

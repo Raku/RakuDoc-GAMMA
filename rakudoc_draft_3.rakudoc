@@ -2580,7 +2580,7 @@ in cases where the renderer cannot handle the specification.
 
 That is, the C<=formula> block accepts an `:alt` metaoption,
 and the syntax for the C«F<>» instruction is either
-C«<F< FORMULA>» or C«F< ALT | FORMULA >».
+C«F< FORMULA >» or C«F< ALT | FORMULA >».
 
 
 Using the ALT text options, the document author can supply a suitable explicit alternative rendering
@@ -3114,9 +3114,9 @@ This syntax does not provide a mechanism to associate metadata options with form
 It is, however, possible to do this via a C<=config> directive. For example, C< C<> > markup by default does not allow for
 embedded format codes to be rendered, but an author might want C< B<> > to be allowed. This can be
 achieved with:
-
+=begin code
      =config C :allow<B>
-
+=end code
 This mechanism is explained further in the L<syntax section|#Directive syntax>.
 
 =head2 Instructions with side effects

@@ -240,7 +240,7 @@ B<=place> specifies a source of information that is to be placed in the current 
 syntax of B<=place> is
 =begin code :lang<RakuDoc> :allow<R>
     =place R<URL> R<OPTIONS>
-    =             R<More Options if necessary>
+    =          R<MORE OPTIONS IF NECESSARY>
 =end code
 =end item
 =head2 Block syntax
@@ -406,6 +406,7 @@ interpolation.
 
 A renderer may provide a mechanism for allowing RakuDoc within a metadata option
 but the value part must still conform to Raku semantics, for example,
+
     :caption('This is a heading with I<important markup> in it')
 
 The outer single quotes ensures that the parser passes a plain string to the
@@ -593,7 +594,7 @@ whatever C<*> instead of a specific block name, like so:
 This particular example signals to the renderer that no warning messages should be issued
 if errors are encountered by I<any> block type in the current block scope.
 
-The general principle that more block-specific configurations of metadata take precedence over
+The general principle is that more block-specific configurations of metadata take precedence over
 more generic configurations. For example, suppose in the same block scope, we have:
 =begin code :lang<RakuDoc>
 =config *    :!error
@@ -3841,7 +3842,7 @@ in a pop-up that activates on hover or mouse-click
 =end table
 
 =begin table  :caption<Blocks> :headlevel(2)
-    =row
+    =row :header
         =cell Block typename
         =cell Specifies
     =row
@@ -4121,7 +4122,7 @@ in a pop-up that activates on hover or mouse-click
 
 =begin table :caption<Markup instructions> :headlevel(2)
 
-    =row
+    =row :header
         =cell Markup instruction
         =cell Specifies
     =row

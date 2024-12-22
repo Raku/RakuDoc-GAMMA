@@ -376,7 +376,7 @@ function swap_toc_index(activate) {
 
         <div class="content px-4">
         
-<div class="id-target" id="VERSION&amp;nbsp&amp;nbsp&amp;nbsp&amp;nbsp2.10.2"></div><h1 id="VERSION" class="heading py-2 "><a href="#" title="go to top of document">VERSION&nbsp&nbsp&nbsp&nbsp2.10.2</a><a class="raku-anchor" title="direct link" href="#VERSION&amp;nbsp&amp;nbsp&amp;nbsp&amp;nbsp2.10.2">§</a></h1>
+<div class="id-target" id="VERSION&amp;nbsp&amp;nbsp&amp;nbsp&amp;nbsp2.10.3"></div><h1 id="VERSION" class="heading py-2 "><a href="#" title="go to top of document">VERSION&nbsp&nbsp&nbsp&nbsp2.10.3</a><a class="raku-anchor" title="direct link" href="#VERSION&amp;nbsp&amp;nbsp&amp;nbsp&amp;nbsp2.10.3">§</a></h1>
 <p id="b25d5ab">RakuDoc is a markup language with simple instructions for simple tasks and more complex structures to suit larger projects. There is a clear distinction between documenting intended to help maintain and develop the software, and the visually presentations needed by a newcomer to understand how to use software. </p>
 <h1 id="SYNOPSIS" class="heading py-2 "><a href="#" title="go to top of document">SYNOPSIS</a><a class="raku-anchor" title="direct link" href="#SYNOPSIS">§</a></h1>
 <p id="67e0153">Consider the two ways in which documentation is used. </p>
@@ -430,8 +430,7 @@ function swap_toc_index(activate) {
 <p id="e821636">The file extension for a file containing RakuDoc source is <span class="basis">.rakudoc</span>. </p>
 <div class="nested"><p id="182319d">As it will become apparent, whitespace and indentation plays an important role in RakuDoc. There are <a href="https://unicode-explorer.com/articles/space-characters">quite a few horizontal whitespace characters</a>; no equivalence is made between them by Rakudo. For example, tabs and spaces are treated as two separate horizontal whitespace characters, with no assumption that a tab is equivalents, say to four (or 2, 8, etc as per style manual) spaces. </p>
 <p id="42371de">Consequently, mixing spaces and tabs may <span class="basis">appear</span> to create the same visual margin in some editor, but they may be <span class="basis">treated</span> as different margins when parsing RakuDoc. </p>
-<p id="27e2b14">It is recommended that RakuDoc authors choose a single whitespace character (eg, tab or space) for margin alignment. </p>
-</div>
+<p id="27e2b14">It is recommended that RakuDoc authors choose a single whitespace character (eg, tab or space) for margin alignment. </p></div>
 
 <div class="id-target" id="Two use cases for RakuDoc"></div><h1 id="Two_use_cases_for_RakuDoc" class="heading py-2 "><a href="#" title="go to top of document">Two use cases for RakuDoc</a><a class="raku-anchor" title="direct link" href="#Two use cases for RakuDoc">§</a></h1>
 <p id="838eb9a">RakuDoc can be thought of as having components that are closely connected to a program or module that is being documented (<span class="basis">code-oriented RakuDoc</span>), and components that can be used for text-oriented documents, such as the source for a webpage or a book (<span class="basis">text-oriented RakuDoc</span>). </p>
@@ -470,14 +469,10 @@ function swap_toc_index(activate) {
 <div class="id-target" id="Directive syntax"></div><h2 id="Directive_syntax" class="heading py-2 "><a href="#" title="go to top of document">Directive syntax</a><a class="raku-anchor" title="direct link" href="#Directive syntax">§</a></h2>
 <p id="0cd74ac">These are the syntax forms for each directive. The <span class="code">=</span> of each directive must be the first non-whitespace character on a given line. </p>
 
-<ul class="item-list"><li class="item" data-bullet="•" style="--level:0;"> <p id="cc0d908"><span class="basis">=begin</span> specifies the start of a delimited block </p>
-</li>
-<li class="item" data-bullet="•" style="--level:0;"> <p id="6a4f7c6"><span class="basis">=end</span> specifies the end of a delimited block </p>
-</li>
-<li class="item" data-bullet="•" style="--level:0;"> <p id="d01d69d"><span class="basis">=for</span> specifies the start of an extended block </p>
-</li>
-<li class="item" data-bullet="•" style="--level:0;"> <p id="dbb40c8"><span class="basis">=finish</span> ends ambient code and is followed by text </p>
-</li>
+<ul class="item-list"><li class="item" data-bullet="•" style="--level:0;"> <p id="cc0d908"><span class="basis">=begin</span> specifies the start of a delimited block </p></li>
+<li class="item" data-bullet="•" style="--level:0;"> <p id="6a4f7c6"><span class="basis">=end</span> specifies the end of a delimited block </p></li>
+<li class="item" data-bullet="•" style="--level:0;"> <p id="d01d69d"><span class="basis">=for</span> specifies the start of an extended block </p></li>
+<li class="item" data-bullet="•" style="--level:0;"> <p id="dbb40c8"><span class="basis">=finish</span> ends ambient code and is followed by text </p></li>
 <li class="item" data-bullet="•" style="--level:0;"> <p id="621000b"><span class="basis">=alias</span> specifies a text substitution available in subsequent <span class="code">A&lt;...&gt;</span> markup instructions. The general syntax for an alias directive is: </p>
 
                 <div class="raku-code">
@@ -510,8 +505,7 @@ function swap_toc_index(activate) {
 </div>
                 </div>
             <p id="5fd3fad">This configures the <span class="code">C&lt;&gt;</span> markup instruction to recognize nested <span class="code">B&lt;&gt;</span> and <span class="code">I&lt;&gt;</span> markup instructions (both of which would otherwise be treated as verbatim within a <span class="code">C&lt;&gt;</span> instruction). </p>
-<p id="39742a9">To avoid ambiguities <a href="#Naming_rules">Naming rules</a> are applied to blocks and markup instructions. </p>
-</li>
+<p id="39742a9">To avoid ambiguities <a href="#Naming_rules">Naming rules</a> are applied to blocks and markup instructions. </p></li>
 <li class="item" data-bullet="•" style="--level:0;"> <p id="34eafb0"><span class="basis">=place</span> specifies a source of information that is to be placed in the current block. The general syntax of <span class="basis">=place</span> is </p>
 
                 <div class="raku-code">
@@ -589,8 +583,7 @@ function swap_toc_index(activate) {
 </div>
                 </div>
             <p id="4205bbc">Note that abbreviated blocks cannot be specified with metadata. Any apparent metadata elements placed after an abbreviated block name are instead considered to be part of the block contents. </p>
-<p id="70eda09">Where an extended or abbreviated block uses a blank line as the block terminator, the blank line is not included as part of the content of the block. All subsequent whitespace, whether horizontal or vertical (spaces, tabs, new lines), is ignored. Note that horizontal and vertical whitespace can be included inside a delimited block, and may be significant (eg, Verbatim blocks). </p>
-</li>
+<p id="70eda09">Where an extended or abbreviated block uses a blank line as the block terminator, the blank line is not included as part of the content of the block. All subsequent whitespace, whether horizontal or vertical (spaces, tabs, new lines), is ignored. Note that horizontal and vertical whitespace can be included inside a delimited block, and may be significant (eg, Verbatim blocks). </p></li>
 </ul>
 
 <div class="id-target" id="Markup instruction syntax"></div><h2 id="Markup_instruction_syntax" class="heading py-2 "><a href="#" title="go to top of document">Markup instruction syntax</a><a class="raku-anchor" title="direct link" href="#Markup instruction syntax">§</a></h2>
@@ -606,20 +599,15 @@ function swap_toc_index(activate) {
                 </div>
             
 <ul class="item-list"><li class="item" data-bullet="•" style="--level:0;"> <p id="3dde2e9"><span class="basis">&lt;Instruction&gt;</span> </p>
-<p id="19e7f39">This is a single uppercase letter, or a unicode entity with the UPPER property </p>
-</li>
+<p id="19e7f39">This is a single uppercase letter, or a unicode entity with the UPPER property </p></li>
 <li class="item" data-bullet="•" style="--level:0;"> <p id="570fd93"><span class="basis">&lt;opening marker&gt;</span> </p>
-<p id="322d05a">This is either one-or-more <span class="code"><</span> characters or a single <span class="code">«</span> character (i.e. The Unicode entity <span class="code">E&lt;0x00AB&gt;</span>) </p>
-</li>
+<p id="322d05a">This is either one-or-more <span class="code"><</span> characters or a single <span class="code">«</span> character (i.e. The Unicode entity <span class="code">E&lt;0x00AB&gt;</span>) </p></li>
 <li class="item" data-bullet="•" style="--level:0;"> <p id="5afccb6"><span class="basis">&lt;content&gt;</span> </p>
-<p id="4e08e27">This is a string that does not contain the <span class="code">|</span> character (i.e. Unicode entity <span class="code">E&lt;0x007C&gt;</span>), unless that character is inside a nested markup instruction. </p>
-</li>
+<p id="4e08e27">This is a string that does not contain the <span class="code">|</span> character (i.e. Unicode entity <span class="code">E&lt;0x007C&gt;</span>), unless that character is inside a nested markup instruction. </p></li>
 <li class="item" data-bullet="•" style="--level:0;"> <p id="a779464"><span class="basis">&lt;meta list&gt;</span> </p>
-<p id="32ea770">Is a list of strings separated by <span class="code">,</span> or <span class="code">;</span>, depending on the semantics imposed by the &lt;Instruction&gt; </p>
-</li>
+<p id="32ea770">Is a list of strings separated by <span class="code">,</span> or <span class="code">;</span>, depending on the semantics imposed by the &lt;Instruction&gt; </p></li>
 <li class="item" data-bullet="•" style="--level:0;"> <p id="20432e4"><span class="basis">&lt;closing marker&gt;</span> </p>
-<p id="a884815">Is one-or-more <span class="code">></span> or a single <span class="code">»</span> (i.e. Unicode entity <span class="code">E&lt;0x00BB&gt;</span>). The closing marker must be symmetrical with the markup instruction's opening marker. That is, it must consist of the same number of <span class="code">></span> or <span class="code">»</span> as there were <span class="code"><</span> or <span class="code">«</span> in the opening marker. </p>
-</li>
+<p id="a884815">Is one-or-more <span class="code">></span> or a single <span class="code">»</span> (i.e. Unicode entity <span class="code">E&lt;0x00BB&gt;</span>). The closing marker must be symmetrical with the markup instruction's opening marker. That is, it must consist of the same number of <span class="code">></span> or <span class="code">»</span> as there were <span class="code"><</span> or <span class="code">«</span> in the opening marker. </p></li>
 </ul>
 <p id="c82f38e">For example: </p>
 
@@ -633,8 +621,7 @@ And this is a <span class="basis">L&lt;link to the Raku Programming Language|htt
 </div>
                 </div>
             <p id="3391a7f">Which would be rendered as: </p>
-<div class="nested"><p id="35a426d">For example: This is <span class="unusual">unusual</span> text, and this is <span class="important">important</span>. And this is a <a href="https://raku.org">link to the Raku Programming Language</a>. </p>
-</div>
+<div class="nested"><p id="35a426d">For example: This is <span class="unusual">unusual</span> text, and this is <span class="important">important</span>. And this is a <a href="https://raku.org">link to the Raku Programming Language</a>. </p></div>
 
 <div class="id-target" id="Metadata syntax"></div><h2 id="Metadata_syntax" class="heading py-2 "><a href="#" title="go to top of document">Metadata syntax</a><a class="raku-anchor" title="direct link" href="#Metadata syntax">§</a></h2>
 <p id="338f42c">Metadata is specified using a Raku option pair, where the value portion is always parsed using Raku semantics. The following table contains some typical examples. </p>
@@ -693,16 +680,12 @@ And this is a <span class="basis">L&lt;link to the Raku Programming Language|htt
                 </div>
             <p id="f7babe7">This would produce: </p>
 <div class="nested"><p id="44101f5">The use of Earl Irradiatem Evermore is subject to the terms and conditions laid out by 4D Kingdoms, as specified at: </p>
-<p id="393561b">
-<ul class="item-list"><li class="item" data-bullet="•" style="--level:0;"> <p id="70bf44a"><a href="http://www.4dk.com/eie">http://www.4dk.com/eie</a> </p>
-</li>
-<li class="item" data-bullet="•" style="--level:0;"> <p id="52b253d"><a href="http://www.4dk.co.uk/eie.io/">http://www.4dk.co.uk/eie.io/</a> </p>
-</li>
-<li class="item" data-bullet="•" style="--level:0;"> <p id="869f63d"><a href="http://www.fordecay.ch/canttouchthis">http://www.fordecay.ch/canttouchthis</a> </p>
-</li>
+<p id="c65af2e">
+<ul class="item-list"><li class="item" data-bullet="•" style="--level:0;"> <p id="70bf44a"><a href="http://www.4dk.com/eie">http://www.4dk.com/eie</a> </p></li>
+<li class="item" data-bullet="•" style="--level:0;"> <p id="52b253d"><a href="http://www.4dk.co.uk/eie.io/">http://www.4dk.co.uk/eie.io/</a> </p></li>
+<li class="item" data-bullet="•" style="--level:0;"> <p id="869f63d"><a href="http://www.fordecay.ch/canttouchthis">http://www.fordecay.ch/canttouchthis</a> </p></li>
 </ul>
- </p>
-</div>
+ </p></div>
 <p id="b92bc32">The advantage of using aliases is, obviously, that the same alias can be reused in multiple places in the documentation. Then, if the replacement text ever has to be changed, it need only be modified in a single place: </p>
 
                 <div class="raku-code">
@@ -727,8 +710,7 @@ And this is a <span class="basis">L&lt;link to the Raku Programming Language|htt
 </div>
                 </div>
             <p id="64ea2c2">produces ... </p>
-<div class="nested"><p id="ffabebe">The use of this program is subject to the terms and conditions laid out by our company, as specified at: (Please visit our website) </p>
-</div>
+<div class="nested"><p id="ffabebe">The use of this program is subject to the terms and conditions laid out by our company, as specified at: (Please visit our website) </p></div>
 <p id="efa32d9">Furthermore, since none of the aliases were specified in this document, error messages will be produced by the renderer (perhaps at the end of the rendered page). </p>
 
 <div class="id-target" id="Block specifiers"></div><h2 id="Block_specifiers" class="heading py-2 "><a href="#" title="go to top of document">Block specifiers</a><a class="raku-anchor" title="direct link" href="#Block specifiers">§</a></h2>
@@ -808,12 +790,9 @@ And this is a <span class="basis">L&lt;link to the Raku Programming Language|htt
                 </div>
             <p id="dd7bdf9">Then the configuration would applied in the following order: </p>
 
-<ol class="item-list"><li class="item" data-bullet="1." style="--level:0;"> <p id="d866576">=for item :!error  (specific metadata applied to a specific block) </p>
-</li>
-<li class="item" data-bullet="2." style="--level:0;"> <p id="86fe916">=config item :error   (default metadata applied to a specific kind of block) </p>
-</li>
-<li class="item" data-bullet="3." style="--level:0;"> <p id="3297ce6">=config * :!error     (default metadata applied to any kind of block) </p>
-</li>
+<ol class="item-list"><li class="item" data-bullet="1." style="--level:0;"> <p id="d866576">=for item :!error  (specific metadata applied to a specific block) </p></li>
+<li class="item" data-bullet="2." style="--level:0;"> <p id="86fe916">=config item :error   (default metadata applied to a specific kind of block) </p></li>
+<li class="item" data-bullet="3." style="--level:0;"> <p id="3297ce6">=config * :!error     (default metadata applied to any kind of block) </p></li>
 </ol>
 <p id="594c8f4">Which means that <span class="important">Item 1</span> would never generate a warning (because its <span class="code">item</span> block is specifically configured not to do so), while <span class="important">Item 2</span> could generate warnings (because <span class="code">item</span> blocks are generically configured to do so), and <span class="important">Item 3</span> would never never generate a warning (because generic blocks are generically configured not to do so). </p>
 <p id="217ef78">There is more discussion of <span class="code">=config</span> in the context of <a href="#Formatting_codes">Formatting codes</a>. </p>
@@ -858,36 +837,24 @@ And this is a <span class="basis">L&lt;link to the Raku Programming Language|htt
 <table class="table is-striped is-bordered">	<thead>
 		<tr><th>Schema</th><th>Where to look for the resource</th></tr>
 	</thead>	<tbody>
-		<tr><td><p id="244b2ee"><span class="code">http(s):</span></p>
-</td><td>Look on the web</td></tr>
-		<tr><td><p id="6b522ec"><span class="code">file:</span>   </p>
-</td><td>Look on the local filesystem</td></tr>
-		<tr><td><p id="3ed2593"><span class="code">rakudoc:</span></p>
-</td><td>Look in the usual places for Raku documentation</td></tr>
-		<tr><td><p id="3f64426"><span class="code">man:</span>    </p>
-</td><td>Look via a local man(1)</td></tr>
-		<tr><td><p id="1a88657"><span class="code">defn:</span>   </p>
-</td><td>Look in the current document</td></tr>
+		<tr><td><p id="244b2ee"><span class="code">http(s):</span></p></td><td>Look on the web</td></tr>
+		<tr><td><p id="6b522ec"><span class="code">file:</span>   </p></td><td>Look on the local filesystem</td></tr>
+		<tr><td><p id="3ed2593"><span class="code">rakudoc:</span></p></td><td>Look in the usual places for Raku documentation</td></tr>
+		<tr><td><p id="3f64426"><span class="code">man:</span>    </p></td><td>Look via a local man(1)</td></tr>
+		<tr><td><p id="1a88657"><span class="code">defn:</span>   </p></td><td>Look in the current document</td></tr>
 			</tbody>
 </table>
 <p id="e0691d0">Meanwhile, the kind of content being placed is inferred from the final extension of the URL. For example: </p>
 <table class="table is-striped is-bordered">	<thead>
 		<tr><th>Extension</th><th>How to treat the contents</th></tr>
 	</thead>	<tbody>
-		<tr><td><p id="c2f9a3c"><span class="code">.txt</span>    </p>
-</td><td>Render the contents as plaintext</td></tr>
-		<tr><td><p id="4df7774"><span class="code">.rakudoc</span></p>
-</td><td>Render the contents as RakuDoc</td></tr>
-		<tr><td><p id="c1dcdbd"><span class="code">.html</span>   </p>
-</td><td>Render the contents as XHTML</td></tr>
-		<tr><td><p id="26ba1fe"><span class="code">.md</span>     </p>
-</td><td>Render the contents as Markdown</td></tr>
-		<tr><td><p id="5db293c"><span class="code">.json</span>   </p>
-</td><td>Render the contents as JSON</td></tr>
-		<tr><td><p id="26b8eed"><span class="code">.jpg</span>    </p>
-</td><td>Render the contents as an image</td></tr>
-		<tr><td><p id="118dbca"><span class="code">.mp4</span>    </p>
-</td><td>Render the contents as a video</td></tr>
+		<tr><td><p id="c2f9a3c"><span class="code">.txt</span>    </p></td><td>Render the contents as plaintext</td></tr>
+		<tr><td><p id="4df7774"><span class="code">.rakudoc</span></p></td><td>Render the contents as RakuDoc</td></tr>
+		<tr><td><p id="c1dcdbd"><span class="code">.html</span>   </p></td><td>Render the contents as XHTML</td></tr>
+		<tr><td><p id="26ba1fe"><span class="code">.md</span>     </p></td><td>Render the contents as Markdown</td></tr>
+		<tr><td><p id="5db293c"><span class="code">.json</span>   </p></td><td>Render the contents as JSON</td></tr>
+		<tr><td><p id="26b8eed"><span class="code">.jpg</span>    </p></td><td>Render the contents as an image</td></tr>
+		<tr><td><p id="118dbca"><span class="code">.mp4</span>    </p></td><td>Render the contents as a video</td></tr>
 			</tbody>
 </table>
 <p id="3e99375">Renderers are not required to render anything other than plaintext and RakuDoc, but may also support other formats if they wish. </p>
@@ -905,12 +872,9 @@ And this is a <span class="basis">L&lt;link to the Raku Programming Language|htt
 <table class="table is-striped is-bordered">	<thead>
 		<tr><th>Schema</th><th>Inferred content type if no final extension</th></tr>
 	</thead>	<tbody>
-		<tr><td><p id="244b2ee"><span class="code">http(s):</span></p>
-</td><td>XHTML</td></tr>
-		<tr><td><p id="6b522ec"><span class="code">file:</span>   </p>
-</td><td>plaintext</td></tr>
-		<tr><td><p id="3ed2593"><span class="code">rakudoc:</span></p>
-</td><td>RakuDoc</td></tr>
+		<tr><td><p id="244b2ee"><span class="code">http(s):</span></p></td><td>XHTML</td></tr>
+		<tr><td><p id="6b522ec"><span class="code">file:</span>   </p></td><td>plaintext</td></tr>
+		<tr><td><p id="3ed2593"><span class="code">rakudoc:</span></p></td><td>RakuDoc</td></tr>
 			</tbody>
 </table>
 <p id="7df0411">A <span class="basis">=place</span> directive may be accompanied by metadata options to ensure that a reference can be made in the Table of Contents, or to provide an ALT text. For example: </p>
@@ -1086,14 +1050,10 @@ And this is a <span class="basis">L&lt;link to the Raku Programming Language|htt
 <p id="2b8c2ad">Sections may be embedded within other sections. </p>
 <p id="4298fff">When a <span class="code">=begin section</span> is not present, a renderer may apply the following heuristic to determine the block scope (assuming X, Y, and Z are digits such that <span class="code">0 < X < Y < Z </span>): </p>
 
-<ul class="item-list"><li class="item" data-bullet="•" style="--level:0;"> <p id="f86193d">A <span class="code">=headY</span> declaration starts a new block scope. </p>
-</li>
-<li class="item" data-bullet="•" style="--level:0;"> <p id="b6cbf88">The next <span class="code">=headY</span> declaration ends the block scope of the previous <span class="code">=headY</span> </p>
-</li>
-<li class="item" data-bullet="•" style="--level:0;"> <p id="1a5d730">A <span class="code">=headZ</span> declaration following a <span class="code">=headY</span> is within the block scope of the preceding <span class="code">=headY</span> declaration, and does not end it. </p>
-</li>
-<li class="item" data-bullet="•" style="--level:0;"> <p id="f32925d">A <span class="code">=headX</span> declaration ends the scope of any preceding <span class="code">=headY</span> and <span class="code">=headZ</span> declarations. </p>
-</li>
+<ul class="item-list"><li class="item" data-bullet="•" style="--level:0;"> <p id="f86193d">A <span class="code">=headY</span> declaration starts a new block scope. </p></li>
+<li class="item" data-bullet="•" style="--level:0;"> <p id="b6cbf88">The next <span class="code">=headY</span> declaration ends the block scope of the previous <span class="code">=headY</span> </p></li>
+<li class="item" data-bullet="•" style="--level:0;"> <p id="1a5d730">A <span class="code">=headZ</span> declaration following a <span class="code">=headY</span> is within the block scope of the preceding <span class="code">=headY</span> declaration, and does not end it. </p></li>
+<li class="item" data-bullet="•" style="--level:0;"> <p id="f32925d">A <span class="code">=headX</span> declaration ends the scope of any preceding <span class="code">=headY</span> and <span class="code">=headZ</span> declarations. </p></li>
 </ul>
 <p id="217dd33">Note that a <span class="code">=begin section</span> declaration overrides the heuristic, meaning that multiple <span class="code">=headX</span> declarations can be placed within the same block scope. </p>
 <p id="d303de5">A renderer is not expected to render blocks differently when they are embedded in a <span class="code">section</span> block. </p>
@@ -1114,7 +1074,6 @@ And this is a <span class="basis">L&lt;link to the Raku Programming Language|htt
 
 <div class="id-target" id="role fool"></div><h2 id="role_fool" class="heading py-2 "><a href="#" title="go to top of document">role fool</a><a class="raku-anchor" title="direct link" href="#role fool">§</a></h2>
 <p id="a084166">This role is especially important in authoritarian kingdoms to remind kings of their humanity. </p>
-
 </div></div>
 <p id="f4c6054">If a user indicates to a renderer that they wish to view documentation valid today, which corresponds (for example) to <span class="code">v3.1.1</span> then, because <span class="code">v3.1.1</span> is after <span class="code">v2.3.2</span>, the section above – including the nested <span class="code">=head2</span> block and the following plain paragraph – would not be rendered. </p>
 <p id="bb228aa">If however, a user indicates they wish to view documentation for <span class="code">v2</span>, the renderer would render the section above, including an indication the section will be removed in <span class="code">v2.3.2</span>. </p>
@@ -1176,9 +1135,7 @@ And this is a <span class="basis">L&lt;link to the Raku Programming Language|htt
             <p id="b30337b">...which would produce: </p>
 <div class="nested"><p id="92cb0f7">We are all of us in the gutter, </p>
 <p id="f45a8ad">but some of us are looking at the stars! </p>
-<div class="nested"><p id="f422bc9">-- Oscar Wilde </p>
-</div>
-</div>
+<div class="nested"><p id="f422bc9">-- Oscar Wilde </p></div></div>
 <p id="8976858">Nesting blocks can contain any other kind of block, including implicit paragraph and code blocks. Note that the relative physical indentation of the nested blocks plays no role in determining their ultimate indentation in the final rendering. The preceding example could equally have been specified: </p>
 
                 <div class="raku-code">
@@ -1235,16 +1192,11 @@ And this is a <span class="basis">L&lt;link to the Raku Programming Language|htt
 <p id="c694a34">The code in a document is almost always related to a specific programming language, by default Raku. But examples of Ruby, C, RakuDoc, or other languages may also appear in the Raku documentation sources. </p>
 <p id="6f98495">A renderer may apply language specific syntax highlighting to the contents of a code block according to the following rules: </p>
 
-<ul class="item-list"><li class="item" data-bullet="•" style="--level:0;"> <p id="d3148ec"><span class="code">=code</span> blocks with no explicit or preconfigured <span class="code">:lang</span> option default to <span class="code">:lang&lt;raku&gt;</span>. </p>
-</li>
-<li class="item" data-bullet="•" style="--level:0;"> <p id="fb0d458"><span class="code">=code</span> blocks can be marked as not being in any specific language by using <span class="code">:!lang</span>. </p>
-</li>
-<li class="item" data-bullet="•" style="--level:0;"> <p id="9bdeeab">Renderers must not syntax-highlight any code block whose <span class="code">:lang</span> value is <span class="code">False</span>, that is <span class="code">:!lang</span>. </p>
-</li>
-<li class="item" data-bullet="•" style="--level:0;"> <p id="a1304b5">Renderers must not syntax-highlight any code block whose <span class="code">:syntax-highlighting</span> value is <span class="code">False</span>; by default <span class="code">:syntax-highlighting</span>  is True. </p>
-</li>
-<li class="item" data-bullet="•" style="--level:0;"> <p id="d41ae3a">Renderers may syntax-highlight any other code block (including <span class="code">:lang&lt;text&gt;</span>), but are not required to do so. </p>
-</li>
+<ul class="item-list"><li class="item" data-bullet="•" style="--level:0;"> <p id="d3148ec"><span class="code">=code</span> blocks with no explicit or preconfigured <span class="code">:lang</span> option default to <span class="code">:lang&lt;raku&gt;</span>. </p></li>
+<li class="item" data-bullet="•" style="--level:0;"> <p id="fb0d458"><span class="code">=code</span> blocks can be marked as not being in any specific language by using <span class="code">:!lang</span>. </p></li>
+<li class="item" data-bullet="•" style="--level:0;"> <p id="9bdeeab">Renderers must not syntax-highlight any code block whose <span class="code">:lang</span> value is <span class="code">False</span>, that is <span class="code">:!lang</span>. </p></li>
+<li class="item" data-bullet="•" style="--level:0;"> <p id="a1304b5">Renderers must not syntax-highlight any code block whose <span class="code">:syntax-highlighting</span> value is <span class="code">False</span>; by default <span class="code">:syntax-highlighting</span>  is True. </p></li>
+<li class="item" data-bullet="•" style="--level:0;"> <p id="d41ae3a">Renderers may syntax-highlight any other code block (including <span class="code">:lang&lt;text&gt;</span>), but are not required to do so. </p></li>
 </ul>
 <p id="1835f2b">By default, a renderer will not change the contents of a code block, but see the caveat when <a href="#Markup_within_verbatim_blocks"><span class="code">:allow</span> is used</a>. </p>
 
@@ -1313,7 +1265,6 @@ sub demo {
                 </div>
             <p id="6740b20">This produces: </p>
 <div class="nested"><p id="953ab3e">The three suspects are: </p>
-
 <ul class="item-list"><li class="item" data-bullet="•" style="--level:0;"> Happy</li>
 <li class="item" data-bullet="•" style="--level:0;"> Sleepy</li>
 <li class="item" data-bullet="•" style="--level:0;"> Grumpy</li>
@@ -1374,14 +1325,11 @@ sub demo {
 <div class="nested"><p id="7686041">Let's consider two common proverbs: </p>
 
 <ul class="item-list"><li class="item" data-bullet="•" style="--level:0;"> <p id="d07dd3d"><span class="important">The rain in Spain falls mainly on the plain.</span> </p>
-<p id="0c4bb4d">This is a common myth and an unconscionable slur on the Spanish people, the majority of whom are extremely attractive. </p>
-</li>
+<p id="0c4bb4d">This is a common myth and an unconscionable slur on the Spanish people, the majority of whom are extremely attractive. </p></li>
 <li class="item" data-bullet="•" style="--level:0;"> <p id="c1f98db"><span class="important">The early bird gets the worm.</span> </p>
-<p id="0f0cf99">In deciding whether to become an early riser, it is worth considering whether you would actually enjoy annelids for breakfast. </p>
-</li>
+<p id="0f0cf99">In deciding whether to become an early riser, it is worth considering whether you would actually enjoy annelids for breakfast. </p></li>
 </ul>
-<p id="2f6ba49">As you can see, folk wisdom is often of dubious value. </p>
-</div>
+<p id="2f6ba49">As you can see, folk wisdom is often of dubious value. </p></div>
 
 <div class="id-target" id="Bullets and bullet strategy"></div><h3 id="Bullets_and_bullet_strategy" class="heading py-2 "><a href="#" title="go to top of document">Bullets and bullet strategy</a><a class="raku-anchor" title="direct link" href="#Bullets and bullet strategy">§</a></h3>
 <p id="b0915e8">When rendered, each <span class="code">=item</span><span class="replace">N</span> will be preceded by a bullet and each level may have a different bullet. A compliant renderer will define a <span class="important">default</span> bullet for at least the first four levels within a nested list, with the bulleting strategy for other levels being up to the renderer. </p>
@@ -1413,7 +1361,6 @@ Abscond to the Bahamas with the cash
                 </div>
             <p id="34932ce">... would produce something like a list with checkboxes, thus: </p>
 <div class="nested"><p id="93c18bc">The project originally consisted of five phases, of which two are already complete and two have been abandoned: </p>
-
 <ul class="item-list"><li class="item" data-bullet="☑" style="--level:0;"> Investigate existing solutions</li>
 <li class="item" data-bullet="☑" style="--level:0;"> Define a minimal initial feature set</li>
 <li class="item" data-bullet="☐" style="--level:0;"> Implement this minimal set of features</li>
@@ -1436,10 +1383,10 @@ Define a minimal initial feature set
 =for item <span class="basis">:bullet« \c[Anticlockwise Downwards And Upwards Open Circle Arrows] »</span>
 Implement this minimal set of features
 
-=for item <span class="basis">:bullet« \c[prohibited sign] »</span>
+=for item <span class="basis">:bullet« \c[no entry sign] »</span>
 Secure 100 million in venture capital
 
-=for item <span class="basis">:bullet« \c[prohibited sign, palm tree] »</span>
+=for item <span class="basis">:bullet« \c[no entry sign, palm tree] »</span>
 Abscond to the Bahamas with the cash
 </pre>
 </div>
@@ -1476,7 +1423,6 @@ Abscond to the Bahamas with the cash
                 </div>
             <p id="b30337b">...which would produce: </p>
 <div class="nested"><div class="rakudoc-section "><p id="ff4b3ca">The major sources of sustainable energy are: </p>
-
 <ul class="item-list"><li class="item" data-bullet="🌍" style="--level:0;"> wind</li>
 <li class="item" data-bullet="🌍" style="--level:0;"> hydroelectric</li>
 <li class="item" data-bullet="🌍" style="--level:0;"> solar</li>
@@ -1503,8 +1449,7 @@ Abscond to the Bahamas with the cash
 <div class="nested"><p id="95e3ae9">1. Visito </p>
 <p id="70d75d0">1.1. Veni </p>
 <p id="01aeeda">1.2. Vidi </p>
-<p id="a7073e1">1.3. Vici </p>
-</div>
+<p id="a7073e1">1.3. Vici </p></div>
 <p id="691cfba">The numbering scheme is at the discretion of the renderer. A renderer might, for example, provide a scheme similar to the examples here, and also provide an enhancement, such as <span class="code">:html-ordered</span> that leverages the <span class="code">&lt;ul type="A"&gt;</span> markup. </p>
 <p id="bfbad79">The numbering of successive <span class="code">=numitem1</span> list items increments automatically, but is reset to 1 whenever any other kind of non-ambient RakuDoc block appears between two <span class="code">=numitem1</span> blocks. For example: </p>
 
@@ -1524,8 +1469,7 @@ Abscond to the Bahamas with the cash
 <p id="5abaeca">The tools are: </p>
 <p id="6b8bae9">1. Revolution </p>
 <p id="aa0e2ee">2. Deep-fried peanut butter sandwich </p>
-<p id="0d24801">3. Keg </p>
-</div>
+<p id="0d24801">3. Keg </p></div>
 <p id="aef27ae">The numbering of nested items (<span class="code">=numitem2</span>, <span class="code">=numitem3</span>, etc.) only resets to 1 when a higher-level item's numbering either resets or increments. </p>
 <p id="93a3c55">To prevent a <span class="code">=numitemN</span> from resetting after a non-item block, you can specify the <span class="code">:continued</span> option: </p>
 
@@ -1541,8 +1485,7 @@ Abscond to the Bahamas with the cash
 <div class="nested"><p id="5264099">1. Retreat to remote Himalayan monastery </p>
 <p id="3afe350">2. Learn the hidden mysteries of space and time </p>
 <p id="64ac7ac">???? </p>
-<p id="e71c3ac">3. Prophet! </p>
-</div>
+<p id="e71c3ac">3. Prophet! </p></div>
 <p id="a88be24">Normally, if two <span class="code">=numitemN</span> blocks are separated by some other kind of block (for example, a <span class="code">=para</span>, <span class="code">=code</span>, or <span class="code">=table</span> block), then the numbering of the second <span class="code">=numitemN</span> block resets to 1. </p>
 <p id="9f9aaf7">However, if the second <span class="code">=numitemN</span> block is specified with a <span class="code">:continued</span> option the numbering of that second block does not reset, but increments instead (i.e. as if there had been no intervening non-numbered block). </p>
 <p id="9eac0fb">The <span class="code">:continued</span> option has no effect on any higher- or lower-numbered <span class="code">=numitem</span> blocks that are currently active in the same scope. That is: a <span class="code">=for numitemN :continued</span> causes the numbering of every active <span class="code">=numitemZ</span> block (where <span class="important">Z</span> &gt; <span class="important">N</span>) to reset to 1, and the numbering of every active <span class="code">=numitemA</span> block (where <span class="important">A</span> &lt; <span class="important">N</span>) stays the same. </p>
@@ -1877,38 +1820,27 @@ r1c0 |  r1c1
 <p id="47dfb87"><span class="code">=cell</span> blocks can be specified as spanning multiple rows and/or columns, using the <span class="code">:row-span(WIDTH)</span>, <span class="code">:col-span(HEIGHT)</span>, or <span class="code">:span(WIDTH, HEIGHT)</span> annotations, in which case the block fills more than one grid cell (and merges them into a single logical cell), with the top-left corner of the fill starting at <span class="important">$POS</span>. </p>
 <p id="3812403">A <span class="code">=cell</span> block has the following effects: </p>
 
-<ul class="item-list"><li class="item" data-bullet="•" style="--level:0;"> <p id="12d7f2c">The specified contents are considered to fill in the cell(s) at <span class="important">$POS</span> (even if the contents are actually null/empty) </p>
-</li>
-<li class="item" data-bullet="•" style="--level:0;"> <p id="3122052"><span class="important">$POS</span> is moved to the next unfilled cell in the direction specified by <span class="important">$DIR</span> (<span class="important">i.e.</span> either across or down) </p>
-</li>
+<ul class="item-list"><li class="item" data-bullet="•" style="--level:0;"> <p id="12d7f2c">The specified contents are considered to fill in the cell(s) at <span class="important">$POS</span> (even if the contents are actually null/empty) </p></li>
+<li class="item" data-bullet="•" style="--level:0;"> <p id="3122052"><span class="important">$POS</span> is moved to the next unfilled cell in the direction specified by <span class="important">$DIR</span> (<span class="important">i.e.</span> either across or down) </p></li>
 </ul>
 <p id="2ed5350">A <span class="code">=row</span> directive has the following effects: </p>
 
-<ul class="item-list"><li class="item" data-bullet="•" style="--level:0;"> <p id="8c42229"><span class="important">$DIR</span> is set to <span class="important">across</span> </p>
-</li>
-<li class="item" data-bullet="•" style="--level:0;"> <p id="7e6aaf8">If the previous action was not a <span class="code">=cell</span> (<span class="important">i.e.</span> it was a <span class="code">=table</span> , <span class="code">=row</span>, or <span class="code">=column</span>) then the <span class="code">=row</span> directive has no other effects (<span class="important">i.e.</span> the subsequent effect is skipped) </p>
-</li>
-<li class="item" data-bullet="•" style="--level:0;"> <p id="1371d78">Otherwise, starting at the row specified by <span class="important"><span class="code">$POS</span></span>, find the uppermost row <span class="important">R</span> that is <span class="basis"><span class="important">at-or-below</span></span> the row specified by <span class="important"><span class="code">$POS</span></span>, and where row <span class="important">R</span> has at least one empty cell in a column strictly to the left of the column specified by <span class="important"><span class="code">$POS</span></span>, then move <span class="important"><span class="code">$POS</span></span> left-and-down, to the <span class="basis"><span class="important">left-most</span></span> empty cell in row <span class="important">R</span>. </p>
-</li>
+<ul class="item-list"><li class="item" data-bullet="•" style="--level:0;"> <p id="8c42229"><span class="important">$DIR</span> is set to <span class="important">across</span> </p></li>
+<li class="item" data-bullet="•" style="--level:0;"> <p id="7e6aaf8">If the previous action was not a <span class="code">=cell</span> (<span class="important">i.e.</span> it was a <span class="code">=table</span> , <span class="code">=row</span>, or <span class="code">=column</span>) then the <span class="code">=row</span> directive has no other effects (<span class="important">i.e.</span> the subsequent effect is skipped) </p></li>
+<li class="item" data-bullet="•" style="--level:0;"> <p id="1371d78">Otherwise, starting at the row specified by <span class="important"><span class="code">$POS</span></span>, find the uppermost row <span class="important">R</span> that is <span class="basis"><span class="important">at-or-below</span></span> the row specified by <span class="important"><span class="code">$POS</span></span>, and where row <span class="important">R</span> has at least one empty cell in a column strictly to the left of the column specified by <span class="important"><span class="code">$POS</span></span>, then move <span class="important"><span class="code">$POS</span></span> left-and-down, to the <span class="basis"><span class="important">left-most</span></span> empty cell in row <span class="important">R</span>. </p></li>
 </ul>
 <p id="cf772cc">A <span class="code">=column</span> directive has the following effects: </p>
 
-<ul class="item-list"><li class="item" data-bullet="•" style="--level:0;"> <p id="8c0b518"><span class="important">$DIR</span> is set to <span class="important">down</span> </p>
-</li>
-<li class="item" data-bullet="•" style="--level:0;"> <p id="7d8ab2f">If the previous action was not a <span class="code">=cell</span> (<span class="important">i.e.</span> it was a <span class="code">=table</span> , <span class="code">=row</span>, or <span class="code">=column</span>) then the <span class="code">=column</span> directive has no other effects (<span class="important">i.e.</span> the subsequent effect is skipped) </p>
-</li>
-<li class="item" data-bullet="•" style="--level:0;"> <p id="dd6eb12">Otherwise, starting at the column specified by <span class="important"><span class="code">$POS</span></span>, find the left-most column <span class="important">C</span> that is <span class="basis"><span class="important">at-or-to-the-right-of</span></span> the column specified by <span class="important"><span class="code">$POS</span></span>, and where column <span class="important">C</span> has at least one empty cell in a row strictly above the row specified by <span class="important"><span class="code">$POS</span></span>, then move <span class="important"><span class="code">$POS</span></span> up-and-right, to the <span class="basis"><span class="important">upper-most</span></span> empty cell in column <span class="important">C</span> </p>
-</li>
+<ul class="item-list"><li class="item" data-bullet="•" style="--level:0;"> <p id="8c0b518"><span class="important">$DIR</span> is set to <span class="important">down</span> </p></li>
+<li class="item" data-bullet="•" style="--level:0;"> <p id="7d8ab2f">If the previous action was not a <span class="code">=cell</span> (<span class="important">i.e.</span> it was a <span class="code">=table</span> , <span class="code">=row</span>, or <span class="code">=column</span>) then the <span class="code">=column</span> directive has no other effects (<span class="important">i.e.</span> the subsequent effect is skipped) </p></li>
+<li class="item" data-bullet="•" style="--level:0;"> <p id="dd6eb12">Otherwise, starting at the column specified by <span class="important"><span class="code">$POS</span></span>, find the left-most column <span class="important">C</span> that is <span class="basis"><span class="important">at-or-to-the-right-of</span></span> the column specified by <span class="important"><span class="code">$POS</span></span>, and where column <span class="important">C</span> has at least one empty cell in a row strictly above the row specified by <span class="important"><span class="code">$POS</span></span>, then move <span class="important"><span class="code">$POS</span></span> up-and-right, to the <span class="basis"><span class="important">upper-most</span></span> empty cell in column <span class="important">C</span> </p></li>
 </ul>
 <p id="123c268">In other words, <span class="code">=row</span> searches the south-west quadrant from <span class="important"><span class="code">$POS</span></span> to find the most north-westerly empty cell ... and moves <span class="important"><span class="code">$POS</span></span> to that cell. And <span class="code">=column</span> searches the north-east quadrant from <span class="important"><span class="code">$POS</span></span> to find the most north-westerly empty cell ... and moves <span class="important"><span class="code">$POS</span></span> to that cell. </p>
 <p id="263b00e">In addition, <span class="code">=table</span> and <span class="code">=cell</span> blocks and <span class="code">=row</span> and <span class="code">=column</span> directives can be annotated with any of the following metadata, which subsequently act as defaults for any <span class="code">=cell</span> in their scope: </p>
 
-<ul class="item-list"><li class="item" data-bullet="•" style="--level:0;"> <p id="b912ece"><span class="code">:align< ALIGNMENTS ></span> : changes how contents are aligned in a cell <span class="important">ALIGNMENTS</span> may be any one of: <span class="code">left</span>, <span class="code">centre</span>, <span class="code">center</span>, <span class="code">right</span>, and/or any one of: <span class="code">top</span>, <span class="code">middle</span>, <span class="code">bottom</span>. </p>
-</li>
-<li class="item" data-bullet="•" style="--level:0;"> <p id="b8371c3"><span class="code">:header</span> : specifies that the cell(s) should be considered column headers </p>
-</li>
-<li class="item" data-bullet="•" style="--level:0;"> <p id="df80e32"><span class="code">:label</span> : specifies that the cell(s) should be considered row labels (<span class="important">i.e.</span> horizontal headers) </p>
-</li>
+<ul class="item-list"><li class="item" data-bullet="•" style="--level:0;"> <p id="b912ece"><span class="code">:align< ALIGNMENTS ></span> : changes how contents are aligned in a cell <span class="important">ALIGNMENTS</span> may be any one of: <span class="code">left</span>, <span class="code">centre</span>, <span class="code">center</span>, <span class="code">right</span>, and/or any one of: <span class="code">top</span>, <span class="code">middle</span>, <span class="code">bottom</span>. </p></li>
+<li class="item" data-bullet="•" style="--level:0;"> <p id="b8371c3"><span class="code">:header</span> : specifies that the cell(s) should be considered column headers </p></li>
+<li class="item" data-bullet="•" style="--level:0;"> <p id="df80e32"><span class="code">:label</span> : specifies that the cell(s) should be considered row labels (<span class="important">i.e.</span> horizontal headers) </p></li>
 </ul>
 <p id="aa41c5c">Let’s see how it works... </p>
 <p id="ed3afd5">The following RakuDoc specification: </p>
@@ -1926,10 +1858,7 @@ r1c0 |  r1c1
 <div class="id-target" id="Experimental data"></div><h1 id="Experimental_data" class="heading py-2 "><a href="#" title="go to top of document">Experimental data</a><a class="raku-anchor" title="direct link" href="#Experimental data">§</a></h1>
 <table class="table is-striped is-bordered">
 <tr><th rowspan="2" class="">Date</th><th colspan="3" class="">Samples</th><th rowspan="2" class="">Mean</th></tr>
-<tr><th class=""><p id="be4f23a"><span class="important">Sample 1</span> </p>
-</th><th class=""><p id="ea75ec8"><span class="important">Sample 2</span> </p>
-</th><th class=""><p id="7932f80"><span class="important">Sample 3</span> </p>
-</th></tr>
+<tr><th class=""><p id="be4f23a"><span class="important">Sample 1</span> </p></th><th class=""><p id="ea75ec8"><span class="important">Sample 2</span> </p></th><th class=""><p id="7932f80"><span class="important">Sample 3</span> </p></th></tr>
 <tr><td class="">2023-03-08</td><td class="">0.4</td><td class="">0.1</td><td class="">0.3</td><td class="">0.26667</td></tr>
 <tr><td class="">2023-04-14</td><td class="">0.8</td><td class="">0.6</td><td class="">0.5</td><td class="">0.63333</td></tr>
 <tr><td class="">2023-06-23</td><td class="">0.2</td><td class="">0.9</td><td class="">0.0</td><td class="">0.36667</td></tr>
@@ -2295,8 +2224,7 @@ We will use the identity: F&lt;\sum \frac{1}{n^{2}} = \frac{\pi^{2}}{6}&gt;
 <p id="6b78220">... or may even left as raw LaTeX (perhaps with some kind of visual marker indicating that it is unprocessed): </p>
 <div class="nested"><p id="a837896">We will use the identity: <span class="unusual">\sum \frac{1}{n^{2}} = \frac{\pi^{2}}{6}</span> </p>
 <p id="38cef2a">... where the value of pi can be inferred from Euler’s Identity: </p>
-<p id="be2a575"><span class="unusual">e^{i\pi}+1=0</span> </p>
-</div>
+<p id="be2a575"><span class="unusual">e^{i\pi}+1=0</span> </p></div>
 <p id="912459f">Both <span class="code">=formula</span> and <span class="code">F&lt;&gt;</span> may take explicit ALT texts, so that the author can decide how their formula should be rendered in cases where the renderer cannot handle the specification. </p>
 <p id="bb10145">That is, the <span class="code">=formula</span> block accepts an <span class="code">:alt</span> metaoption, and the syntax for the <span class="code">F&lt;&gt;</span> instruction is either <span class="code">F&lt; FORMULA &gt;</span> or <span class="code">F&lt; ALT | FORMULA &gt;</span>. </p>
 <p id="e8ae512">Using the ALT text options, the document author can supply a suitable explicit alternative rendering to renderers that cannot handle the full formula syntax: </p>
@@ -2320,16 +2248,11 @@ e^{i\pi}+1=0  ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
 <div class="id-target" id="Fallback options"></div><h1 id="Fallback_options" class="heading py-2 "><a href="#" title="go to top of document">Fallback options</a><a class="raku-anchor" title="direct link" href="#Fallback options">§</a></h1>
 <table class="table is-striped is-bordered">
 <tr><th class="">Fall back on</th><th class="">Example</th></tr>
-<tr><td class="">Plaintext</td><td class=""><p id="016ce04">F<&nbsp;&nbsp;Euler's Identity | e^{i\pi}+1=0 > </p>
-</td></tr>
-<tr><td class="">RakuDoc</td><td class=""><p id="9844e7f">F<&nbsp;&nbsp;eH&lt;iπ&gt; + 1 = 0 | e^{i\pi}+1=0 > </p>
-</td></tr>
-<tr><td class="">Unicode</td><td class=""><p id="e04dd62">F<&nbsp;&nbsp;eⁱᐢ + 1 = 0 | e^{i\pi}+1=0 > </p>
-</td></tr>
-<tr><td class="">Image</td><td class=""><p id="7079cd9">F<&nbsp;&nbsp;P&lt;file:EulerID.jpg&gt; | e^{i\pi}+1=0 > </p>
-</td></tr>
-<tr><td class="">Link</td><td class=""><p id="1b1acc6">F<&nbsp;&nbsp;L&lt;https://en.wikipedia.org/wiki/Euler%27s_identity|&gt; | e^{i\pi}+1=0 > </p>
-</td></tr></table>
+<tr><td class="">Plaintext</td><td class=""><p id="016ce04">F<&nbsp;&nbsp;Euler's Identity | e^{i\pi}+1=0 > </p></td></tr>
+<tr><td class="">RakuDoc</td><td class=""><p id="9844e7f">F<&nbsp;&nbsp;eH&lt;iπ&gt; + 1 = 0 | e^{i\pi}+1=0 > </p></td></tr>
+<tr><td class="">Unicode</td><td class=""><p id="e04dd62">F<&nbsp;&nbsp;eⁱᐢ + 1 = 0 | e^{i\pi}+1=0 > </p></td></tr>
+<tr><td class="">Image</td><td class=""><p id="7079cd9">F<&nbsp;&nbsp;P&lt;file:EulerID.jpg&gt; | e^{i\pi}+1=0 > </p></td></tr>
+<tr><td class="">Link</td><td class=""><p id="1b1acc6">F<&nbsp;&nbsp;L&lt;https://en.wikipedia.org/wiki/Euler%27s_identity|&gt; | e^{i\pi}+1=0 > </p></td></tr></table>
 <p id="4ede661">It is also possible to <span class="basis">stack</span> the fallback options. For example, they could try for an “accurate” rendering of a formula, but fall back on the placement of a pre-rendered image, or (failing to find that) fall back again to a RakuDoc representation with an outgoing link: </p>
 
                 <div class="raku-code">
@@ -2399,27 +2322,21 @@ We will use: F&lt;
 <div class="id-target" id="Naming rules"></div><h2 id="Naming_rules" class="heading py-2 "><a href="#" title="go to top of document">Naming rules</a><a class="raku-anchor" title="direct link" href="#Naming rules">§</a></h2>
 <p id="9e292dd">In order to avoid conflicts between built-in blocks, semantic blocks, custom blocks, and markup instructions, the following rules must be followed: </p>
 
-<ul class="item-list"><li class="item" data-bullet="•" style="--level:0;"> <p id="15a9732">Builtin blocks (e.g. <span class="code">head</span>, <span class="code">item</span>, <span class="code">table</span>) </p>
-</li>
+<ul class="item-list"><li class="item" data-bullet="•" style="--level:0;"> <p id="15a9732">Builtin blocks (e.g. <span class="code">head</span>, <span class="code">item</span>, <span class="code">table</span>) </p></li>
 <li class="item" data-bullet="▹" style="--level:1;"> names must be all lowercase and at least two characters long</li>
 <li class="item" data-bullet="▹" style="--level:1;"> renderers may choose how to render builtin blocks, but must respect all the defined metadata options specified here, and may respect additional metadata options</li>
-<li class="item" data-bullet="•" style="--level:0;"> <p id="e5001b6">Semantic blocks (e.g. <span class="code">AUTHOR</span>, <span class="code">TITLE</span>) </p>
-</li>
+<li class="item" data-bullet="•" style="--level:0;"> <p id="e5001b6">Semantic blocks (e.g. <span class="code">AUTHOR</span>, <span class="code">TITLE</span>) </p></li>
 <li class="item" data-bullet="▹" style="--level:1;"> names must be all uppercase and at least two characters long</li>
-<li class="item" data-bullet="▹" style="--level:1;"> <p id="59a11ea">renderers should treat these as if they are <span class="code">head1</span> with a caption consisting of the semantic block name </p>
-</li>
+<li class="item" data-bullet="▹" style="--level:1;"> <p id="59a11ea">renderers should treat these as if they are <span class="code">head1</span> with a caption consisting of the semantic block name </p></li>
 <li class="item" data-bullet="▹" style="--level:1;"> the contents of the block should be treated as a paragraph.</li>
-<li class="item" data-bullet="•" style="--level:0;"> <p id="cf0b9f7">Custom blocks (e.g. <span class="code">MyNewBlock</span>) </p>
-</li>
+<li class="item" data-bullet="•" style="--level:0;"> <p id="cf0b9f7">Custom blocks (e.g. <span class="code">MyNewBlock</span>) </p></li>
 <li class="item" data-bullet="▹" style="--level:1;"> names must contain at least one uppercase, and at least one lowercase character</li>
 <li class="item" data-bullet="▹" style="--level:1;"> renderers will define how users may specify metadata options and syntax</li>
 <li class="item" data-bullet="▹" style="--level:1;"> renderers will define how the contents of the block are interpreted and rendered</li>
-<li class="item" data-bullet="•" style="--level:0;"> <p id="d564ad9">Custom markup codes (e.g. <span class="code">Æ</span>, <span class="code">Ø</span>, <span class="code">ß</span>) </p>
-</li>
+<li class="item" data-bullet="•" style="--level:0;"> <p id="d564ad9">Custom markup codes (e.g. <span class="code">Æ</span>, <span class="code">Ø</span>, <span class="code">ß</span>) </p></li>
 <li class="item" data-bullet="▹" style="--level:1;"> names must consist of exactly one uppercase Unicode character (i.e. with the Upper property)</li>
 <li class="item" data-bullet="▹" style="--level:1;"> names may not be a character in the ASCII range (these are reserved for current and future built-in markup codes)</li>
-<li class="item" data-bullet="▹" style="--level:1;"> <p id="af0097c">the built-in markup instruction <a href="#Markup_extras"><span class="code">M&lt;&gt;</span></a> is also provided for custom markup </p>
-</li>
+<li class="item" data-bullet="▹" style="--level:1;"> <p id="af0097c">the built-in markup instruction <a href="#Markup_extras"><span class="code">M&lt;&gt;</span></a> is also provided for custom markup </p></li>
 </ul>
 
 <div class="id-target" id="Implied code and indentation"></div><h2 id="Implied_code_and_indentation" class="heading py-2 "><a href="#" title="go to top of document">Implied code and indentation</a><a class="raku-anchor" title="direct link" href="#Implied code and indentation">§</a></h2>
@@ -2556,19 +2473,14 @@ We will use: F&lt;
 <p id="2a655ef">A renderer may mangle the link name (e.g. the contents of a header) to create an anchor ID internally because different output formats may place restrictions on the characters that can be used in a link. However, a document author may not rely on a renderer's ID generation algorithm. </p>
 <p id="36a71d8">Internal links (links to anchors within the same document) must be specified by a leading <span class="code">#</span> followed by either: </p>
 
-<ul class="item-list"><li class="item" data-bullet="•" style="--level:0;"> <p id="ecde249">the target block's explicit <span class="code">:id&lt;LABEL&gt;</span>, or </p>
-</li>
-<li class="item" data-bullet="•" style="--level:0;"> <p id="c22f6be">the exact contents of the corresponding <span class="code">=header</span> block, or </p>
-</li>
-<li class="item" data-bullet="•" style="--level:0;"> <p id="5642c52">the exact contents of a block’s explicit <span class="code">:caption&lt;TEXT&gt;</span>. </p>
-</li>
+<ul class="item-list"><li class="item" data-bullet="•" style="--level:0;"> <p id="ecde249">the target block's explicit <span class="code">:id&lt;LABEL&gt;</span>, or </p></li>
+<li class="item" data-bullet="•" style="--level:0;"> <p id="c22f6be">the exact contents of the corresponding <span class="code">=header</span> block, or </p></li>
+<li class="item" data-bullet="•" style="--level:0;"> <p id="5642c52">the exact contents of a block’s explicit <span class="code">:caption&lt;TEXT&gt;</span>. </p></li>
 </ul>
 <p id="3def936">Internal links cannot be specified by a <span class="code">#</span> followed by </p>
 
-<ul class="item-list"><li class="item" data-bullet="•" style="--level:0;"> <p id="7c3d0ec">a <span class="code">=header</span> block's implicit <span class="important">autogenerated-from-content</span> ID, or </p>
-</li>
-<li class="item" data-bullet="•" style="--level:0;"> <p id="ee7dc57">a block’s implicit <span class="important">autogenerated-from-caption</span> ID. </p>
-</li>
+<ul class="item-list"><li class="item" data-bullet="•" style="--level:0;"> <p id="7c3d0ec">a <span class="code">=header</span> block's implicit <span class="important">autogenerated-from-content</span> ID, or </p></li>
+<li class="item" data-bullet="•" style="--level:0;"> <p id="ee7dc57">a block’s implicit <span class="important">autogenerated-from-caption</span> ID. </p></li>
 </ul>
 <p id="30a5f2f">That is, the in-document link target cannot be the mangled contents of a <span class="code">=header</span> block or a <span class="code">:caption&lt;...&gt;</span> metatag; it can only be the original contents. </p>
 <p id="c82f38e">For example: </p>
@@ -2593,8 +2505,7 @@ We will use: F&lt;
 <div class="id-target" id="Developer or delta notes"></div><h2 id="Developer_or_delta_notes" class="heading py-2 "><a href="#" title="go to top of document">Developer or delta notes</a><a class="raku-anchor" title="direct link" href="#Developer or delta notes">§</a></h2>
 <p id="d0a71d0">When a set of source files is related to a project with versions (such as the Raku language), documentation may get out of date, or may only apply to features of a future release. </p>
 <p id="82490b3">A delta note can be attached to a block using the <span class="code">:delta</span> metadata tab, or specified inline with the <span class="code"> Δ&lt; ... &gt; </span> markup instruction. Both the metadata tab and the markup instruction have two arguments: the first is the version specification, and the second is an optional text note. </p>
-<div class="nested"><p id="8d0409f"><span class="basis">Note:</span> This is an example of a built in markup code that uses a Unicode Upper character. The mnemonic is <span class="important">Delta</span>, which is commonly used to indicate an incremental component. </p>
-</div>
+<div class="nested"><p id="8d0409f"><span class="basis">Note:</span> This is an example of a built in markup code that uses a Unicode Upper character. The mnemonic is <span class="important">Delta</span>, which is commonly used to indicate an incremental component. </p></div>
 <p id="bdadcf2">The version specification is summarised as follows: </p>
 <table class="table is-striped is-bordered">	<thead>
 		<tr><th>Syntax</th><th>Meaning</th></tr>
@@ -2631,27 +2542,13 @@ We will use: F&lt;
 <table class="table is-striped is-bordered">	<thead>
 		<tr><th>Inline markup</th><th>Instruction</th><th>Mnemonic</th><th>HTML equivalent</th><th>Markdown equivalent</th></tr>
 	</thead>	<tbody>
-		<tr><td>Basis</td><td><p id="97aaf21">B&lt;text&gt;     </p>
-</td><td>&quot;B for Basis&quot;</td><td><p id="f77cf62"><span class="code">&lt;b&gt;text&lt;/b&gt;</span>       </p>
-</td><td>**text**</td></tr>
-		<tr><td>Important</td><td><p id="ac90f13">I&lt;text&gt;     </p>
-</td><td>&quot;I for Important&quot;</td><td><p id="b22a9d2"><span class="code">&lt;i&gt;text&lt;/i&gt;</span>       </p>
-</td><td>*text*</td></tr>
-		<tr><td>Unusual</td><td><p id="2d9d3f8">U&lt;text&gt;     </p>
-</td><td>&quot;U for Unusual&quot;</td><td><p id="11d9493"><span class="code">&lt;u&gt;text&lt;/u&gt;</span>       </p>
-</td><td>__text__</td></tr>
-		<tr><td>Strikethrough</td><td><p id="3d8e4a8">O&lt;text&gt;     </p>
-</td><td>&quot;O for Overstrike&quot;</td><td><p id="645ee27"><span class="code">&lt;s&gt;text&lt;/s&gt;</span>       </p>
-</td><td>~~text~~</td></tr>
-		<tr><td>Superscript</td><td><p id="9384a2a">H&lt;text&gt;     </p>
-</td><td>&quot;H for High text&quot;</td><td><p id="7814569"><span class="code">&lt;sup&gt;text&lt;/sup&gt;</span>   </p>
-</td><td>^text^</td></tr>
-		<tr><td>Subscript</td><td><p id="72e2c2f">J&lt;text&gt;     </p>
-</td><td>&quot;J for Junior text&quot;</td><td><p id="9046aae"><span class="code">&lt;sub&gt;text&lt;/sub&gt;</span>   </p>
-</td><td>~text~</td></tr>
-		<tr><td>Code</td><td><p id="42a0dd0">C&lt;text&gt;     </p>
-</td><td>&quot;C for Code&quot;</td><td><p id="99ab851"><span class="code">&lt;code&gt;text&lt;/code&gt;</span> </p>
-</td><td>`text`</td></tr>
+		<tr><td>Basis</td><td><p id="97aaf21">B&lt;text&gt;     </p></td><td>&quot;B for Basis&quot;</td><td><p id="f77cf62"><span class="code">&lt;b&gt;text&lt;/b&gt;</span>       </p></td><td>**text**</td></tr>
+		<tr><td>Important</td><td><p id="ac90f13">I&lt;text&gt;     </p></td><td>&quot;I for Important&quot;</td><td><p id="b22a9d2"><span class="code">&lt;i&gt;text&lt;/i&gt;</span>       </p></td><td>*text*</td></tr>
+		<tr><td>Unusual</td><td><p id="2d9d3f8">U&lt;text&gt;     </p></td><td>&quot;U for Unusual&quot;</td><td><p id="11d9493"><span class="code">&lt;u&gt;text&lt;/u&gt;</span>       </p></td><td>__text__</td></tr>
+		<tr><td>Strikethrough</td><td><p id="3d8e4a8">O&lt;text&gt;     </p></td><td>&quot;O for Overstrike&quot;</td><td><p id="645ee27"><span class="code">&lt;s&gt;text&lt;/s&gt;</span>       </p></td><td>~~text~~</td></tr>
+		<tr><td>Superscript</td><td><p id="9384a2a">H&lt;text&gt;     </p></td><td>&quot;H for High text&quot;</td><td><p id="7814569"><span class="code">&lt;sup&gt;text&lt;/sup&gt;</span>   </p></td><td>^text^</td></tr>
+		<tr><td>Subscript</td><td><p id="72e2c2f">J&lt;text&gt;     </p></td><td>&quot;J for Junior text&quot;</td><td><p id="9046aae"><span class="code">&lt;sub&gt;text&lt;/sub&gt;</span>   </p></td><td>~text~</td></tr>
+		<tr><td>Code</td><td><p id="42a0dd0">C&lt;text&gt;     </p></td><td>&quot;C for Code&quot;</td><td><p id="99ab851"><span class="code">&lt;code&gt;text&lt;/code&gt;</span> </p></td><td>`text`</td></tr>
 			</tbody>
 </table>
 <p id="dfc0446">The table contains suggested HTML and Markdown equivalents; a renderer may choose other representations. </p>
@@ -2672,7 +2569,6 @@ We will use: F&lt;
 <h3 id="Links" class="heading py-2 "><a href="#" title="go to top of document">Links</a><a class="raku-anchor" title="direct link" href="#Links">§</a></h3>
 <p id="9609681">To create a link, enclose it in <span class="code">L< |></span>. RakuDoc links are more general than the conventional HTML links. </p>
 <div class="rakudoc-section "><p id="51c410c">The general syntax is <span class="code"> L< <span class="replace">LABEL</span> | <span class="replace">TARGET</span> > </span> </p>
-
 </div>
 <p id="98a0dab">where the optional label is text that is rendered and the target may include a schema. If the label is omitted, then the target is used as the label. Whitespace on either side of the bar is not significant. </p>
 <p id="2451a5c">When the schema is missing, then the <span class="code">https://</span> schema is implied, which means that if the website url is missing as well, the link is to the same host as the document. </p>
@@ -2725,28 +2621,19 @@ We will use: F&lt;
                 </div>
             <p id="ce3ed19">Several schemas are possible: </p>
 
-<ul class="item-list"><li class="item" data-bullet="•" style="--level:0;"> <p id="af52408"><span class="code">https://</span> or <span class="code">http://</span> The renderer may style the label and cause a jump in a networked environment, as is normal for HTML documents. </p>
-</li>
-<li class="item" data-bullet="•" style="--level:0;"> <p id="5da52a4"><span class="code">rakudoc:</span> A reference to a RakuDoc source, which might be in a Raku module or a RakuDoc file. </p>
-</li>
-<li class="item" data-bullet="•" style="--level:0;"> <p id="aaca7bb"><span class="code">mailto:</span> An email address. Typically, activating this type of link invokes a mailer. </p>
-</li>
-<li class="item" data-bullet="•" style="--level:0;"> <p id="714e729"><span class="code">man:</span> A link to the system manpages. </p>
-</li>
-<li class="item" data-bullet="•" style="--level:0;"> <p id="c207e61"><span class="code">isbn:</span> and <span class="code">issn:</span> The International Standard Book Number or International Standard Serial Number for a publication. </p>
-</li>
-<li class="item" data-bullet="•" style="--level:0;"> <p id="e5ffa85"><span class="code">defn:</span> A link to a <a href="#Definition_lists">block-form definition</a> or an <a href="#Inline_definitions">inline definition</a> of the specified term within the current document. </p>
-</li>
+<ul class="item-list"><li class="item" data-bullet="•" style="--level:0;"> <p id="af52408"><span class="code">https://</span> or <span class="code">http://</span> The renderer may style the label and cause a jump in a networked environment, as is normal for HTML documents. </p></li>
+<li class="item" data-bullet="•" style="--level:0;"> <p id="5da52a4"><span class="code">rakudoc:</span> A reference to a RakuDoc source, which might be in a Raku module or a RakuDoc file. </p></li>
+<li class="item" data-bullet="•" style="--level:0;"> <p id="aaca7bb"><span class="code">mailto:</span> An email address. Typically, activating this type of link invokes a mailer. </p></li>
+<li class="item" data-bullet="•" style="--level:0;"> <p id="714e729"><span class="code">man:</span> A link to the system manpages. </p></li>
+<li class="item" data-bullet="•" style="--level:0;"> <p id="c207e61"><span class="code">isbn:</span> and <span class="code">issn:</span> The International Standard Book Number or International Standard Serial Number for a publication. </p></li>
+<li class="item" data-bullet="•" style="--level:0;"> <p id="e5ffa85"><span class="code">defn:</span> A link to a <a href="#Definition_lists">block-form definition</a> or an <a href="#Inline_definitions">inline definition</a> of the specified term within the current document. </p></li>
 </ul>
 <p id="b5bc572">To refer to a specific section within a webpage, manpage, or RakuDoc document, add the name of that section after the main link, separated by a <span class="code">#</span>. To refer to a section of the current document, omit the external address. </p>
 <p id="f7c9559">A renderer is expected to render a link with a schema as follows: </p>
 
-<ul class="item-list"><li class="item" data-bullet="•" style="--level:0;"> <p id="139ba5c">At a minimum, a link like <a href="rakudoc:ModuleName">rakudoc:ModuleName</a> is simply rendered as text, to something like: “the ModuleName documentation”, and <a href="man:appname">man:appname</a> to something like: “The appname manpage”. And neither of them attempt to add any kind of actual operational link. </p>
-</li>
-<li class="item" data-bullet="•" style="--level:0;"> <p id="cfd7b75">At the next level of sophistication, a renderer encountering either link scheme may attempt to shell out a call to <span class="code">raku --doc ModuleName</span> or <span class="code">man appname</span>, and present the results in a pop-up. </p>
-</li>
-<li class="item" data-bullet="•" style="--level:0;"> <p id="7cf2dc8">If the renderer is in a networked environment, the renderer is expected to provide a set of user selectable options that provide links to such documentation, for example, a set of HTML links in a pop-down box. A renderer might also allow users to preconfigure their preferred website(s) for these schemes, perhaps offering <span class="code">rakudoc:</span> links to <span class="code">https://raku.land/</span> or <span class="code">man:</span> links to <span class="code">https://www.kernel.org/doc/man-pages/</span> as defaults. </p>
-</li>
+<ul class="item-list"><li class="item" data-bullet="•" style="--level:0;"> <p id="139ba5c">At a minimum, a link like <a href="rakudoc:ModuleName">rakudoc:ModuleName</a> is simply rendered as text, to something like: “the ModuleName documentation”, and <a href="man:appname">man:appname</a> to something like: “The appname manpage”. And neither of them attempt to add any kind of actual operational link. </p></li>
+<li class="item" data-bullet="•" style="--level:0;"> <p id="cfd7b75">At the next level of sophistication, a renderer encountering either link scheme may attempt to shell out a call to <span class="code">raku --doc ModuleName</span> or <span class="code">man appname</span>, and present the results in a pop-up. </p></li>
+<li class="item" data-bullet="•" style="--level:0;"> <p id="7cf2dc8">If the renderer is in a networked environment, the renderer is expected to provide a set of user selectable options that provide links to such documentation, for example, a set of HTML links in a pop-down box. A renderer might also allow users to preconfigure their preferred website(s) for these schemes, perhaps offering <span class="code">rakudoc:</span> links to <span class="code">https://raku.land/</span> or <span class="code">man:</span> links to <span class="code">https://www.kernel.org/doc/man-pages/</span> as defaults. </p></li>
 </ul>
 <p id="bf45645">Renderers are not expected to handle all schemas beyond the minimum above. Renderers offering more sophisticated styling or operational links should provide ways to configure schemas, whilst offering reasonable defaults. </p>
 <h4 id="Examples" class="heading py-2 "><a href="#" title="go to top of document">Examples</a><a class="raku-anchor" title="direct link" href="#Examples">§</a></h4>
@@ -2799,9 +2686,7 @@ We will use: F&lt;
 <div class="nested"><p id="72ec8e5"><span class="basis">Copyright</span> </p>
 <div class="nested">This document is copyright (c) MegaGigaTeraPetaCorp, 2006. All rights reserved.</div>
 <p id="f449656"><span class="basis">Disclaimer</span> </p>
-<div class="nested"><p id="345b51d">ABSOLUTELY NO WARRANTY IS IMPLIED. NOT EVEN OF ANY KIND. WE HAVE SOLD YOU THIS SOFTWARE WITH NO HINT OF A SUGGESTION THAT IT IS EITHER USEFUL OR USABLE. AS FOR GUARANTEES OF CORRECTNESS...DON'T MAKE US LAUGH! AT SOME TIME IN THE FUTURE WE MIGHT DEIGN TO SELL YOU UPGRADES THAT PURPORT TO ADDRESS SOME OF THE APPLICATION'S MANY DEFICIENCIES, BUT NO PROMISES THERE EITHER. WE HAVE MORE LAWYERS ON STAFF THAN YOU HAVE TOTAL EMPLOYEES, SO DON'T EVEN *THINK* ABOUT SUING US. HAVE A NICE DAY. </p>
-</div>
-</div>
+<div class="nested"><p id="345b51d">ABSOLUTELY NO WARRANTY IS IMPLIED. NOT EVEN OF ANY KIND. WE HAVE SOLD YOU THIS SOFTWARE WITH NO HINT OF A SUGGESTION THAT IT IS EITHER USEFUL OR USABLE. AS FOR GUARANTEES OF CORRECTNESS...DON'T MAKE US LAUGH! AT SOME TIME IN THE FUTURE WE MIGHT DEIGN TO SELL YOU UPGRADES THAT PURPORT TO ADDRESS SOME OF THE APPLICATION'S MANY DEFICIENCIES, BUT NO PROMISES THERE EITHER. WE HAVE MORE LAWYERS ON STAFF THAN YOU HAVE TOTAL EMPLOYEES, SO DON'T EVEN *THINK* ABOUT SUING US. HAVE A NICE DAY. </p></div></div>
 <p id="3e538b2">The <span class="code">P&lt;&gt;</span> markup code can also be specified with an optional display text, which will be rendered if the renderer cannot find or access the external data source for the placement link. For example: </p>
 
                 <div class="raku-code">
@@ -2820,28 +2705,19 @@ P&lt;B&lt;NO WARRANTY. NONE. NIL. NADA. |&gt; http://www.MegaGigaTeraPetaCorp.co
 <div class="nested"><p id="72ec8e5"><span class="basis">Copyright</span> </p>
 <div class="nested">This document is copyright.</div>
 <p id="f449656"><span class="basis">Disclaimer</span> </p>
-<div class="nested">NO WARRANTY. NONE. NIL. NADA.</div>
-</div>
+<div class="nested">NO WARRANTY. NONE. NIL. NADA.</div></div>
 <p id="75b33cc">If a renderer cannot find or access the external data source for a placement link, and the placement link does not have an alternative display text, it must issue a warning and render the URI directly in some form, possibly as an outwards link. For example: </p>
 <div class="nested"><p id="72ec8e5"><span class="basis">Copyright</span> </p>
-<div class="nested"><p id="4b0bca8">See: <span class="code">file:/shared/docs/std_copyright.rakudoc</span> </p>
-</div>
+<div class="nested"><p id="4b0bca8">See: <span class="code">file:/shared/docs/std_copyright.rakudoc</span> </p></div>
 <p id="f449656"><span class="basis">Disclaimer</span> </p>
-<div class="nested"><p id="4e6dd41">See: <a href="http://www.MegaGigaTeraPetaCorp.com/std/disclaimer.txt">http://www.MegaGigaTeraPetaCorp.com/std/disclaimer.txt</a> </p>
-</div>
-</div>
+<div class="nested"><p id="4e6dd41">See: <a href="http://www.MegaGigaTeraPetaCorp.com/std/disclaimer.txt">http://www.MegaGigaTeraPetaCorp.com/std/disclaimer.txt</a> </p></div></div>
 <p id="5826bdb">You can use any of the following URI forms (see <a href="#Links">#Links</a>) in a placement link: </p>
 
-<ul class="item-list"><li class="item" data-bullet="•" style="--level:0;"> <p id="9aea590"><span class="code">http:</span> and <span class="code">https:</span> </p>
-</li>
-<li class="item" data-bullet="•" style="--level:0;"> <p id="8340a70"><span class="code">file:</span> </p>
-</li>
-<li class="item" data-bullet="•" style="--level:0;"> <p id="53c8e32"><span class="code">toc:</span> </p>
-</li>
-<li class="item" data-bullet="•" style="--level:0;"> <p id="cb1c020"><span class="code">index:</span> </p>
-</li>
-<li class="item" data-bullet="•" style="--level:0;"> <p id="d605d2f"><span class="code">semantic:</span> </p>
-</li>
+<ul class="item-list"><li class="item" data-bullet="•" style="--level:0;"> <p id="9aea590"><span class="code">http:</span> and <span class="code">https:</span> </p></li>
+<li class="item" data-bullet="•" style="--level:0;"> <p id="8340a70"><span class="code">file:</span> </p></li>
+<li class="item" data-bullet="•" style="--level:0;"> <p id="53c8e32"><span class="code">toc:</span> </p></li>
+<li class="item" data-bullet="•" style="--level:0;"> <p id="cb1c020"><span class="code">index:</span> </p></li>
+<li class="item" data-bullet="•" style="--level:0;"> <p id="d605d2f"><span class="code">semantic:</span> </p></li>
 </ul>
 <p id="4cd1e3d">The <span class="code">toc:</span> form is a special pseudo-scheme that inserts a table of contents in place of the <span class="code">P&lt;&gt;</span> code. After the colon, list the block types that you wish to include in the table of contents. For example, to place a table of contents listing only top- and second-level headings: </p>
 <div class="rakudoc-section ">
@@ -2868,7 +2744,6 @@ P&lt;B&lt;NO WARRANTY. NONE. NIL. NADA. |&gt; http://www.MegaGigaTeraPetaCorp.co
 <p id="ead43de">A document may have as many <span class="code">P&lt;toc:...&gt;</span> placements as necessary. </p>
 <p id="534e14f">The <span class="code">index:*</span> form is a special pseudo-scheme that inserts an index table in place of the <span class="code">P&lt;&gt;</span> code. </p>
 <div class="rakudoc-section "><p id="e01c765">The <span class="code">semantic:<span class="replace">NAME</span></span> form places the <span class="replace">NAME</span> semantic block at the position of the <span class="code">P&lt;&gt;</span> instruction. </p>
-
 </div>
 
 <div class="id-target" id="Alias placement"></div><h3 id="Alias_placement" class="heading py-2 "><a href="#" title="go to top of document">Alias placement</a><a class="raku-anchor" title="direct link" href="#Alias placement">§</a></h3>
@@ -2988,8 +2863,7 @@ P&lt;B&lt;NO WARRANTY. NONE. NIL. NADA. |&gt; http://www.MegaGigaTeraPetaCorp.co
 </div>
                 </div>
             <p id="3da8d50">This would be rendered as: </p>
-<div class="nested"><p id="8adddf7">Raku is awesome  </p>
-</div>
+<div class="nested"><p id="8adddf7">Raku is awesome  </p></div>
 <h3 id="Notes" class="heading py-2 "><a href="#" title="go to top of document">Notes</a><a class="raku-anchor" title="direct link" href="#Notes">§</a></h3>
 <p id="5f95da0">Notes are ancillary information that may be rendered as footnotes or sidenotes or pop-up notes, depending on the renderer and environment. </p>
 <p id="e35da17">To create a note enclose it in <span class="code">N&lt; &gt;</span> </p>
@@ -3003,8 +2877,7 @@ P&lt;B&lt;NO WARRANTY. NONE. NIL. NADA. |&gt; http://www.MegaGigaTeraPetaCorp.co
 </div>
                 </div>
             <p id="72162e5">Which produces: </p>
-<div class="nested"><p id="1cdbc70">Raku is multi-paradigmatic <a id="N&lt;Supporting_Procedural,_Object_Oriented,_and_Functional_programming&gt;" href="#fn_target_N&lt;Supporting_Procedural,_Object_Oriented,_and_Functional_programming&gt;"><span class="footnote">[ 1 ]</span></a> </p>
-</div>
+<div class="nested"><p id="1cdbc70">Raku is multi-paradigmatic <a id="N&lt;Supporting_Procedural,_Object_Oriented,_and_Functional_programming&gt;" href="#fn_target_N&lt;Supporting_Procedural,_Object_Oriented,_and_Functional_programming&gt;"><span class="footnote">[ 1 ]</span></a> </p></div>
 
 <div class="id-target" id="Keyboard input"></div><h3 id="Keyboard_input" class="heading py-2 "><a href="#" title="go to top of document">Keyboard input</a><a class="raku-anchor" title="direct link" href="#Keyboard input">§</a></h3>
 <p id="591ce33">To flag text as keyboard input enclose it in <span class="code">K&lt; &gt;</span> </p>
@@ -3032,8 +2905,7 @@ P&lt;B&lt;NO WARRANTY. NONE. NIL. NADA. |&gt; http://www.MegaGigaTeraPetaCorp.co
 </div>
                 </div>
             <p id="b8dd60a">This is rendered like so: </p>
-<div class="nested"><p id="ae78164">The basic <span class="code">ln</span> command is: <span class="code">ln</span> <span class="replace">source_file</span> <span class="replace">target_file</span> </p>
-</div>
+<div class="nested"><p id="ae78164">The basic <span class="code">ln</span> command is: <span class="code">ln</span> <span class="replace">source_file</span> <span class="replace">target_file</span> </p></div>
 
 <div class="id-target" id="Terminal output"></div><h3 id="Terminal_output" class="heading py-2 "><a href="#" title="go to top of document">Terminal output</a><a class="raku-anchor" title="direct link" href="#Terminal output">§</a></h3>
 <p id="8e5f6f4">To flag text as terminal output enclose it in <span class="code">T&lt; &gt;</span> </p>
@@ -3075,8 +2947,7 @@ P&lt;B&lt;NO WARRANTY. NONE. NIL. NADA. |&gt; http://www.MegaGigaTeraPetaCorp.co
 </div>
                 </div>
             <p id="23cc02d">will be rendered as: </p>
-<div class="nested"><p id="fc97552">« 🇺🇦 Ukraine » </p>
-</div>
+<div class="nested"><p id="fc97552">« 🇺🇦 Ukraine » </p></div>
 <p id="4bac910">Since emojis are graphemes that can be described by Unicode, <span class="code">E&lt; &gt;</span> will also generate emojis. For example: </p>
 
                 <div class="raku-code">
@@ -3127,8 +2998,7 @@ to avoid using quotes.
                 </div>
             <p id="5018767">An ASCII-only renderer would then render those like so: </p>
 <div class="nested"><p id="b6355cd">Raku makes considerable use of the left- and right-double-angle characters. </p>
-<p id="28f5ec2">Raku code often contains the left- and right-corner bracketing characters to avoid using quotes. </p>
-</div>
+<p id="28f5ec2">Raku code often contains the left- and right-corner bracketing characters to avoid using quotes. </p></div>
 
 <div class="id-target" id="Verbatim text"></div><h3 id="Verbatim_text" class="heading py-2 "><a href="#" title="go to top of document">Verbatim text</a><a class="raku-anchor" title="direct link" href="#Verbatim text">§</a></h3>
 <p id="62df937">The <span class="code">V&lt;&gt;</span> markup instruction treats its entire contents as being <span class="basis">verbatim</span>, disregarding every apparent markup instruction within it. For example: </p>
@@ -3142,8 +3012,7 @@ to avoid using quotes.
 </div>
                 </div>
             <p id="4b08248">Note, however that the <span class="code">V&lt;&gt;</span> code only changes the way its contents are parsed, <span class="important">not</span> the way they are rendered. That is, the contents are still wrapped and formatted like plain text, and the effects of any markup instructions surrounding the <span class="code">V&lt;&gt;</span> code are still applied to its contents. For example the previous example is rendered as: </p>
-<div class="nested"><p id="8b7526a">The <span class="basis"> V&lt;&gt; </span> markup instruction disarms other codes such as  I&lt;&gt;, C&lt;&gt;, B&lt;&gt;, and M&lt;&gt; . </p>
-</div>
+<div class="nested"><p id="8b7526a">The <span class="basis"> V&lt;&gt; </span> markup instruction disarms other codes such as  I&lt;&gt;, C&lt;&gt;, B&lt;&gt;, and M&lt;&gt; . </p></div>
 <p id="6fa69fe">Note that <span class="code">C&lt;&gt;</span> also by default keeps its contents verbatim, the difference between <span class="code">C&lt;&gt;</span> and <span class="code">V&lt;&gt;</span> is that <span class="code">C&lt;&gt;</span> 'colors' the contents to show that it is code, whilst <span class="code">V&lt;&gt;</span> uses the default text presentation. </p>
 <p id="abb77c3">The default behaviors of both <span class="code">V&lt;&gt;</span> and <span class="code">C&lt;&gt;</span> can be changed using a <span class="code">=config</span> directive, e.g., </p>
 
@@ -3299,8 +3168,7 @@ X<  <span class="important">DISPLAY-TEXT </span>  |  METADATA=<span class="basis
 <p id="ae48b05">The markup codes <span class="code">A</span>, <span class="code">E</span>, <span class="code">F</span>, <span class="code">L</span>, and <span class="code">P</span> may be specified <span class="basis">without</span> a display text, in which case, the renderer (as elsewhere provided in this specification) may provide an automatic rendering if the metadata component fails to produce a renderable result. If an explicit display text is provided (i.e. to the left of a <span class="code">|</span>), that text overrides the default alternate rendering. </p>
 
 <div class="id-target" id="Metadata only"></div><h4 id="Metadata_only" class="heading py-2 "><a href="#" title="go to top of document">Metadata only</a><a class="raku-anchor" title="direct link" href="#Metadata only">§</a></h4>
-<div class="nested"><p id="7fb395c">Z<  METADATA=<span class="basis">COMMENT</span> > </p>
-</div>
+<div class="nested"><p id="7fb395c">Z<  METADATA=<span class="basis">COMMENT</span> > </p></div>
 <p id="8f3a34f">The comment code <span class="code">Z&lt;&gt; </span> is intended not to have a display text so the contents of a comment can be considered as pure metadata. </p>
 
 <div class="id-target" id="Implementor considerations"></div><h1 id="Implementor_considerations" class="heading py-2 "><a href="#" title="go to top of document">Implementor considerations</a><a class="raku-anchor" title="direct link" href="#Implementor considerations">§</a></h1>
@@ -3336,280 +3204,141 @@ X<  <span class="important">DISPLAY-TEXT </span>  |  METADATA=<span class="basis
 <div class="id-target" id="Directives"></div><h2 id="Directives_0" class="heading py-2 "><a href="#" title="go to top of document">Directives</a><a class="raku-anchor" title="direct link" href="#Directives">§</a></h2>
 <table class="table is-striped is-bordered">
 <tr><th class="">Directive</th><th class="">Specifies</th></tr>
-<tr><td class=""><p id="97bb7d2">=alias </p>
-</td><td class="">Define a RakuDoc macro</td></tr>
-<tr><td class=""><p id="c680290">=begin </p>
-</td><td class="">Start of an explicitly terminated block</td></tr>
-<tr><td class=""><p id="e9f4e04">=column </p>
-</td><td class="">Start a new column in a procedural table</td></tr>
-<tr><td class=""><p id="48a9050">=config </p>
-</td><td class="">Block scope modifications to a block or markup instruction</td></tr>
-<tr><td class=""><p id="eb083cc">=end </p>
-</td><td class="">Explicit termination of a begin block</td></tr>
-<tr><td class=""><p id="2599805">=finish </p>
-</td><td class="">No ambient blocks after this point</td></tr>
-<tr><td class=""><p id="9da80e9">=for </p>
-</td><td class="">Start of an implicitly (blank-line) terminated block</td></tr>
-<tr><td class=""><p id="464ac6b">=row </p>
-</td><td class="">Start a new row in a procedural table</td></tr></table>
+<tr><td class=""><p id="97bb7d2">=alias </p></td><td class="">Define a RakuDoc macro</td></tr>
+<tr><td class=""><p id="c680290">=begin </p></td><td class="">Start of an explicitly terminated block</td></tr>
+<tr><td class=""><p id="e9f4e04">=column </p></td><td class="">Start a new column in a procedural table</td></tr>
+<tr><td class=""><p id="48a9050">=config </p></td><td class="">Block scope modifications to a block or markup instruction</td></tr>
+<tr><td class=""><p id="eb083cc">=end </p></td><td class="">Explicit termination of a begin block</td></tr>
+<tr><td class=""><p id="2599805">=finish </p></td><td class="">No ambient blocks after this point</td></tr>
+<tr><td class=""><p id="9da80e9">=for </p></td><td class="">Start of an implicitly (blank-line) terminated block</td></tr>
+<tr><td class=""><p id="464ac6b">=row </p></td><td class="">Start a new row in a procedural table</td></tr></table>
 <h2 id="Blocks" class="heading py-2 "><a href="#" title="go to top of document">Blocks</a><a class="raku-anchor" title="direct link" href="#Blocks">§</a></h2>
 <table class="table is-striped is-bordered">
 <tr><th class="">Block typename</th><th class="">Specifies</th></tr>
-<tr><td class=""><p id="2bcef59">=cell </p>
-</td><td class="">Contents of a table cell, only valid in a procedural table context</td></tr>
-<tr><td class=""><p id="a75b87f">=code </p>
-</td><td class="">Verbatim pre-formatted sample source code</td></tr>
-<tr><td class=""><p id="086cfa8">=input </p>
-</td><td class="">Pre-formatted sample input</td></tr>
-<tr><td class=""><p id="9815fe2">=output </p>
-</td><td class="">Pre-formatted sample output</td></tr>
-<tr><td class=""><p id="19ba0c4">=comment </p>
-</td><td class="">Content to be ignored by all renderers</td></tr>
-<tr><td class=""><p id="ae75c34">=head </p>
-</td><td class="">First-level heading</td></tr>
-<tr><td class=""><p id="c38e29c">=headN </p>
-</td><td class="">Nth-level heading</td></tr>
-<tr><td class=""><p id="30eb089">=numhead </p>
-</td><td class="">First-level numbered heading</td></tr>
-<tr><td class=""><p id="2f9e47e">=numheadN </p>
-</td><td class="">Nth-level numbered heading</td></tr>
-<tr><td class=""><p id="5f05da2">=defn </p>
-</td><td class="">Definition of a term</td></tr>
-<tr><td class=""><p id="09c39a2">=item </p>
-</td><td class="">First-level list item</td></tr>
-<tr><td class=""><p id="466a7f2">=itemN </p>
-</td><td class="">Nth-level list item</td></tr>
-<tr><td class=""><p id="574abf5">=numitem </p>
-</td><td class="">First-level numbered list item</td></tr>
-<tr><td class=""><p id="cc8cd34">=numitemN </p>
-</td><td class="">Nth-level numbered list item</td></tr>
-<tr><td class=""><p id="3013444">=nested </p>
-</td><td class="">Nest block contents within the current context</td></tr>
-<tr><td class=""><p id="808efcd">=para </p>
-</td><td class="">Ordinary paragraph</td></tr>
-<tr><td class=""><p id="585212e">=rakudoc </p>
-</td><td class="">No &quot;ambient&quot; blocks inside</td></tr>
-<tr><td class=""><p id="436755e">=section </p>
-</td><td class="">Defines a section</td></tr>
-<tr><td class=""><p id="7ad2375">=pod </p>
-</td><td class="">Legacy version of RakuDoc</td></tr>
-<tr><td class=""><p id="b4ec3b7">=table </p>
-</td><td class="">Visual or procedural table</td></tr>
-<tr><td class=""><p id="d370b93">=formula </p>
-</td><td class="">Render content as LaTex formula</td></tr>
-<tr><td class=""><p id="64f0feb">=data </p>
-</td><td class="">Raku data section</td></tr>
+<tr><td class=""><p id="2bcef59">=cell </p></td><td class="">Contents of a table cell, only valid in a procedural table context</td></tr>
+<tr><td class=""><p id="a75b87f">=code </p></td><td class="">Verbatim pre-formatted sample source code</td></tr>
+<tr><td class=""><p id="086cfa8">=input </p></td><td class="">Pre-formatted sample input</td></tr>
+<tr><td class=""><p id="9815fe2">=output </p></td><td class="">Pre-formatted sample output</td></tr>
+<tr><td class=""><p id="19ba0c4">=comment </p></td><td class="">Content to be ignored by all renderers</td></tr>
+<tr><td class=""><p id="ae75c34">=head </p></td><td class="">First-level heading</td></tr>
+<tr><td class=""><p id="c38e29c">=headN </p></td><td class="">Nth-level heading</td></tr>
+<tr><td class=""><p id="30eb089">=numhead </p></td><td class="">First-level numbered heading</td></tr>
+<tr><td class=""><p id="2f9e47e">=numheadN </p></td><td class="">Nth-level numbered heading</td></tr>
+<tr><td class=""><p id="5f05da2">=defn </p></td><td class="">Definition of a term</td></tr>
+<tr><td class=""><p id="09c39a2">=item </p></td><td class="">First-level list item</td></tr>
+<tr><td class=""><p id="466a7f2">=itemN </p></td><td class="">Nth-level list item</td></tr>
+<tr><td class=""><p id="574abf5">=numitem </p></td><td class="">First-level numbered list item</td></tr>
+<tr><td class=""><p id="cc8cd34">=numitemN </p></td><td class="">Nth-level numbered list item</td></tr>
+<tr><td class=""><p id="3013444">=nested </p></td><td class="">Nest block contents within the current context</td></tr>
+<tr><td class=""><p id="808efcd">=para </p></td><td class="">Ordinary paragraph</td></tr>
+<tr><td class=""><p id="585212e">=rakudoc </p></td><td class="">No &quot;ambient&quot; blocks inside</td></tr>
+<tr><td class=""><p id="436755e">=section </p></td><td class="">Defines a section</td></tr>
+<tr><td class=""><p id="7ad2375">=pod </p></td><td class="">Legacy version of RakuDoc</td></tr>
+<tr><td class=""><p id="b4ec3b7">=table </p></td><td class="">Visual or procedural table</td></tr>
+<tr><td class=""><p id="d370b93">=formula </p></td><td class="">Render content as LaTex formula</td></tr>
+<tr><td class=""><p id="64f0feb">=data </p></td><td class="">Raku data section</td></tr>
 <tr><td class="">RESERVED</td><td class="">Semantic blocks (SYNOPSIS, TITLE, etc.)</td></tr>
 <tr><td class="">CustomName</td><td class="">User-defined block</td></tr></table>
 
 <div class="id-target" id="Metadata options"></div><h2 id="Metadata_options" class="heading py-2 "><a href="#" title="go to top of document">Metadata options</a><a class="raku-anchor" title="direct link" href="#Metadata options">§</a></h2>
 <table class="table is-striped is-bordered">
 <tr><th class="">Metadata option</th><th class="">Blocks applied to</th><th class="">Description</th></tr>
-<tr><td rowspan="4" class="procedural-cell-middle "><p id="8231a83"><span class="code">:allow</span> </p>
-</td><td class=""><p id="4630a00"><span class="code">=code</span> </p>
-</td><td rowspan="4" class="procedural-cell-middle ">Change default of verbatim blocks</td></tr>
-<tr><td class=""><p id="15d964d"><span class="code">=input</span> </p>
-</td></tr>
-<tr><td class=""><p id="92ef887"><span class="code">=output</span> </p>
-</td></tr>
-<tr><td class=""><p id="9181c50"><span class="code">=table</span> </p>
-</td></tr>
-<tr><td class=""><p id="2f1fb2f"><span class="code">:id</span> </p>
-</td><td class="">all blocks</td><td class="">Specify the anchor for a block</td></tr>
-<tr><td rowspan="2" class=""><p id="7703bc4"><span class="code">:continued</span> </p>
-</td><td class=""><p id="ea65ae9"><span class="code">=item</span> </p>
-</td><td rowspan="2" class="">Continue numbering from the previous numbered list</td></tr>
-<tr><td class=""><p id="681b2e0"><span class="code">=numitem</span> </p>
-</td></tr>
-<tr><td rowspan="8" class=""><p id="e439eea"><span class="code">:toc</span> </p>
-</td><td class=""><p id="625cd2d"><span class="code">=para</span> </p>
-</td><td rowspan="8" class="">Include content or caption in Table of contents</td></tr>
-<tr><td class=""><p id="0fa6a8b"><span class="code">=nested</span> </p>
-</td></tr>
-<tr><td class=""><p id="4630a00"><span class="code">=code</span> </p>
-</td></tr>
-<tr><td class=""><p id="15d964d"><span class="code">=input</span> </p>
-</td></tr>
-<tr><td class=""><p id="92ef887"><span class="code">=output</span> </p>
-</td></tr>
-<tr><td class=""><p id="9181c50"><span class="code">=table</span> </p>
-</td></tr>
-<tr><td class=""><p id="4eab40d"><span class="code">=formula</span> </p>
-</td></tr>
-<tr><td class=""><p id="068023f"><span class="code">=place</span> </p>
-</td></tr>
-<tr><td rowspan="4" class=""><p id="4553ef1"><span class="code">:!toc</span> </p>
-</td><td class="">SEMANTIC block</td><td rowspan="4" class="">Do not include content or caption in Table of contents</td></tr>
+<tr><td rowspan="4" class="procedural-cell-middle "><p id="8231a83"><span class="code">:allow</span> </p></td><td class=""><p id="4630a00"><span class="code">=code</span> </p></td><td rowspan="4" class="procedural-cell-middle ">Change default of verbatim blocks</td></tr>
+<tr><td class=""><p id="15d964d"><span class="code">=input</span> </p></td></tr>
+<tr><td class=""><p id="92ef887"><span class="code">=output</span> </p></td></tr>
+<tr><td class=""><p id="9181c50"><span class="code">=table</span> </p></td></tr>
+<tr><td class=""><p id="2f1fb2f"><span class="code">:id</span> </p></td><td class="">all blocks</td><td class="">Specify the anchor for a block</td></tr>
+<tr><td rowspan="2" class=""><p id="7703bc4"><span class="code">:continued</span> </p></td><td class=""><p id="ea65ae9"><span class="code">=item</span> </p></td><td rowspan="2" class="">Continue numbering from the previous numbered list</td></tr>
+<tr><td class=""><p id="681b2e0"><span class="code">=numitem</span> </p></td></tr>
+<tr><td rowspan="8" class=""><p id="e439eea"><span class="code">:toc</span> </p></td><td class=""><p id="625cd2d"><span class="code">=para</span> </p></td><td rowspan="8" class="">Include content or caption in Table of contents</td></tr>
+<tr><td class=""><p id="0fa6a8b"><span class="code">=nested</span> </p></td></tr>
+<tr><td class=""><p id="4630a00"><span class="code">=code</span> </p></td></tr>
+<tr><td class=""><p id="15d964d"><span class="code">=input</span> </p></td></tr>
+<tr><td class=""><p id="92ef887"><span class="code">=output</span> </p></td></tr>
+<tr><td class=""><p id="9181c50"><span class="code">=table</span> </p></td></tr>
+<tr><td class=""><p id="4eab40d"><span class="code">=formula</span> </p></td></tr>
+<tr><td class=""><p id="068023f"><span class="code">=place</span> </p></td></tr>
+<tr><td rowspan="4" class=""><p id="4553ef1"><span class="code">:!toc</span> </p></td><td class="">SEMANTIC block</td><td rowspan="4" class="">Do not include content or caption in Table of contents</td></tr>
 <tr><td class="">Custom block</td></tr>
-<tr><td class=""><p id="92b7d10"><span class="code">=headN</span> </p>
-</td></tr>
-<tr><td class=""><p id="3e4e666"><span class="code">=numheadN</span> </p>
-</td></tr>
-<tr><td rowspan="10" class=""><p id="c650277"><span class="code">:headlevel</span> </p>
-</td><td class="">SEMANTIC block</td><td rowspan="10" class="">Define the head level at which the caption is included in the Table of contents</td></tr>
+<tr><td class=""><p id="92b7d10"><span class="code">=headN</span> </p></td></tr>
+<tr><td class=""><p id="3e4e666"><span class="code">=numheadN</span> </p></td></tr>
+<tr><td rowspan="10" class=""><p id="c650277"><span class="code">:headlevel</span> </p></td><td class="">SEMANTIC block</td><td rowspan="10" class="">Define the head level at which the caption is included in the Table of contents</td></tr>
 <tr><td class="">Custom block</td></tr>
-<tr><td class=""><p id="625cd2d"><span class="code">=para</span> </p>
-</td></tr>
-<tr><td class=""><p id="0fa6a8b"><span class="code">=nested</span> </p>
-</td></tr>
-<tr><td class=""><p id="4630a00"><span class="code">=code</span> </p>
-</td></tr>
-<tr><td class=""><p id="15d964d"><span class="code">=input</span> </p>
-</td></tr>
-<tr><td class=""><p id="92ef887"><span class="code">=output</span> </p>
-</td></tr>
-<tr><td class=""><p id="9181c50"><span class="code">=table</span> </p>
-</td></tr>
-<tr><td class=""><p id="4eab40d"><span class="code">=formula</span> </p>
-</td></tr>
-<tr><td class=""><p id="068023f"><span class="code">=place</span> </p>
-</td></tr>
-<tr><td rowspan="9" class=""><p id="a49b61a"><span class="code">:caption</span> </p>
-</td><td class="">Semantic block</td><td rowspan="9" class="">Caption to be associated with a block in the Table of Contents</td></tr>
+<tr><td class=""><p id="625cd2d"><span class="code">=para</span> </p></td></tr>
+<tr><td class=""><p id="0fa6a8b"><span class="code">=nested</span> </p></td></tr>
+<tr><td class=""><p id="4630a00"><span class="code">=code</span> </p></td></tr>
+<tr><td class=""><p id="15d964d"><span class="code">=input</span> </p></td></tr>
+<tr><td class=""><p id="92ef887"><span class="code">=output</span> </p></td></tr>
+<tr><td class=""><p id="9181c50"><span class="code">=table</span> </p></td></tr>
+<tr><td class=""><p id="4eab40d"><span class="code">=formula</span> </p></td></tr>
+<tr><td class=""><p id="068023f"><span class="code">=place</span> </p></td></tr>
+<tr><td rowspan="9" class=""><p id="a49b61a"><span class="code">:caption</span> </p></td><td class="">Semantic block</td><td rowspan="9" class="">Caption to be associated with a block in the Table of Contents</td></tr>
 <tr><td class="">Custom block</td></tr>
-<tr><td class=""><p id="0fa6a8b"><span class="code">=nested</span> </p>
-</td></tr>
-<tr><td class=""><p id="4630a00"><span class="code">=code</span> </p>
-</td></tr>
-<tr><td class=""><p id="15d964d"><span class="code">=input</span> </p>
-</td></tr>
-<tr><td class=""><p id="92ef887"><span class="code">=output</span> </p>
-</td></tr>
-<tr><td class=""><p id="9181c50"><span class="code">=table</span> </p>
-</td></tr>
-<tr><td class=""><p id="4eab40d"><span class="code">=formula</span> </p>
-</td></tr>
-<tr><td class=""><p id="068023f"><span class="code">=place</span> </p>
-</td></tr>
-<tr><td class=""><p id="7c857a9"><span class="code">:hidden</span> </p>
-</td><td class="">Semantic block</td><td class=""><p id="bef4323">Remove block from rendered text and ToC (use <span class="code">P&lt;semantic: ...&gt;</span> to inject elsewhere) </p>
-</td></tr>
-<tr><td rowspan="4" class=""><p id="f3fe198"><span class="code">:header</span> </p>
-</td><td class=""><p id="7ad3351"><span class="code">=table</span> (procedural semantics only) </p>
-</td><td rowspan="4" class="">Specify rows, columns, or cells to be rendered as headers</td></tr>
-<tr><td class=""><p id="392c0ce"><span class="code">=cell</span> </p>
-</td></tr>
-<tr><td class=""><p id="ad2996f"><span class="code">=row</span> directive </p>
-</td></tr>
-<tr><td class=""><p id="153ddad"><span class="code">=column</span> directive </p>
-</td></tr>
-<tr><td rowspan="4" class=""><p id="55ede72"><span class="code">:label</span> </p>
-</td><td class=""><p id="7ad3351"><span class="code">=table</span> (procedural semantics only) </p>
-</td><td rowspan="4" class="">Specify rows, columns, or cells to be rendered as labels</td></tr>
-<tr><td class=""><p id="392c0ce"><span class="code">=cell</span> </p>
-</td></tr>
-<tr><td class=""><p id="ad2996f"><span class="code">=row</span> directive </p>
-</td></tr>
-<tr><td class=""><p id="153ddad"><span class="code">=column</span> directive </p>
-</td></tr>
-<tr><td rowspan="4" class=""><p id="f2bc21a"><span class="code">:align&lt;ALIGNMENTS&gt;</span> </p>
-</td><td class=""><p id="7ad3351"><span class="code">=table</span> (procedural semantics only) </p>
-</td><td rowspan="4" class="">Specify how cell contents are to be vertically and/or horizontally aligned</td></tr>
-<tr><td class=""><p id="392c0ce"><span class="code">=cell</span> </p>
-</td></tr>
-<tr><td class=""><p id="ad2996f"><span class="code">=row</span> directive </p>
-</td></tr>
-<tr><td class=""><p id="153ddad"><span class="code">=column</span> directive </p>
-</td></tr>
-<tr><td class=""><p id="5ef257e"><span class="code">:row-span(HEIGHT)</span> </p>
-</td><td class=""><p id="392c0ce"><span class="code">=cell</span> </p>
-</td><td class="">Specify how many rows a single cell should span in a procedural table</td></tr>
-<tr><td class=""><p id="9c71024"><span class="code">:column-span(WIDTH)</span> </p>
-</td><td class=""><p id="392c0ce"><span class="code">=cell</span> </p>
-</td><td class="">Specify how many columns a single cell should span in a procedural table</td></tr>
-<tr><td class=""><p id="7d28b4b"><span class="code">:span(WIDTH, HEIGHT)</span> </p>
-</td><td class=""><p id="392c0ce"><span class="code">=cell</span> </p>
-</td><td class=""><p id="0981661">A shortcut for <span class="code">:column-span(WIDTH) :row-span(HEIGHT)</span> </p>
-</td></tr>
-<tr><td rowspan="10" class="procedural-cell-top "><p id="7a3d4a0"><span class="code">:delta</span> </p>
-</td><td class=""><p id="9181c50"><span class="code">=table</span> </p>
-</td><td rowspan="10" class="procedural-cell-top ">Developer information associated with a block</td></tr>
-<tr><td class=""><p id="4eab40d"><span class="code">=formula</span> </p>
-</td></tr>
-<tr><td class=""><p id="0fa6a8b"><span class="code">=nested</span> </p>
-</td></tr>
-<tr><td class=""><p id="4630a00"><span class="code">=code</span> </p>
-</td></tr>
-<tr><td class=""><p id="15d964d"><span class="code">=input</span> </p>
-</td></tr>
-<tr><td class=""><p id="92ef887"><span class="code">=output</span> </p>
-</td></tr>
-<tr><td class=""><p id="92b7d10"><span class="code">=headN</span> </p>
-</td></tr>
-<tr><td class=""><p id="3e4e666"><span class="code">=numheadN</span> </p>
-</td></tr>
+<tr><td class=""><p id="0fa6a8b"><span class="code">=nested</span> </p></td></tr>
+<tr><td class=""><p id="4630a00"><span class="code">=code</span> </p></td></tr>
+<tr><td class=""><p id="15d964d"><span class="code">=input</span> </p></td></tr>
+<tr><td class=""><p id="92ef887"><span class="code">=output</span> </p></td></tr>
+<tr><td class=""><p id="9181c50"><span class="code">=table</span> </p></td></tr>
+<tr><td class=""><p id="4eab40d"><span class="code">=formula</span> </p></td></tr>
+<tr><td class=""><p id="068023f"><span class="code">=place</span> </p></td></tr>
+<tr><td class=""><p id="7c857a9"><span class="code">:hidden</span> </p></td><td class="">Semantic block</td><td class=""><p id="bef4323">Remove block from rendered text and ToC (use <span class="code">P&lt;semantic: ...&gt;</span> to inject elsewhere) </p></td></tr>
+<tr><td rowspan="4" class=""><p id="f3fe198"><span class="code">:header</span> </p></td><td class=""><p id="7ad3351"><span class="code">=table</span> (procedural semantics only) </p></td><td rowspan="4" class="">Specify rows, columns, or cells to be rendered as headers</td></tr>
+<tr><td class=""><p id="392c0ce"><span class="code">=cell</span> </p></td></tr>
+<tr><td class=""><p id="ad2996f"><span class="code">=row</span> directive </p></td></tr>
+<tr><td class=""><p id="153ddad"><span class="code">=column</span> directive </p></td></tr>
+<tr><td rowspan="4" class=""><p id="55ede72"><span class="code">:label</span> </p></td><td class=""><p id="7ad3351"><span class="code">=table</span> (procedural semantics only) </p></td><td rowspan="4" class="">Specify rows, columns, or cells to be rendered as labels</td></tr>
+<tr><td class=""><p id="392c0ce"><span class="code">=cell</span> </p></td></tr>
+<tr><td class=""><p id="ad2996f"><span class="code">=row</span> directive </p></td></tr>
+<tr><td class=""><p id="153ddad"><span class="code">=column</span> directive </p></td></tr>
+<tr><td rowspan="4" class=""><p id="f2bc21a"><span class="code">:align&lt;ALIGNMENTS&gt;</span> </p></td><td class=""><p id="7ad3351"><span class="code">=table</span> (procedural semantics only) </p></td><td rowspan="4" class="">Specify how cell contents are to be vertically and/or horizontally aligned</td></tr>
+<tr><td class=""><p id="392c0ce"><span class="code">=cell</span> </p></td></tr>
+<tr><td class=""><p id="ad2996f"><span class="code">=row</span> directive </p></td></tr>
+<tr><td class=""><p id="153ddad"><span class="code">=column</span> directive </p></td></tr>
+<tr><td class=""><p id="5ef257e"><span class="code">:row-span(HEIGHT)</span> </p></td><td class=""><p id="392c0ce"><span class="code">=cell</span> </p></td><td class="">Specify how many rows a single cell should span in a procedural table</td></tr>
+<tr><td class=""><p id="9c71024"><span class="code">:column-span(WIDTH)</span> </p></td><td class=""><p id="392c0ce"><span class="code">=cell</span> </p></td><td class="">Specify how many columns a single cell should span in a procedural table</td></tr>
+<tr><td class=""><p id="7d28b4b"><span class="code">:span(WIDTH, HEIGHT)</span> </p></td><td class=""><p id="392c0ce"><span class="code">=cell</span> </p></td><td class=""><p id="0981661">A shortcut for <span class="code">:column-span(WIDTH) :row-span(HEIGHT)</span> </p></td></tr>
+<tr><td rowspan="10" class="procedural-cell-top "><p id="7a3d4a0"><span class="code">:delta</span> </p></td><td class=""><p id="9181c50"><span class="code">=table</span> </p></td><td rowspan="10" class="procedural-cell-top ">Developer information associated with a block</td></tr>
+<tr><td class=""><p id="4eab40d"><span class="code">=formula</span> </p></td></tr>
+<tr><td class=""><p id="0fa6a8b"><span class="code">=nested</span> </p></td></tr>
+<tr><td class=""><p id="4630a00"><span class="code">=code</span> </p></td></tr>
+<tr><td class=""><p id="15d964d"><span class="code">=input</span> </p></td></tr>
+<tr><td class=""><p id="92ef887"><span class="code">=output</span> </p></td></tr>
+<tr><td class=""><p id="92b7d10"><span class="code">=headN</span> </p></td></tr>
+<tr><td class=""><p id="3e4e666"><span class="code">=numheadN</span> </p></td></tr>
 <tr><td class="">Semantic block</td></tr>
 <tr><td class="">Custom block</td></tr>
-<tr><td class=""><p id="04309b4"><span class="code">:bullet&lt;CHAR&gt;</span> </p>
-</td><td class=""><p id="addd10d"><span class="code">=itemN</span> </p>
-</td><td class=""><p id="2f53082">Replace the default bullet with one or more characters, or entities specified with <span class="code">E&lt; &gt;</span> </p>
-</td></tr></table>
+<tr><td class=""><p id="04309b4"><span class="code">:bullet&lt;CHAR&gt;</span> </p></td><td class=""><p id="addd10d"><span class="code">=itemN</span> </p></td><td class=""><p id="2f53082">Replace the default bullet with one or more characters, or entities specified with <span class="code">E&lt; &gt;</span> </p></td></tr></table>
 
 <div class="id-target" id="Markup instructions"></div><h2 id="Markup_instructions_0" class="heading py-2 "><a href="#" title="go to top of document">Markup instructions</a><a class="raku-anchor" title="direct link" href="#Markup instructions">§</a></h2>
 <table class="table is-striped is-bordered">
 <tr><th class="">Markup instruction</th><th class="">Specifies</th></tr>
-<tr><td class=""><p id="d7ff7d0">A&lt;...|...&gt; </p>
-</td><td class=""><p id="7794551">Alias to be replaced by contents of specified =alias directive </p>
-</td></tr>
-<tr><td class=""><p id="0849280">B&lt;...&gt; </p>
-</td><td class="">Basis/focus of sentence (typically rendered bold)</td></tr>
-<tr><td class=""><p id="d75ee78">C&lt;...&gt; </p>
-</td><td class="">Code (typically rendered fixed-width)</td></tr>
-<tr><td class=""><p id="41b26c6">D&lt;...&gt; </p>
-</td><td class=""><p id="e64371d">Definition inline (D&lt;term being defined|synonym1; synonym2&gt;) </p>
-</td></tr>
-<tr><td class=""><p id="48ead63">Δ&lt;...|...;...&gt; </p>
-</td><td class=""><p id="ee9cd9b">Delta note (Δ&lt;visible text|version; Notification text&gt;) </p>
-</td></tr>
-<tr><td class=""><p id="17404a2"> E&lt;...|...;...&gt; </p>
-</td><td class=""><p id="27c2b6a">Entity (HTML or Unicode) description ( E&lt;entity1;entity2; multi,glyph;...&gt;) </p>
-</td></tr>
-<tr><td class=""><p id="1d1bdee">F&lt;...|...&gt; </p>
-</td><td class=""><p id="d876e61">Inline content for a formula (F&lt;ALT|LaTex notation&gt;) </p>
-</td></tr>
-<tr><td class=""><p id="a64e5e6">G&lt;...&gt; </p>
-</td><td class="">(This markup code is not yet defined, but is reserved for future use)</td></tr>
-<tr><td class=""><p id="db9161f">H&lt;...&gt; </p>
-</td><td class="">High text (typically rendered superscript)</td></tr>
-<tr><td class=""><p id="4ddef78">I&lt;...&gt; </p>
-</td><td class="">Important (typically rendered in italics)</td></tr>
-<tr><td class=""><p id="54b222c">J&lt;...&gt; </p>
-</td><td class="">Junior text (typically rendered subscript)</td></tr>
-<tr><td class=""><p id="c4e911d">K&lt;...&gt; </p>
-</td><td class="">Keyboard input (typically rendered fixed-width)</td></tr>
-<tr><td class=""><p id="3be6f31">L&lt;...|...|&gt; </p>
-</td><td class=""><p id="427d844">Link (L&lt;display text|destination URI|&gt;) </p>
-</td></tr>
-<tr><td class=""><p id="ce68e29">M&lt;...|..,..;...&gt; </p>
-</td><td class=""><p id="b928fc8">Markup extra (M&lt;display text|functionality;param,sub-type;...&gt;) </p>
-</td></tr>
-<tr><td class=""><p id="4500809">N&lt;...&gt; </p>
-</td><td class="">Note (not rendered inline, but visible in some way: footnote, sidenote, pop-up, etc.))</td></tr>
-<tr><td class=""><p id="1c73c4f">O&lt;...&gt; </p>
-</td><td class="">Overstrike or strikethrough</td></tr>
-<tr><td class=""><p id="f1583b7">P&lt;...|...&gt; </p>
-</td><td class="">Placement link</td></tr>
-<tr><td class=""><p id="5198805">Q&lt;...&gt; </p>
-</td><td class="">(This markup code is not yet defined, but is reserved for future use)</td></tr>
-<tr><td class=""><p id="554002e">R&lt;...&gt; </p>
-</td><td class="">Replaceable component or metasyntax</td></tr>
-<tr><td class=""><p id="9aef84b">S&lt;...&gt; </p>
-</td><td class="">Space characters to be preserved</td></tr>
-<tr><td class=""><p id="affb7d8">T&lt;...&gt; </p>
-</td><td class="">Terminal output (typically rendered fixed-width)</td></tr>
-<tr><td class=""><p id="128bc17">U&lt;...&gt; </p>
-</td><td class="">Unusual (typically rendered with underlining)</td></tr>
-<tr><td class=""><p id="9ed6f84">V&lt;...&gt; </p>
-</td><td class="">Verbatim (internal markup instructions ignored)</td></tr>
-<tr><td class=""><p id="7544071">W&lt;...&gt; </p>
-</td><td class="">(This markup code is not yet defined, but is reserved for future use)</td></tr>
-<tr><td class=""><p id="aaa3427">X&lt;...|..,..;...&gt; </p>
-</td><td class=""><p id="a7ffbf1">Index entry (X&lt;display text|entry,subentry;...&gt;) </p>
-</td></tr>
-<tr><td class=""><p id="9958cde">Y&lt;...&gt; </p>
-</td><td class="">(This markup code is not yet defined, but is reserved for future use)</td></tr>
-<tr><td class=""><p id="3de4df1">Z&lt;...&gt; </p>
-</td><td class="">Zero-width comment (contents never rendered)</td></tr></table>
+<tr><td class=""><p id="d7ff7d0">A&lt;...|...&gt; </p></td><td class=""><p id="7794551">Alias to be replaced by contents of specified =alias directive </p></td></tr>
+<tr><td class=""><p id="0849280">B&lt;...&gt; </p></td><td class="">Basis/focus of sentence (typically rendered bold)</td></tr>
+<tr><td class=""><p id="d75ee78">C&lt;...&gt; </p></td><td class="">Code (typically rendered fixed-width)</td></tr>
+<tr><td class=""><p id="41b26c6">D&lt;...&gt; </p></td><td class=""><p id="e64371d">Definition inline (D&lt;term being defined|synonym1; synonym2&gt;) </p></td></tr>
+<tr><td class=""><p id="48ead63">Δ&lt;...|...;...&gt; </p></td><td class=""><p id="ee9cd9b">Delta note (Δ&lt;visible text|version; Notification text&gt;) </p></td></tr>
+<tr><td class=""><p id="17404a2"> E&lt;...|...;...&gt; </p></td><td class=""><p id="27c2b6a">Entity (HTML or Unicode) description ( E&lt;entity1;entity2; multi,glyph;...&gt;) </p></td></tr>
+<tr><td class=""><p id="1d1bdee">F&lt;...|...&gt; </p></td><td class=""><p id="d876e61">Inline content for a formula (F&lt;ALT|LaTex notation&gt;) </p></td></tr>
+<tr><td class=""><p id="a64e5e6">G&lt;...&gt; </p></td><td class="">(This markup code is not yet defined, but is reserved for future use)</td></tr>
+<tr><td class=""><p id="db9161f">H&lt;...&gt; </p></td><td class="">High text (typically rendered superscript)</td></tr>
+<tr><td class=""><p id="4ddef78">I&lt;...&gt; </p></td><td class="">Important (typically rendered in italics)</td></tr>
+<tr><td class=""><p id="54b222c">J&lt;...&gt; </p></td><td class="">Junior text (typically rendered subscript)</td></tr>
+<tr><td class=""><p id="c4e911d">K&lt;...&gt; </p></td><td class="">Keyboard input (typically rendered fixed-width)</td></tr>
+<tr><td class=""><p id="3be6f31">L&lt;...|...|&gt; </p></td><td class=""><p id="427d844">Link (L&lt;display text|destination URI|&gt;) </p></td></tr>
+<tr><td class=""><p id="ce68e29">M&lt;...|..,..;...&gt; </p></td><td class=""><p id="b928fc8">Markup extra (M&lt;display text|functionality;param,sub-type;...&gt;) </p></td></tr>
+<tr><td class=""><p id="4500809">N&lt;...&gt; </p></td><td class="">Note (not rendered inline, but visible in some way: footnote, sidenote, pop-up, etc.))</td></tr>
+<tr><td class=""><p id="1c73c4f">O&lt;...&gt; </p></td><td class="">Overstrike or strikethrough</td></tr>
+<tr><td class=""><p id="f1583b7">P&lt;...|...&gt; </p></td><td class="">Placement link</td></tr>
+<tr><td class=""><p id="5198805">Q&lt;...&gt; </p></td><td class="">(This markup code is not yet defined, but is reserved for future use)</td></tr>
+<tr><td class=""><p id="554002e">R&lt;...&gt; </p></td><td class="">Replaceable component or metasyntax</td></tr>
+<tr><td class=""><p id="9aef84b">S&lt;...&gt; </p></td><td class="">Space characters to be preserved</td></tr>
+<tr><td class=""><p id="affb7d8">T&lt;...&gt; </p></td><td class="">Terminal output (typically rendered fixed-width)</td></tr>
+<tr><td class=""><p id="128bc17">U&lt;...&gt; </p></td><td class="">Unusual (typically rendered with underlining)</td></tr>
+<tr><td class=""><p id="9ed6f84">V&lt;...&gt; </p></td><td class="">Verbatim (internal markup instructions ignored)</td></tr>
+<tr><td class=""><p id="7544071">W&lt;...&gt; </p></td><td class="">(This markup code is not yet defined, but is reserved for future use)</td></tr>
+<tr><td class=""><p id="aaa3427">X&lt;...|..,..;...&gt; </p></td><td class=""><p id="a7ffbf1">Index entry (X&lt;display text|entry,subentry;...&gt;) </p></td></tr>
+<tr><td class=""><p id="9958cde">Y&lt;...&gt; </p></td><td class="">(This markup code is not yet defined, but is reserved for future use)</td></tr>
+<tr><td class=""><p id="3de4df1">Z&lt;...&gt; </p></td><td class="">Zero-width comment (contents never rendered)</td></tr></table>
 <h1 id="LICENSE" class="heading py-2 "><a href="#" title="go to top of document">LICENSE</a><a class="raku-anchor" title="direct link" href="#LICENSE">§</a></h1>
 Artistic-2.0
 
@@ -3631,10 +3360,10 @@ Artistic-2.0
                 Rendered from <span class="footer-field">./rakudoc_draft_3.rakudoc/rakudoc_draft_3
             </div>
             <div class="level-item">
-                Rendered at 10:40 UTC on 2024-12-21
+                Rendered at 17:31 UTC on 2024-12-22
             </div>
             <div class="level-item">
-                Source last modified at 10:00 UTC on 2024-12-18
+                Source last modified at 17:30 UTC on 2024-12-22
             </div>
         </nav>
     </div>

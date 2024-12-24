@@ -11,7 +11,7 @@
 #page-nav{width:25%;position:fixed}#page-nav .panel-block .toc{overflow-y:scroll;height:65vh}#page-nav .panel-block .index{overflow-y:scroll;height:65vh}.main-footer{z-index:1;position:relative}.toc-item:hover{background:var(--bulma-background)}.toc-item a{text-decoration:none;color:var(--bulma-text)}
 </style>
 <style>/* bulma */
-.content p+ul.item-list{margin-top:0}.content p+ol.item-list{margin-top:0}.delta:hover{border:var(--bulma-border-hover) 1px solid}
+.content p+ul.item-list{margin-top:0}.content p+ol.item-list{margin-top:0}.delta:hover{border:var(--bulma-border-hover) 1px solid}.navbar-start{margin-bottom:1rem}
 </style>
 <style>/* bulma */
 label.chyronToggle input#navbar-toc-toggle{opacity:0;height:0;width:0}label.chyronToggle span.checkmark{top:1rem;position:relative;cursor:pointer}label.chyronToggle input[type=checkbox]{position:absolute;opacity:0;cursor:pointer;height:0;width:0}label.chyronToggle span.checkmark::before{content:"[⇨";color:gray;font-weight:800;line-height:.5rem;font-size:1.75rem;margin-right:.25rem}label.chyronToggle:hover span.checkmark::before{content:"[ ⇨"}label.chyronToggle input[type=checkbox]:checked+.checkmark::before{content:"[ ⇦"}label.chyronToggle:hover input[type=checkbox]:checked+.checkmark::before{content:"[⇦"}
@@ -89,12 +89,16 @@ var persist_theme = function (theme) { localStorage.setItem('theme', theme) };
 var persisted_tocState = function () { return localStorage.getItem('tocOpen') };
 var persist_tocState = function (tocState) { localStorage.setItem('tocOpen', tocState ) };
 
+var originalIndex;
+var originalTOC;
+
 document.addEventListener('DOMContentLoaded', function () {
     // set up functions needing document variables.
     var matchTocState = function ( state ) {
         if ( state ) {
             document.getElementById("TOC").classList.remove('is-hidden');
             document.getElementById("page-nav").classList.remove('is-hidden');
+            document.getElementById("mobile-nav").classList.remove('is-hidden');
             document.getElementById("MainText").classList.add('is-three-quarters');
             document.getElementById("MainText").classList.add('column');
             document.getElementById("MainText").classList.remove('px-5');
@@ -103,6 +107,7 @@ document.addEventListener('DOMContentLoaded', function () {
         else {
             document.getElementById("TOC").classList.add('is-hidden');
             document.getElementById("page-nav").classList.add('is-hidden');
+            document.getElementById("mobile-nav").classList.add('is-hidden');
             document.getElementById("MainText").classList.remove('is-three-quarters');
             document.getElementById("MainText").classList.remove('column');
             document.getElementById("MainText").classList.add('px-5');
@@ -113,6 +118,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if ( state === 'closed') {
             document.getElementById("TOC").classList.add('is-hidden');
             document.getElementById("page-nav").classList.add('is-hidden');
+            document.getElementById("mobile-nav").classList.add('is-hidden');
             document.getElementById("MainText").classList.remove('is-three-quarters');
             document.getElementById("MainText").classList.remove('column');
             document.getElementById("MainText").classList.add('px-5');
@@ -121,6 +127,7 @@ document.addEventListener('DOMContentLoaded', function () {
         else {
             document.getElementById("TOC").classList.remove('is-hidden');
             document.getElementById("page-nav").classList.remove('is-hidden');
+            document.getElementById("mobile-nav").classList.remove('is-hidden');
             document.getElementById("MainText").classList.add('is-three-quarters');
             document.getElementById("MainText").classList.add('column');
             document.getElementById("MainText").classList.remove('px-5');
@@ -166,48 +173,54 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById("navbar-toc-toggle").addEventListener('change', function() {
         matchTocState( this.checked )
     });
-    document.getElementById('toc-tab').addEventListener('click', function () { swap_toc_index('toc') });
-    document.getElementById('index-tab').addEventListener('click', function () { swap_toc_index('index') });
-    var TOC = document.getElementById('toc-menu');
-    var Index = document.getElementById('index-menu');
-    var originalTOC = TOC.getHTML();
-    var originalIndex = Index.getHTML();
+    document.getElementById('toc-tab').addEventListener('click', function () { swap_toc_index('','toc') });
+    document.getElementById('index-tab').addEventListener('click', function () { swap_toc_index('','index') });
+    document.getElementById('mtoc-tab').addEventListener('click', function () { swap_toc_index('m','toc') });
+    document.getElementById('mindex-tab').addEventListener('click', function () { swap_toc_index('m','index') });
+    originalTOC = document.getElementById('toc-menu').getHTML();
+    originalIndex = document.getElementById('index-menu').getHTML();
     document.getElementById("page-nav-search").addEventListener('keyup', function (event) {
-        TOC.innerHTML = originalTOC;
-        Index.innerHTML = originalIndex;
-        var searchText = event.srcElement.value.toLowerCase();
-        if (searchText.length === 0) return;
-        var menuListElements = document.getElementById('page-nav').querySelectorAll('.toc-item, .index-section');
-        var matchingListElements = Array.from(menuListElements).filter(function (item) {
-            var el;
-            if ( item.classList.contains('toc-item') ) {
-                el = item.querySelector('a');
-            } else {
-                el = item.querySelector('.index-entry')
-            }
-            var listItemHTML = el.innerHTML;
-            var fuzzyRes = fuzzysort.go(searchText, [listItemHTML])[0];
-            if (fuzzyRes === undefined || fuzzyRes.score <= 0) {
-                return false;
-            }
-            var res = fuzzyRes.highlight('<b>','</b>');
-            if (res !== null) {
-                el.innerHTML = res;
-                return true;
-            } else {
-                return false;
-            }
-        });
-    menuListElements.forEach(function(elem){elem.classList.add('is-hidden')});
-    matchingListElements.forEach(function(elem){elem.classList.remove('is-hidden')});
+        filtersearch(event, 'toc-menu', 'index-menu', 'page-nav')
+    });
+    document.getElementById("mobile-nav-search").addEventListener('keyup', function (event) {
+        filtersearch(event, 'mtoc-menu', 'mindex-menu', 'mobile-nav')
     });
 });
-function swap_toc_index(activate) {
+function filtersearch(event, toc,index,nav) {
+    document.getElementById(toc).innerHTML = originalTOC;
+    document.getElementById(index).innerHTML = originalIndex;
+    var searchText = event.srcElement.value.toLowerCase();
+    if (searchText.length === 0) return;
+    var menuListElements = document.getElementById(nav).querySelectorAll('.toc-item, .index-section');
+    var matchingListElements = Array.from(menuListElements).filter(function (item) {
+        var el;
+        if ( item.classList.contains('toc-item') ) {
+            el = item.querySelector('a');
+        } else {
+            el = item.querySelector('.index-entry')
+        }
+        var listItemHTML = el.innerHTML;
+        var fuzzyRes = fuzzysort.go(searchText, [listItemHTML])[0];
+        if (fuzzyRes === undefined || fuzzyRes.score <= 0) {
+            return false;
+        }
+        var res = fuzzyRes.highlight('<b>','</b>');
+        if (res !== null) {
+            el.innerHTML = res;
+            return true;
+        } else {
+            return false;
+        }
+    });
+    menuListElements.forEach(function(elem){elem.classList.add('is-hidden')});
+    matchingListElements.forEach(function(elem){elem.classList.remove('is-hidden')});
+};
+function swap_toc_index(div, activate) {
     let disactivate = (activate == 'toc') ? 'index' : 'toc';
-    document.getElementById( activate + '-tab').classList.add('is-active');
-    document.getElementById( disactivate + '-menu').classList.add('is-hidden');
-    document.getElementById( disactivate + '-tab').classList.remove('is-active');
-    document.getElementById( activate + '-menu').classList.remove('is-hidden');
+    document.getElementById( div + activate + '-tab').classList.add('is-active');
+    document.getElementById( div + disactivate + '-menu').classList.add('is-hidden');
+    document.getElementById( div + disactivate + '-tab').classList.remove('is-active');
+    document.getElementById( div + activate + '-menu').classList.remove('is-hidden');
 }
 </script>
 
@@ -241,9 +254,126 @@ function swap_toc_index(activate) {
                 <button id="changeTheme" class="button">Change theme</button>
             </div>
         </div>
+        <nav class="panel is-hidden-tablet" id="mobile-nav">
+          <div class="panel-block">
+            <p class="control has-icons-left">
+              <input class="input" type="text" placeholder="Search" id="mobile-nav-search"/>
+              <span class="icon is-left">
+                <i class="fas fa-search" aria-hidden="true"></i>
+              </span>
+            </p>
+          </div>
+          <p class="panel-tabs">
+            <a id="mtoc-tab">Table of Contents</a>
+            <a id="mindex-tab">Index</a>
+          </p>
+            <aside id="mtoc-menu" class="panel-block">
+            <div class="toc"><div class="toc-item" style="--level:0;" data-bullet=""><a href="#VERSION">VERSION</a></div>
+<div class="toc-item" style="--level:0;" data-bullet=""><a href="#SYNOPSIS">SYNOPSIS</a></div>
+<div class="toc-item" style="--level:1;" data-bullet="▹"><a href="#Case_1:_You_are_writing_internal_documentation_to_aid_software_design">Case 1: You are writing internal documentation to aid software design</a></div>
+<div class="toc-item" style="--level:1;" data-bullet="▹"><a href="#Case2:_You_are_writing_external_documentation_to_accompany_some_software">Case2: You are writing external documentation to accompany some software</a></div>
+<div class="toc-item" style="--level:0;" data-bullet=""><a href="#Introduction">Introduction</a></div>
+<div class="toc-item" style="--level:0;" data-bullet=""><a href="#Two_use_cases_for_RakuDoc">Two use cases for RakuDoc</a></div>
+<div class="toc-item" style="--level:0;" data-bullet=""><a href="#Components">Components</a></div>
+<div class="toc-item" style="--level:1;" data-bullet="▹"><a href="#Directive_syntax">Directive syntax</a></div>
+<div class="toc-item" style="--level:1;" data-bullet="▹"><a href="#Block_syntax">Block syntax</a></div>
+<div class="toc-item" style="--level:1;" data-bullet="▹"><a href="#Markup_instruction_syntax">Markup instruction syntax</a></div>
+<div class="toc-item" style="--level:1;" data-bullet="▹"><a href="#Metadata_syntax">Metadata syntax</a></div>
+<div class="toc-item" style="--level:0;" data-bullet=""><a href="#Directives">Directives</a></div>
+<div class="toc-item" style="--level:1;" data-bullet="▹"><a href="#Aliases">Aliases</a></div>
+<div class="toc-item" style="--level:1;" data-bullet="▹"><a href="#Block_specifiers">Block specifiers</a></div>
+<div class="toc-item" style="--level:1;" data-bullet="▹"><a href="#Config">Config</a></div>
+<div class="toc-item" style="--level:1;" data-bullet="▹"><a href="#Document_termination">Document termination</a></div>
+<div class="toc-item" style="--level:1;" data-bullet="▹"><a href="#Table_constructors">Table constructors</a></div>
+<div class="toc-item" style="--level:1;" data-bullet="▹"><a href="#Placement_from_external_sources">Placement from external sources</a></div>
+<div class="toc-item" style="--level:0;" data-bullet=""><a href="#Raku's_mascot">Raku's mascot</a></div>
+<div class="toc-item" style="--level:0;" data-bullet=""><a href="#Code-oriented_RakuDoc">Code-oriented RakuDoc</a></div>
+<div class="toc-item" style="--level:1;" data-bullet="▹"><a href="#Declarator_blocks">Declarator blocks</a></div>
+<div class="toc-item" style="--level:1;" data-bullet="▹"><a href="#Data_blocks">Data blocks</a></div>
+<div class="toc-item" style="--level:0;" data-bullet=""><a href="#Text-oriented_RakuDoc">Text-oriented RakuDoc</a></div>
+<div class="toc-item" style="--level:1;" data-bullet="▹"><a href="#Headings">Headings</a></div>
+<div class="toc-item" style="--level:2;" data-bullet="‣"><a href="#Numbered_headings">Numbered headings</a></div>
+<div class="toc-item" style="--level:1;" data-bullet="▹"><a href="#Block_scope">Block scope</a></div>
+<div class="toc-item" style="--level:2;" data-bullet="‣"><a href="#Sections">Sections</a></div>
+<div class="toc-item" style="--level:2;" data-bullet="‣"><a href="#Document_scope">Document scope</a></div>
+<div class="toc-item" style="--level:1;" data-bullet="▹"><a href="#Ordinary_paragraphs">Ordinary paragraphs</a></div>
+<div class="toc-item" style="--level:1;" data-bullet="▹"><a href="#Nesting_or_indenting_a_block">Nesting or indenting a block</a></div>
+<div class="toc-item" style="--level:1;" data-bullet="▹"><a href="#Verbatim_blocks">Verbatim blocks</a></div>
+<div class="toc-item" style="--level:2;" data-bullet="‣"><a href="#Code_blocks">Code blocks</a></div>
+<div class="toc-item" style="--level:3;" data-bullet="⁃"><a href="#Preprocessing_and_postprocessing_of_code">Preprocessing and postprocessing of code</a></div>
+<div class="toc-item" style="--level:2;" data-bullet="‣"><a href="#I/O_blocks">I/O blocks</a></div>
+<div class="toc-item" style="--level:2;" data-bullet="‣"><a href="#Markup_within_verbatim_blocks">Markup within verbatim blocks</a></div>
+<div class="toc-item" style="--level:1;" data-bullet="▹"><a href="#Lists">Lists</a></div>
+<div class="toc-item" style="--level:2;" data-bullet="‣"><a href="#Unordered_lists">Unordered lists</a></div>
+<div class="toc-item" style="--level:2;" data-bullet="‣"><a href="#Multi-level_lists">Multi-level lists</a></div>
+<div class="toc-item" style="--level:2;" data-bullet="‣"><a href="#Multi-paragraph_lists">Multi-paragraph lists</a></div>
+<div class="toc-item" style="--level:2;" data-bullet="‣"><a href="#Bullets_and_bullet_strategy">Bullets and bullet strategy</a></div>
+<div class="toc-item" style="--level:2;" data-bullet="‣"><a href="#Ordered_lists">Ordered lists</a></div>
+<div class="toc-item" style="--level:2;" data-bullet="‣"><a href="#Definition_lists">Definition lists</a></div>
+<div class="toc-item" style="--level:3;" data-bullet="⁃"><a href="#Numbered_definitions">Numbered definitions</a></div>
+<div class="toc-item" style="--level:1;" data-bullet="▹"><a href="#Tables">Tables</a></div>
+<div class="toc-item" style="--level:2;" data-bullet="‣"><a href="#Visual_description_of_simple_tables">Visual description of simple tables</a></div>
+<div class="toc-item" style="--level:3;" data-bullet="⁃"><a href="#Valid_tables">Valid tables</a></div>
+<div class="toc-item" style="--level:3;" data-bullet="⁃"><a href="#Invalid_tables">Invalid tables</a></div>
+<div class="toc-item" style="--level:3;" data-bullet="⁃"><a href="#Unexpected_tables">Unexpected tables</a></div>
+<div class="toc-item" style="--level:2;" data-bullet="‣"><a href="#Procedural_description_of_tables">Procedural description of tables</a></div>
+<div class="toc-item" style="--level:1;" data-bullet="▹"><a href="#Formulae">Formulae</a></div>
+<div class="toc-item" style="--level:1;" data-bullet="▹"><a href="#RakuDoc_comments">RakuDoc comments</a></div>
+<div class="toc-item" style="--level:1;" data-bullet="▹"><a href="#Semantic_blocks">Semantic blocks</a></div>
+<div class="toc-item" style="--level:1;" data-bullet="▹"><a href="#User-defined_blocks">User-defined blocks</a></div>
+<div class="toc-item" style="--level:1;" data-bullet="▹"><a href="#Naming_rules">Naming rules</a></div>
+<div class="toc-item" style="--level:1;" data-bullet="▹"><a href="#Implied_code_and_indentation">Implied code and indentation</a></div>
+<div class="toc-item" style="--level:0;" data-bullet=""><a href="#Metadata">Metadata</a></div>
+<div class="toc-item" style="--level:1;" data-bullet="▹"><a href="#Anchors">Anchors</a></div>
+<div class="toc-item" style="--level:1;" data-bullet="▹"><a href="#Table_of_Contents_and_Index">Table of Contents and Index</a></div>
+<div class="toc-item" style="--level:1;" data-bullet="▹"><a href="#Developer_or_delta_notes">Developer or delta notes</a></div>
+<div class="toc-item" style="--level:1;" data-bullet="▹"><a href="#Error_messages">Error messages</a></div>
+<div class="toc-item" style="--level:1;" data-bullet="▹"><a href="#Alternative_rendering">Alternative rendering</a></div>
+<div class="toc-item" style="--level:0;" data-bullet=""><a href="#Markup_instructions">Markup instructions</a></div>
+<div class="toc-item" style="--level:1;" data-bullet="▹"><a href="#Formatting_codes">Formatting codes</a></div>
+<div class="toc-item" style="--level:1;" data-bullet="▹"><a href="#Instructions_with_side_effects">Instructions with side effects</a></div>
+<div class="toc-item" style="--level:2;" data-bullet="‣"><a href="#Links">Links</a></div>
+<div class="toc-item" style="--level:3;" data-bullet="⁃"><a href="#Examples">Examples</a></div>
+<div class="toc-item" style="--level:2;" data-bullet="‣"><a href="#Placement_links">Placement links</a></div>
+<div class="toc-item" style="--level:2;" data-bullet="‣"><a href="#Alias_placement">Alias placement</a></div>
+<div class="toc-item" style="--level:2;" data-bullet="‣"><a href="#Inline_definitions">Inline definitions</a></div>
+<div class="toc-item" style="--level:2;" data-bullet="‣"><a href="#Space-preserving_text">Space-preserving text</a></div>
+<div class="toc-item" style="--level:2;" data-bullet="‣"><a href="#Comments">Comments</a></div>
+<div class="toc-item" style="--level:2;" data-bullet="‣"><a href="#Notes">Notes</a></div>
+<div class="toc-item" style="--level:2;" data-bullet="‣"><a href="#Keyboard_input">Keyboard input</a></div>
+<div class="toc-item" style="--level:2;" data-bullet="‣"><a href="#Replaceable">Replaceable</a></div>
+<div class="toc-item" style="--level:2;" data-bullet="‣"><a href="#Terminal_output">Terminal output</a></div>
+<div class="toc-item" style="--level:2;" data-bullet="‣"><a href="#Unicode_and_HTML_references">Unicode and HTML references</a></div>
+<div class="toc-item" style="--level:2;" data-bullet="‣"><a href="#Verbatim_text">Verbatim text</a></div>
+<div class="toc-item" style="--level:2;" data-bullet="‣"><a href="#Indexing_terms">Indexing terms</a></div>
+<div class="toc-item" style="--level:2;" data-bullet="‣"><a href="#Markup_extras">Markup extras</a></div>
+<div class="toc-item" style="--level:2;" data-bullet="‣"><a href="#Display_and_metadata">Display and metadata</a></div>
+<div class="toc-item" style="--level:3;" data-bullet="⁃"><a href="#Display_only_codes">Display only codes</a></div>
+<div class="toc-item" style="--level:3;" data-bullet="⁃"><a href="#Metadata_and_(optional)_display_text">Metadata and (optional) display text</a></div>
+<div class="toc-item" style="--level:3;" data-bullet="⁃"><a href="#Metadata_only">Metadata only</a></div>
+<div class="toc-item" style="--level:0;" data-bullet=""><a href="#Implementor_considerations">Implementor considerations</a></div>
+<div class="toc-item" style="--level:0;" data-bullet=""><a href="#AUTHORS_0">AUTHORS</a></div>
+<div class="toc-item" style="--level:0;" data-bullet=""><a href="#Summary">Summary</a></div>
+<div class="toc-item" style="--level:1;" data-bullet="▹"><a href="#Directives_0">Directives</a></div>
+<div class="toc-item" style="--level:1;" data-bullet="▹"><a href="#Blocks">Blocks</a></div>
+<div class="toc-item" style="--level:1;" data-bullet="▹"><a href="#Metadata_options">Metadata options</a></div>
+<div class="toc-item" style="--level:1;" data-bullet="▹"><a href="#Markup_instructions_0">Markup instructions</a></div>
+<div class="toc-item" style="--level:0;" data-bullet=""><a href="#LICENSE">LICENSE</a></div>
+</div>
+
+            </aside>
+            <aside id="mindex-menu" class="panel-block is-hidden">
+            <div class="index">
+<div class="index-section" data-index-level="1" style="--level:1">
+<span class="index-entry">Syntax</span>: <a class="index-ref" href="#index-entry-">&nbsp;§&nbsp;</a><span>Code-oriented RakuDoc</span>, <a class="index-ref" href="#index-entry-_0">&nbsp;§&nbsp;</a><span>Code-oriented RakuDoc</span>
+</div>
+</div>
+
+            </aside>
+        </nav>
     </div>
 </nav>
-<nav class="panel" id="page-nav">
+<nav class="panel is-hidden-mobile" id="page-nav">
   <div class="panel-block">
     <p class="control has-icons-left">
       <input class="input" type="text" placeholder="Search" id="page-nav-search"/>
@@ -3360,7 +3490,7 @@ Artistic-2.0
                 Rendered from <span class="footer-field">./rakudoc_draft_3.rakudoc/rakudoc_draft_3
             </div>
             <div class="level-item">
-                Rendered at 17:31 UTC on 2024-12-22
+                Rendered at 20:52 UTC on 2024-12-24
             </div>
             <div class="level-item">
                 Source last modified at 17:30 UTC on 2024-12-22

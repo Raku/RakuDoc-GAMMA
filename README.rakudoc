@@ -12,6 +12,9 @@ compliance with the specification.
 The specification is complete, but there are ideas about how to extend
 some parts of it.
 
+In particular, version 3 will need to be revised to ensure that LToR writing
+systems are correctly accommodated.
+
 Any change must be backwards compatible.
 
 =head Renderers

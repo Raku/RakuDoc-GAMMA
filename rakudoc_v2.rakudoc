@@ -1,7 +1,7 @@
 =begin rakudoc :kind("Language") :subkind("Language") :category("reference")
 =TITLE RakuDoc
 =SUBTITLE A Raku slang for documenting Raku software to aid development and use.
-=VERSION 2.11.1
+=VERSION 2.20.0
 
 RakuDoc is a markup language with simple instructions for simple tasks and more
 complex structures to suit larger projects. There is a clear distinction between
@@ -15,7 +15,7 @@ presentations needed by a newcomer to understand how to use software.
 =item Aliaksandr Zahatski (@zag)
 =end AUTHORS
 
-=head1 SYNOPSIS
+=head SYNOPSIS
 =comment should be a semantic block C<=SYNOPSIS>
 
 Consider the two ways in which documentation is used.
@@ -54,7 +54,7 @@ Consider the following short description:
     =SUBTITLE
     A short tutorial on Flavorizing your quarks
 
-    =head1 Starting out
+    =head Starting out
 
     In the section you will learn about how to add flavors to quarks produced
     by the I<Imagiton>.
@@ -79,9 +79,9 @@ This is an example of the B<delimited> form of the B<rakudoc> block (so named be
 specified between C<=begin> and C<=end> directives).
 
 The C<=TITLE>, C<=SUBTITLE>, and C<=SYNOPSIS> are I<semantic blocks> containing standard information that can be searched
-by other tools. For all other purposes, they can be considered to the same as C<=head1> I<blocks>.
+by other tools. For all other purposes, they can be considered to the same as C<=head> I<blocks>.
 
-A C<=head1> block begins a top-level heading. The C<=head2> is a second level heading.
+A C<=head> block begins a top-level heading. The C<=head2> is a second level heading.
 These are examples of the B<abbreviated> form of RakuDoc blocks. Any non-empty text lines
 following a heading specifier are collectively treated as the text of the heading.
 
@@ -92,7 +92,7 @@ C<=item> in a list. The first non-C<=item> paragraph or block will end the list.
 Within the text there are several examples of inline markup instructions, which have the form R<Upper Unicode character> B<< < >> B<< > >>.
 In the example above, we used: C<I B N L Z>. These are for Important, Basis, Note (a footnote), Link, and Zero (a comment) markup.
 
-=head1 Introduction
+=head Introduction
 
 RakuDoc has a variety of B<components> that allow for rich structured documents,
 provide markup hints to renderers without assuming an output format, extract
@@ -126,7 +126,7 @@ It is recommended that RakuDoc authors choose a single whitespace character (eg,
 for margin alignment.
 =end nested
 
-=head1 Two use cases for RakuDoc
+=head Two use cases for RakuDoc
 
 RakuDoc can be thought of as having components that are closely connected to a program or module
 that is being documented (D<code-oriented RakuDoc>), and components that can be used for text-oriented documents, such as the source
@@ -176,7 +176,7 @@ as the ability to define new blocks or markup instructions. In order to access b
 the file containing such RakuDoc instructions should contain a C<use> statement that loads a module that provides
 the information needed to render the extensions. The information provided by this module may be renderer-specific.
 
-=head1 Components
+=head Components
 
 RakuDoc has four main types of components, which are distinguished by their scope and by effect they have on other components.
 
@@ -427,7 +427,7 @@ For example:
      Content for the header block
 =end code
 
-=head1 Directives
+=head Directives
 
 Directives are similar in form to I<block> instructions, but they do not
 have the extended or delimited forms. If a directive name is preceded by
@@ -724,7 +724,7 @@ will produce ...
 
 =place https://raku.org/camelia-logo.png  :caption<Raku's mascot>  :alt<A multicoloured butterfly>
 
-=head1 Code-oriented RakuDoc
+=head Code-oriented RakuDoc
 
 The following RakuDoc components are primarily intended for use when editing within an editor.
 Standalone renderers may ignore them.
@@ -858,7 +858,7 @@ the unkeyed C<=data> blocks the parser has seen.
 
 C<=data> blocks are never rendered by the text-oriented RakuDoc renderers.
 
-=head1 Text-oriented RakuDoc
+=head Text-oriented RakuDoc
 
 The RakuDoc instructions in this section are primarily intended for text-oriented rendering.
 However, text-oriented and code-oriented RakuDoc can be freely intermixed with Raku
@@ -909,11 +909,11 @@ semantics to C<rakudoc> at some time in the future.
 =head2 Headings
 
 Headings can be defined using C<=headN>,
-where R<N> is greater than zero (e.g. C<=head1>, C<=head2>, etc.).
-C<=head> is an alias for C<=head1>.
+where R<N> is greater than zero (e.g. C<=head>, C<=head2>, etc.).
+C<=head> is an alias for C<=head>.
 
 =begin code :lang<RakuDoc>
-=head1 A top level heading
+=head A top level heading
 
 =head2 A second level heading
 
@@ -922,7 +922,8 @@ C<=head> is an alias for C<=head1>.
 
 =head3 Numbered headings
 
-You can specify that a heading is numbered using the C<=numhead> block. For example:
+You can specify that a heading is numbered using the C<=numhead> block
+(more detail can be found in L<Enumerated blocks|#Enumerated blocks>). For example:
 =begin code :lang<RakuDoc>
     =numhead1 The Problem
 
@@ -1047,6 +1048,433 @@ may be nested.
 The first C<=begin rakudoc> declaration in a document starts the RakuDoc scope of the document.
 Metadata following the first such declaration are made available to all blocks in the document.
 
+
+=head2 Enumerated blocks
+
+Any block type can be associated with an enumeration by prefixing the block name with B<num>,
+I<e.g.> C<numhead>, C<numtable>, C<numitem>.
+
+The effects of enumeration on C«head», C«defn», and C«item» are described in more detail
+elsewhere in this document.
+
+When a block is prefixed with B<num>, the following metadata options are available in addition
+to the metadata options normally associated with the block:
+
+=item C«:numalias<»I<NAME>C«>» – The specific enumeration associated with this block can be referred to in the text following the block (see the rules for the validity of an alias) as C«A<NAME>».
+=item C«:number(»I<N>C«)» – The enumeration is set to I<N> for this block and will be continued in later blocks.
+=item C«:form<»I<FORMAT>C«>» – The block will be rendered according to rules given below so that the order of the caption and the enumeration can be customised, and the type of enumeration (Indo-Arabic numerals, alphabetic characters, Roman numerals, I<etc.>) can be specified.
+=item C«:continued» – An enumeration that would automatically be reset at the start of a new block is continued instead.
+=item C«:!continued» – An enumeration that would automatically continue at the start of a new block is reset instead.
+=item C«:number-as<»I<BLOCKTYPE>C«>» – When enumerated, the block being configured will be treated as if it were instead of the specified blocktype. In other words, the configured block will participate in the same enumeration sequence as the specified blocktype, instead of maintaining its own enumeration sequence. For example, to have all tables and formulas enumerated in a single sequence: C«=config numformula :number-as<table>»
+
+Note that B<directives>, such as C«for», C«begin», C«row», C«column», are not blocks and prefixing them with C«num» is illegal.
+
+
+=head3 Formatting of blocks
+
+The C«:form» metaoption allows the author to modify the way in which enumerated blocks are rendered.
+It can be used to alter the position where the enumeration value appears, and to add extra text around
+the various components of a block.
+
+All para-ish blocks have a default format of C«:form<%N. %D>» (I<e.g.> B«I<1. Block data here>»).
+All head-ish blocks have a default format of C«:form<%T %A. %C>» (I<e.g.> B«I<Table 1. Caption here>»),
+except for C«=numhead», which has a default of C«:form<%N. %D>» (I<e.g.> B«I<1. Heading here>»).
+
+The value associated with a C«:form» option is similar in concept to a C«sprintf» or C«strftime» format string.
+That is, it specifies a template into which various values related to the block are inserted,
+to produce a final rendering of the block. The C«:form» option differs from C«sprintf»
+and C«strftime» in that it uses a more verbose (but far more readable) specification syntax.
+
+Placeholders for components to be formatted into the format template are known as I<“fields”>,
+and are specified by a C«%» followed by a single letter character (I<i.e.> a single codepoint
+that matches C«/<:Letter>/». This may also be followed (immediately and without any intervening whitespace)
+by one or more options in the usual C«:OPTION» or C«:OPTION<VALUE>» format. Any other character sequences
+between fields are rendered verbatim.
+
+Renderers are not required to implement the C«:form» metaoption, but if they do
+then a conformant renderer must support at least the following field types:
+=begin table :caption<Field types> :levelhead(2)
+=row :heading
+	=cell Field
+	=cell Insert next enumeration value as...
+=row
+	=cell C«%N»
+	=cell the corresponding Indo-Arabic numerals: I<1, 2, 3, etc.>
+=row
+	=cell C«%A»
+	=cell the corresponding ASCII capital alpha: I<A, B, C ... Z, AA, AB, AC, etc.>
+=row
+	=cell C«%T»
+	=cell the name of the block type in Titlecase without the leading C«num»: I<Head, Item, Table, Formula, Defn, etc.>
+=row
+	=cell C«%C»
+	=cell the caption of the block (if any)
+=row
+	=cell C«%D»
+	=cell the data contained in the block (I<i.e.> its contents)
+=row
+	=cell C«%%»
+	=cell a literal C«%»
+=row
+	=cell C«%:»
+	=cell a literal C«:»
+=end table
+
+So, for example, the following enumerated elements:
+=begin code :lang<rakudoc>
+=numhead1 PHYSICS
+=numhead2 Newtonian
+=numhead2 Relativistic
+=begin numformula :caption<Mass-Energy Equivalence>
+E = MC²
+=end numformula
+=end code
+
+...would normally be rendered something like:
+=begin code :lang<text>
+    1. PHYSICS
+
+    1.1. Newtonian
+
+    1.2. Relativistic
+
+                E = MC²
+
+    Formula 1: Mass-Energy Equivalence
+=end code
+
+But the following pre-configurations:
+=begin code :lang<rakudoc>
+=config numhead1   :form<TOPIC %A - %D>
+=config numhead2   :form<%D [subtopic %A%N]>
+=config numformula :form<Equation %N: %C>
+=end code
+...would cause the document to be rendered differently:
+
+=begin code :lang<text>
+    TOPIC A - PHYSICS
+
+    Newtonian [subtopic A1]
+
+    Relativistic [subtopic A2]
+
+                E = MC²
+
+    Equation 1: Mass-Energy Equivalence
+=end code
+
+=head4 Formatting multi-level enumerations
+
+Notice that in the C«=config numhead2» example in the previous section
+the C«:form» option specifies B«I<two>» enumeration fields: C«%A» and C«%N».
+This is because enumerated headings are hierarchical in their numbering.
+For example, the sequence of numbered headings:
+=begin code :lang<rakudoc>
+=numhead1 The Plan
+=numhead2 Plan design criteria
+=numhead2 Plan design constraints
+=numhead3 Time
+=numhead3 Space
+=numhead3 Energy
+=numhead4 Available energy
+=numhead4 Energy costs
+=end code
+...would be rendered something like:
+=begin code :lang<text>
+    1. The Plan
+        1.1. Plan design criteria
+        1.2. Plan design constraints
+            1.2.1. Time
+            1.2.2. Space
+            1.2.3. Energy
+                1.2.3.1. Available energy
+                1.2.3.2. Energy costs
+=end code
+
+So a C«:form» for a second-level heading:
+=begin code :lang<rakudoc>
+=config numhead2 :form<%D [subtopic %A%N]>
+=end code
+...requires two fields, because it expects to interpolate two enumeration values:
+the enumeration value of the current first-level heading,
+plus it’s own second-level enumeration value.
+
+In that example, the first field (C«%A») would be replaced by
+the current C«numhead1» enumeration value, and the second field (C«%N»)
+would be replaced by the current C«numhead2» value.
+
+In general, a C«:form» applied to a C«numhead»I<X> block may specify
+up to I<X> enumeration fields, I<X-1> of which would be replaced
+(left-to-right) by the I<X-1> current enumeration values of the
+I<X-1> higher-level headings. The I<X>-th field would, of course, be
+replaced by the block’s own enumeration value. For example:
+=begin code :lang<rakudoc>
+=config numhead4 :form<%N(%A) %N.%N: %D>
+=end code
+...would be formatted by replacing the first C«%N» with the current C«numhead1» enumeration value,
+then the single C«%A» with the current C«numhead2» enumeration value,
+then the second C«%N» with the current C«numhead3» enumeration value,
+then the third C«%N» with the current C«numhead4» enumeration value.
+
+If any of the higher-level headings is not enumerated (I<e.g.> C«head3» instead of C«numhead3»),
+then the corresponding enumeration field would be replaced by an empty string instead of a number.
+
+If a C«:form» option specifies B«I<fewer>» enumeration fields than the corresponding heading level:
+=begin code :lang<rakudoc>
+=config numhead4 :form<%N.%N: %D>
+=end code
+...then only the I<X> lowest-level enumeration values are inserted into the corresponding
+format. That is, the previous example would be rendered:
+=begin code :lang<rakudoc>
+    1. The Plan
+        1.1. Plan design criteria
+        1.2. Plan design constraints
+            1.2.1. Time
+            1.2.2. Space
+            1.2.3. Energy
+                3.1. Available energy
+                3.2. Energy costs
+=end code
+
+That is, because the C«:form» for C«numhead4» specifies only two enumeration fields,
+only the two lowest-level enumeration values (those for C«numhead3» and C«numhead4»)
+are interpolated.
+
+The same rules and behaviour apply to C«item1»/C«item2»/C«item3» blocks
+(and would also apply to any other hierarchical blocks that might
+eventually be added to the specification).
+
+
+=head3 Formatting options
+
+=head4 Field ordinality
+
+The C«%N» field normally interpolates the current enumeration value as a cardinal number
+(I<1, 2, 3, etc.>), but the C«:ord» option requests the field to interpolate
+an ordinal number instead (I<1st, 2nd, 3rd, etc-th>). For example:
+=begin code :lang<rakudoc>
+=config numitem1  :form<%N:ord Activity: %D>
+=config numitem2  :form<%N:ord step: %D>
+
+=numitem1 Deploy
+=numitem2   Plan
+=numitem2   Prepare
+=numitem2   Execute
+=numitem1 Review
+=numitem2   Observe
+=numitem2   Discuss
+=end code
+...would be rendered:
+=begin code :lang<text>
+    1st Activity: Deploy
+        1st step: Plan
+        2nd step: Prepare
+        3rd step: Execute
+
+    2nd Activity: Review
+        1st step: Observe
+        2nd step: Discuss
+=end code
+
+To change the underlying language of the ordinal system (I<e.g.> 1er, 2e, 3e I<etc.>
+or 第一, 第二, 第三, I<etc.>) see L<the C«:lang» option\#field_language>.
+
+
+=head4 Field case
+
+Some enumeration formats (I<e.g.> alphabetic characters or Roman numerals) have
+uppercase and lowercase variants or close analogies thereto
+(I<e.g.> “Business” vs “ordinary” notation in Chinese and Japanese numbers).
+Other fields may benefit from other casing strategies (I<e.g.> Sentencecase, or ProperCase).
+
+To select which case-variant a field uses, append one of the following options:
+=begin table :caption<Form field case options> :headlevel(2)
+=row :heading
+	=cell Option
+	=cell How the contents of the field are rendered
+=row
+	=cell C«:uc»
+	=cell  EVERYTHING IN B«I<U>»I<PPER>B«I<C>»I<ASE> OR AS “FORMAL/BUSINESS” NUMERALS
+=row
+	=cell C«:lc»
+	=cell everything in B«I<l>»I<ower>B«I<c>»I<ase> or as “ordinary/everyday” numerals
+=row
+	=cell C«:tc»
+	=cell First character in B«I<T>»I<itle>B«I<c>»I<ase> but NO other change of case
+=row
+	=cell C«:tclc»
+	=cell First character in B«I<T>»I<itle>B«I<c>»I<ase>, everything else in B«I<l>»I<ower>B«I<c>»I<ase>
+=row
+	=cell C«:sc»
+	=cell B«I<S>»I<entence>B«I<c>»I<ase>: First character of each sentence in Titlecase, ABBREVS entirely in uppercase, everything else in lowercase
+=row
+	=cell C«:pc»
+	=cell B«I<P>»I<roper>B«I<c>»ase: First Character Of Every Word In Titlecase, ABBREVS Entirely In Uppercase, Everything Else In Lowercase
+=end table
+
+For example, to specify that particular case(s) should be used for C«%A» alphabetic field:
+=begin code :lang<rakudoc>
+=config numitem1  :form<%A:uc. %D>
+=config numitem2  :form<%A:uc(%A:lc) %D>
+
+=numitem1 Task sequence
+=numitem2   Plan
+=numitem2   Prepare
+=numitem2   Execute
+=end code
+...would be rendered:
+=begin code :lang<text>
+    A. Task sequence
+        A(a) Plan
+        A(b) Prepare
+        A(c) Execute
+=end code
+
+These options also specify how ordinal numbers are rendered:
+=begin code :lang<rakudoc>
+=config numitem1  :form<%N:ord:uc ACTIVITY: %D>
+=config numitem2  :form<%N:ord:lc step: %D>
+
+=numitem1 DEPLOY
+=numitem2   Plan
+=numitem2   Prepare
+=numitem2   Execute
+=numitem1 REVIEW
+=numitem2   Observe
+=numitem2   Discuss
+=end code
+...would be rendered:
+=begin code :lang<text>
+    1ST ACTIVITY: DEPLOY
+        1st step: Plan
+        2nd step: Prepare
+        3rd step: Execute
+
+    2ND ACTIVITY: REVIEW
+        1st step: Observe
+        2nd step: Discuss
+=end code
+As a convenient shortcut for common cases, every defined field of the form C«%»B«I<X>»
+must also provide a corresponding field of the form C«%»B«I<x>», which is exactly equivalent
+to C«%»B«I<X>»C«:lc».
+
+Note, however, that the uppercase version (C«%»B«I<X>») is B«I<not>» automatically equivalent to C«%»B«I<X>»C«:uc».
+That is, a renderer is free to specify, for each field type, whether the default rendering
+is uppercase or lowercase (if that is even relevant to the field). To override the renderer’s
+default casing and insist on an uppercase/formal rendering, the user must explicitly specify C«%»B«I<X>»C«:uc»
+
+Note that the C«:uc», C«:lc», C«:tc», and C«:tclc» options all behave exactly like their Raku counterparts,
+whereas C«:sc» and C«:pc» will attempt to behave in a somewhat more “literary” fashion. Specifically,
+these last two both understand that words originally in ALLCAPS usually need to stay capitalized.
+If you think that you need C«:tclc» on a caption or data field, you probably want C«:sc» instead,
+because it understands slightly more about natural language formatting. For example, the caption:
+=begin code :lang<rakudoc>
+=for numtable :caption<list of allowed ASCII characters. namely, those i like.> :form<%N. %D:tclc>
+=end code
+...would be rendered:
+=begin code :lang<text>
+    Table 1. List of allowed ascii characters. namely, those i like.
+=end code
+...whereas:
+=begin code :lang<rakudoc>
+=for numtable :caption<list of allowed ASCII characters. namely, those i like.> :form<%N. %D:sc>
+=end code
+...would be rendered:
+=begin code :lang<text>
+    Table 2. List of allowed ASCII characters. Namely, those I like.
+=end code
+
+Note too that it is an error to specify two or more of C«:lc», C«:uc», C«:tc», C«:tclc», C«:sc», or C«:pc»
+on the same field, either explicitly (I<e.g.> C«%N:uc:lc») or implicitly (I<e.g.> C«%n:tc»).
+In such cases, the case of the field specifier itself determines which case is actually used
+(I<e.g.> C«%N:uc:lc» means C«%N:uc»; C«%n:tc» means C«%n:lc»). Renderers should issue a warning
+when they encounter these kinds of self-contradictory field specifications.
+
+Specific casing may also be applied to non-enumerator fields such as C«%T», C«%C», or C«%D».
+For example:
+=begin code :lang<rakudoc>
+=config numhead1   :form<TOPIC %A - %D:uc>
+=config numformula :form<[%T:lc %N: %C:sc]>
+
+=numhead1 Physics
+
+=begin numformula :caption<Mass-Energy Equivalence>
+E = MC²
+=end numformula
+=end code
+This would override the intrinsic mixed-casing of the block data and captions
+to produce something like:
+=begin code :lang<text>
+    TOPIC A - PHYSICS
+
+                E = MC²
+
+    [formula 1: Mass-energy equivalence]
+=end code
+
+=head4 Field language
+
+The C«:lang» option specifies that a field should use the conventions
+of a specific language when inserting a numeric or ordinal value.
+The language to be used is specified using the language’s
+L<ISO 639-1 two-character language code|https://en.wikipedia.org/wiki/ISO_639-1>.
+
+For example to specify that, instead of using regular Indo-Arabic numerals,
+the items of a first-level enumerated list should use Roman (I<i.e.> B«I<La>»I<tin>) numerals:
+=begin code :lang<rakudoc>
+=config numitem1 :form<%N:lang<la>. %D>
+=end code
+...or that second-level list items should use French ordinals (I<1er>, I<2e>, I<3e>, I<etc.>):
+=begin code :lang<rakudoc>
+=config numitem2 :form<N:ord:lang<fr>. %D>
+=end code
+Renderers are encouraged to support at least the following languages:
+English (C«:lang<en>», which is the default and represents the L<Indo-Arabic numeral system|https://en.wikipedia.org/wiki/Hindu%E2%80%93Arabic_numeral_system>)
+Roman numerals (C«:lang<la>»), Mandarin Chinese (C«:lang<zh>»),
+Hindi (C«:lang<hi>»), Bengali (C«:lang<bn>»), and Japanese (C«:lang<ja>»).
+Collectively these six languages cover the primary number systems
+used by a majority the world’s population.
+
+Note, however, that renderers are not B«required» to support any languages
+other than the default C«:lang<en>». If an unsupported language is requested,
+renderers may always fall back on C«:lang<en>».
+
+If a renderer supports Roman numerals (I<I, II, III, IV, etc.>) via C«%N:lang<la>», then it must
+also provide the equivalent field C«%R». If it also supports lowercase Roman numerals
+via C«%N:lang<la>:lc» (I<i, ii, iii, iv, etc.>), then it must also provide the equivalent field C«%r».
+
+Likewise, if a renderer supports Mandarin Chinese numbers via C«%N:lang<zh>»
+(which should generate formal/business 大寫 numerals), then it must
+also provide the equivalent fields C«%Z» and C«%大». If it also supports
+C«%N:lang<zh>:lc» (which should produce ordinary 小寫 numerals),
+then it must also provide the equivalent fields C«%z» and C«%小».
+
+Generated Chinese numbers should probably use traditional glyphs, rather than simplified glyphs,
+for maximum comprehensibility outside mainland China _(though the expert opinions of native speakers
+regarding this choice should certainly be sought where possible)._
+
+If a renderer supports Japanese numerals, via C«%N:lang<ja>», then it must also provide the
+equivalent fields C«%J» and C«%業» (formal/business numbers) as well as C«%j» and C«%並» (everyday numbers).
+Note that C«%業» and C«%並» are still tentative, and perhaps not the most obvious choices.
+Unfortunately the most obvious choices – C«%大» and C«%小» – are already taken by C«%Z» and C«%z»
+(as Chinese arguably had the prior claim to them). Feedback on these names and suggestions
+for improvements – especially from native speakers of Japanese – would be greatly appreciated.
+
+If a renderer supports Hindi numerals, via C«%N:lang<hi>»,
+then it must also provide the equivalent fields C«%H» and C«%ह».
+If a renderer supports Bengali numerals, via C«%N:lang<bn>»,
+then it must also provide the equivalent fields C«%B» and C«%ব».
+
+Only these six languages (English, Mandarin Chinese, Hindi, Bengali, Japanese, and Latin)
+will ever have dedicated single-character field specifiers. If a renderer supports the number systems
+of any other languages (I<e.g.> C«%N:lang<fr>», C«%N:lang<th>», or C«%N:lang<eo>»),
+the renderer is B«I<not>» permitted to reserve any C«%»B«I<X>» field for them.
+
+Note that a renderer is permitted to support C«%N:lang<»B«I<xx>»C«>»,
+without supporting the corresponding C«%N:lang<»B«I<xx>»C«>:ord», or vice versa
+(though implementers are strongly encouraged to implement both cardinal
+and ordinal modifiers – where relevant – for any language they support).
+
 =head2 Ordinary paragraphs
 
 An ordinary paragraph consists of text that is to be formatted into a document
@@ -1060,7 +1488,7 @@ The paragraph is terminated by the first blank line or directive.
 For example:
 
 =begin code :lang<RakuDoc>
-=head1 This is a heading block
+=head This is a heading block
 
 This is an ordinary paragraph.
 Its text  will   be     squeezed     and
@@ -2686,7 +3114,7 @@ must be recognised:
 =SYNOPSIS
 =end code
 
-The block name of a semantic block is to be rendered as if it were C<=head1 BLOCKNAME>, and the contents of the block are then
+The block name of a semantic block is to be rendered as if it were C<=head BLOCKNAME>, and the contents of the block are then
 to be rendered as one or more regular paragraphs. Consequently, if a semantic block has multiple lines, then its contents must
 be enclosed using the I<B<delimited>> form.
 
@@ -2719,7 +3147,7 @@ may specify a procedure for using user-supplied templates or code.
 
 If a renderer does not recognize a custom block, then the renderer should replace that block with the contents of the
 block's C< :alt<...> > option (if provided). If the document author did not include an C< :alt<...> > option, then the
-renderer should treat the block name as the contents of a C<=head1> block, which can be overridden as described in 
+renderer should treat the block name as the contents of a C<=head> block, which can be overridden as described in 
 L<Table of Contents|#Table of Contents and Index> and should render the contents of the unrecognized custom block verbatim,
 like a C<=code> block. Any unrecognized custom block (with or without an C< :alt<...> > option) should generate a warning
 message unless the custom block is passed the C< :!warn > option.
@@ -2829,7 +3257,7 @@ next blank line.
         While this is not an ordinary paragraph;
         it is a code block.
 
-        =head1 Mumble mumble
+        =head Mumble mumble
 
         Surprisingly, this is a code block
             (with fancy indentation too)
@@ -2840,8 +3268,8 @@ next blank line.
 =end code
 
 The I<Surprisingly ...> paragraph is a code block because a block only sets the virtual margin within that block,
-and the C<=head1> block terminates at the blank line immediately after
-the C<=head1> line, and before the apparent code block begins.
+and the C<=head> block terminates at the blank line immediately after
+the C<=head> line, and before the apparent code block begins.
 At which point, the virtual margin reverts to the previous virtual margin
 set by the surrounding C<=begin rakudoc...=end rakudoc> block.
 
@@ -2859,7 +3287,7 @@ Which means:
         While this is not
         This is a code block
 
-        =head1 Mumble mumble
+        =head Mumble mumble
 
         This IS also a code block
            because the preceding =head's virtual margin ended
@@ -2893,7 +3321,7 @@ you'd write it:
 
         =begin section
 
-        =head1 Mumble mumble
+        =head Mumble mumble
 
         This is a para block, NOT a code block
            because the virtual margin for this implicit block
@@ -2931,7 +3359,7 @@ Finally, user-defined custom blocks should always pass their contents verbatim
 to whatever appropriate user-defined handler is in scope, and it’s up to
 that handler to infer the meaning of any indentation.
 
-=head1 Metadata
+=head Metadata
 
 A powerful feature of RakuDoc is the ability to associate metadata with a block.
 Metadata can be used to change the way a block is rendered, or to allow a renderer
@@ -3086,7 +3514,7 @@ If the metadata option C<:error> is false for a block, then no warning is genera
 If the metadata option C<:alt> associated with a block has a string value, and an error is encountered when
 rendering a block, then the value of C<:alt> is rendered in place of the block.
 
-=head1 Markup instructions
+=head Markup instructions
 
 Markup instructions provide a way to add inline mark-up to a piece of text.
 
@@ -3813,7 +4241,7 @@ ZV«< » METADATA=B<COMMENT>V« >»
 The comment code C<Z<> > is intended not to have a display text so the contents of a comment
 can be considered as pure metadata.
 
-=head1 Implementor considerations
+=head Implementor considerations
 
 RakuDoc is intended to be a markup language for text oriented documentation, which will be rendered
 into output formats such as I<HTML> or I<epub>. It is expected that there may be several modules
@@ -3836,9 +4264,9 @@ in a pop-up that activates on hover or mouse-click
 
 =place semantic:AUTHORS
 
-=head1 Summary
+=head Summary
 
-=begin table :caption<Directives> :headlevel(2)
+=begin table :caption<Directives> :headlevel(2) :toc
     =row :header
         =cell Directive
         =cell Specifies
@@ -3869,7 +4297,7 @@ in a pop-up that activates on hover or mouse-click
     =row
 =end table
 
-=begin table  :caption<Blocks> :headlevel(2)
+=begin table  :caption<Blocks> :headlevel(2) :toc
     =row :header
         =cell Block typename
         =cell Specifies
@@ -3947,7 +4375,7 @@ in a pop-up that activates on hover or mouse-click
         =cell User-defined block
 =end table
 
-=begin table :caption<Metadata options> :headlevel(2)
+=begin table :caption<Metadata options> :headlevel(2) :toc
     =row :header
         =cell Metadata option
         =cell Blocks applied to
@@ -4148,7 +4576,7 @@ in a pop-up that activates on hover or mouse-click
 
 =end table
 
-=begin table :caption<Markup instructions> :headlevel(2)
+=begin table :caption<Markup instructions> :headlevel(2) :toc
 
     =row :header
         =cell Markup instruction
@@ -4236,7 +4664,92 @@ in a pop-up that activates on hover or mouse-click
         =cell Zero-width comment (contents never rendered)
     =row
 =end table
+=begin table :caption<:form components> :headlevel(2) :toc
+=row :heading
+	=cell Field
+	=cell Meaning
+	=cell C«:lc» or informal shortcut
+=row
+	=cell C«%A»
+	=cell enumeration value as an ASCII capital alpha
+	=cell C«%a»
+=row
+	=cell C«%B» or C«%ব»
+	=cell enumeration value in Bengali numerals I<(if supported)>
+	=cell C«%b» I<(no effect)>
+=row
+	=cell C«%C»
+	=cell caption I<(if any)>
+	=cell C«%c»
+=row
+	=cell C«%D»
+	=cell block’s data
+	=cell C«%d»
+=row
+	=cell C«%H» or C«%ह»
+	=cell enumeration value in Hindu numerals I<(if supported)>
+	=cell C«%h» I<(no effect)>
+=row
+	=cell C«%J» or C«%業»
+	=cell enumeration value in Japanese numerals I<(if supported)>
+	=cell C«%j» or C«%並»
+=row
+	=cell C«%N»
+	=cell enumeration value as a cardinal number
+	=cell C«%n»
+=row
+	=cell C«%R»
+	=cell enumeration value in Roman numerals I<(if supported)>
+	=cell C«%r»
+=row
+	=cell C«%T»
+	=cell the name of the block’s C«num»-less type in Titlecase
+	=cell C«%t»
+=row
+	=cell C«%Z» or C«%大»
+	=cell enumeration value in Chinese numerals I<(if supported)>
+	=cell C«%z» or C«%小»
+=row
+	=cell C«%%»
+	=cell a literal C«%» I<(only required if literal C«%» is followed by a letter)>
+	=cell
+=row
+	=cell C«%:»
+	=cell a literal C«:» I<(only required if literal C«:» is followed by a letter)>
+	=cell
+	=cell
+=end table
 
+=begin table :caption<Options for form fields> :headlevel(2) :toc
+=row :heading
+	=cell Field option
+	=cell Meaning
+=row
+	=cell C«:ord»
+	=cell use ordinal instead of cardinal number I<(if available in requested language)>
+=row
+	=cell C«:lc»
+	=cell use lowercase or informal notation I<(if any)>
+=row
+	=cell C«:uc»
+	=cell use uppercase or formal notation I<(if any)>
+=row
+	=cell C«:tc»
+	=cell use titlecase I<(uppercase first character only)>
+=row
+	=cell C«:tclc»
+	=cell use titlecase for first character, lowercase for the rest
+=row
+	=cell C«:sc»
+	=cell use titlecase for first character of each sentence, preserve ALLCAPS words, lowercase for the rest
+=row
+	=cell C«:pc»
+	=cell use titlecase for first character of each word, preserve ALLCAPS words, lowercase for the rest
+=row
+	=cell C«:lang<»I<xx>C«>»
+	=cell use numbering and/or ordinal system for ISO 639-1 language I<xx> I<(if supported)>
+	=cell
+=end table
 =LICENSE Artistic-2.0
 =end rakudoc
 

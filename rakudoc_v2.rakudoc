@@ -663,7 +663,7 @@ described in more detail in the section on the L<procedural C<=table> block|#Pro
 The C<=place> instruction is a directive that tells the renderer to obtain text, information, or an object
 from another source.
 
-The rendered version of the data placed in the text is considered to form its own block scope.
+The rendered version of the data placed in the text is considered to form it's own block scope.
 
 An in-line version of C<=place> is C<P<...>>, which is described in more detail in the section on
 markup codes.
@@ -1277,8 +1277,7 @@ an ordinal number instead (I<1st, 2nd, 3rd, etc-th>). For example:
 =end code
 
 To change the underlying language of the ordinal system (I<e.g.> 1er, 2e, 3e I<etc.>
-or 第一, 第二, 第三, I<etc.>) see L<the C«:lang» option\#field_language>.
-
+or 第一, 第二, 第三, I<etc.>) see L<the C«:lang» option|#field_language>.
 
 =head4 Field case
 
@@ -1450,8 +1449,8 @@ C«%N:lang<zh>:lc» (which should produce ordinary 小寫 numerals),
 then it must also provide the equivalent fields C«%z» and C«%小».
 
 Generated Chinese numbers should probably use traditional glyphs, rather than simplified glyphs,
-for maximum comprehensibility outside mainland China _(though the expert opinions of native speakers
-regarding this choice should certainly be sought where possible)._
+for maximum comprehensibility outside mainland China I<(though the expert opinions of native speakers
+regarding this choice should certainly be sought where possible)>.
 
 If a renderer supports Japanese numerals, via C«%N:lang<ja>», then it must also provide the
 equivalent fields C«%J» and C«%業» (formal/business numbers) as well as C«%j» and C«%並» (everyday numbers).

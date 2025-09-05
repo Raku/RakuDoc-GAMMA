@@ -1277,7 +1277,7 @@ an ordinal number instead (I<1st, 2nd, 3rd, etc-th>). For example:
 =end code
 
 To change the underlying language of the ordinal system (I<e.g.> 1er, 2e, 3e I<etc.>
-or 第一, 第二, 第三, I<etc.>) see L<the C«:lang» option|#field_language>.
+or 第一, 第二, 第三, I<etc.>) see L<the C«:lang» option|#Field_language>.
 
 =head4 Field case
 

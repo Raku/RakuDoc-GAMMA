@@ -1011,7 +1011,7 @@ And this is a <span class="basis">L&lt;link to the Raku Programming Language|htt
 
 <div class="id-target" id="Placement from external sources"></div><h2 id="Placement_from_external_sources" class="heading raku-webs-h2 "><a href="#">Placement from external sources</a><a class="raku-webs-anchor" href="#Placement from external sources">§</a></h2>
 <p id="3eb6881">The <span class="code">=place</span> instruction is a directive that tells the renderer to obtain text, information, or an object from another source. </p>
-<p id="c908858">The rendered version of the data placed in the text is considered to form its own block scope. </p>
+<p id="73889d6">The rendered version of the data placed in the text is considered to form it's own block scope. </p>
 <p id="207c136">An in-line version of <span class="code">=place</span> is <span class="code">P&lt;...&gt;</span>, which is described in more detail in the section on markup codes. </p>
 <p id="7c0037b">The schema of the URL specified in a <span class="code">=place</span> directive specifies where to look for the external content: </p>
 <table class="table is-striped is-bordered">	<thead>
@@ -1456,7 +1456,7 @@ And this is a <span class="basis">L&lt;link to the Raku Programming Language|htt
 </pre>
 </div>
                 </div>
-            <p id="6dbd657">To change the underlying language of the ordinal system (<span class="important">e.g.</span> 1er, 2e, 3e <span class="important">etc.</span> or 第一, 第二, 第三, <span class="important">etc.</span>) see <a href="the <span class="code">:lang</span> option\#field_language">the <span class="code">:lang</span> option\#field_language</a>. </p>
+            <p id="5c7bab1">To change the underlying language of the ordinal system (<span class="important">e.g.</span> 1er, 2e, 3e <span class="important">etc.</span> or 第一, 第二, 第三, <span class="important">etc.</span>) see <a href="#Field_language">the <span class="code">:lang</span> option</a>. </p>
 
 <div class="id-target" id="Field case"></div><h4 id="Field_case" class="heading raku-webs-h4 "><a href="#">Field case</a><a class="raku-webs-anchor" href="#Field case">§</a></h4>
 <p id="d099f24">Some enumeration formats (<span class="important">e.g.</span> alphabetic characters or Roman numerals) have uppercase and lowercase variants or close analogies thereto (<span class="important">e.g.</span> “Business” vs “ordinary” notation in Chinese and Japanese numbers). Other fields may benefit from other casing strategies (<span class="important">e.g.</span> Sentencecase, or ProperCase). </p>
@@ -1615,7 +1615,7 @@ And this is a <span class="basis">L&lt;link to the Raku Programming Language|htt
 <p id="ce0318b">Note, however, that renderers are not <span class="basis">required</span> to support any languages other than the default <span class="code">:lang&lt;en&gt;</span>. If an unsupported language is requested, renderers may always fall back on <span class="code">:lang&lt;en&gt;</span>. </p>
 <p id="e683f01">If a renderer supports Roman numerals (<span class="important">I, II, III, IV, etc.</span>) via <span class="code">%N:lang&lt;la&gt;</span>, then it must also provide the equivalent field <span class="code">%R</span>. If it also supports lowercase Roman numerals via <span class="code">%N:lang&lt;la&gt;:lc</span> (<span class="important">i, ii, iii, iv, etc.</span>), then it must also provide the equivalent field <span class="code">%r</span>. </p>
 <p id="d140957">Likewise, if a renderer supports Mandarin Chinese numbers via <span class="code">%N:lang&lt;zh&gt;</span> (which should generate formal/business 大寫 numerals), then it must also provide the equivalent fields <span class="code">%Z</span> and <span class="code">%大</span>. If it also supports <span class="code">%N:lang&lt;zh&gt;:lc</span> (which should produce ordinary 小寫 numerals), then it must also provide the equivalent fields <span class="code">%z</span> and <span class="code">%小</span>. </p>
-<p id="e79fa15">Generated Chinese numbers should probably use traditional glyphs, rather than simplified glyphs, for maximum comprehensibility outside mainland China _(though the expert opinions of native speakers regarding this choice should certainly be sought where possible)._ </p>
+<p id="4fde3e0">Generated Chinese numbers should probably use traditional glyphs, rather than simplified glyphs, for maximum comprehensibility outside mainland China <span class="important">(though the expert opinions of native speakers regarding this choice should certainly be sought where possible)</span>. </p>
 <p id="7dee488">If a renderer supports Japanese numerals, via <span class="code">%N:lang&lt;ja&gt;</span>, then it must also provide the equivalent fields <span class="code">%J</span> and <span class="code">%業</span> (formal/business numbers) as well as <span class="code">%j</span> and <span class="code">%並</span> (everyday numbers). Note that <span class="code">%業</span> and <span class="code">%並</span> are still tentative, and perhaps not the most obvious choices. Unfortunately the most obvious choices – <span class="code">%大</span> and <span class="code">%小</span> – are already taken by <span class="code">%Z</span> and <span class="code">%z</span> (as Chinese arguably had the prior claim to them). Feedback on these names and suggestions for improvements – especially from native speakers of Japanese – would be greatly appreciated. </p>
 <p id="cea7861">If a renderer supports Hindi numerals, via <span class="code">%N:lang&lt;hi&gt;</span>, then it must also provide the equivalent fields <span class="code">%H</span> and <span class="code">%ह</span>. If a renderer supports Bengali numerals, via <span class="code">%N:lang&lt;bn&gt;</span>, then it must also provide the equivalent fields <span class="code">%B</span> and <span class="code">%ব</span>. </p>
 <p id="15afb9a">Only these six languages (English, Mandarin Chinese, Hindi, Bengali, Japanese, and Latin) will ever have dedicated single-character field specifiers. If a renderer supports the number systems of any other languages (<span class="important">e.g.</span> <span class="code">%N:lang&lt;fr&gt;</span>, <span class="code">%N:lang&lt;th&gt;</span>, or <span class="code">%N:lang&lt;eo&gt;</span>), the renderer is <span class="basis"><span class="important">not</span></span> permitted to reserve any <span class="code">%</span><span class="basis"><span class="important">X</span></span> field for them. </p>
@@ -3926,10 +3926,10 @@ Artistic-2.0
                 Rendered from&nbsp;<span class="footer-field">./rakudoc_v2.rakudoc/rakudoc_v2</span>
             </div>
             <div class="level-item">
-                Rendered at 17:43 UTC on 2025-09-04
+                Rendered at 08:00 UTC on 2025-09-05
             </div>
             <div class="level-item">
-                Source last modified&nbsp;at 17:28 UTC on 2025-09-04
+                Source last modified&nbsp;at 07:59 UTC on 2025-09-05
             </div>
         </nav>
     </div>
